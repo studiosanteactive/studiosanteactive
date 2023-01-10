@@ -1,0 +1,25 @@
+#intro-text {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url("../../images/IMG-0009.jpg");
+  background-size: cover;
+  width: auto;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+#intro-text p {
+  /* display: block; */
+  font-size: 40px;
+  text-align: center;
+  width: 80vw;
+  margin-bottom: 5vh;
+}
+
+#turq-text {
+  color: #4FC3C7;
+}

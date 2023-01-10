@@ -1,0 +1,26 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.small-btn {
+  display: flex;
+  justify-content: center;
+  border: solid 2px #4fc3c7;
+  border-radius: 8px;
+  padding: 8px 24px;
+  color: black;
+  font-weight: 600;
+  font-size: larger;
+  text-decoration: none;
+  transition: 0.3s ease;
+  background-color: white;
+}
+
+.small-btn:hover {
+  text-decoration: none;
+  border: solid 2px white;
+  background-color: #4fc3c7;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;;
+}

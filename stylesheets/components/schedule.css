@@ -1,0 +1,26 @@
+/* .schedule-conatiner {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: auto;
+  height: 40vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.group-schedule {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: auto;
+  height: 80vh;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
