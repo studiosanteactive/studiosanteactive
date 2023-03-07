@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../stylesheets/stylesheet.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500&family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </head>
+</head>
 <body>
   <!-- Navigation bar, borrowed from Le Wagon's UI Kit -->
   <nav class="navbar navbar-expand-sm navbar-light navbar-ssa">
@@ -40,42 +43,66 @@
     </div>
   </nav>
 
-    <!-- <div class="video-container">
-      <video autoplay muted loop id="banner-video">
-        <source src="../videos/Studio Santé Active 1080p.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-      </video>
-      <div class="overlay-container">
-        <p class="text-overlay">STUDIO SANTÉ ACTIVE</p>
+  <!-- Video container with overlay -->
+  <div class="video-container mb-4">
+    <!-- Video itself -->
+    <video autoplay muted loop id="banner-video">
+      <source src="../videos/Studio Santé Active 1080p.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Text and Button overlay -->
+    <div id="video-text">
+      <div id="video-title">
+        <p id="video-logo">STUDIO<span> SANTÉ ACTIVE</span></p>
       </div>
-    </div> -->
-    <div id="intro-text" class="mb-5">
-      <p>Le Studio Santé Active est une salle d’entraînement et de cours de groupe en plein cœur de Villeray. C’est l’endroit par excellence pour une prise en charge humaine et à l’écoute de vos besoins.
-      </p>
       <div class="button-container">
         <a href="/" class="small-btn"> En savoir plus</a>
       </div>
     </div>
+  </div>
+
+  <!-- Acceuil intro text -->
+  <div class="container" id="intro-text">
+    <p>Notre approche prend en considération les multiples facteurs qui influencent votre vie. On les adresse et crée un plan d’intervention réaliste. Le but est de créer des changements durables d’habitudes et de comportements qui seront favorables pour ton bien-être immédiat et à long terme. Tu es le centre de l’intervention!
+    </p>
+
+    <div class="button-container">
+      <a href="/" class="small-btn"> En savoir plus!</a>
+    </div>
+  </div>
+
+  <!-- Thin line splitter -->
+  <div class="container splitter">
+    <hr>
+  </div>
 
     <!-- Links to the other main pages -->
     <div class="container">
       <div class="cards">
         <div class="card-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)">
-          <p>À propos</p>
+          <h1>À propos</h1>
           <div class="button-container">
-            <a href="/" class="small-btn"> En savoir plus</a>
+            <a href="/apropos.html" class="small-btn"> En savoir plus</a>
           </div>
         </div>
 
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../images/IMG-0014.jpg)">
-          <p>Nos services</p>
+          <h1>Nos services</h1>
           <div class="button-container">
             <a href="/" class="small-btn"> En savoir plus</a>
           </div>
         </div>
 
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../images/IMG-0027.jpg)">
-          <p>Cours en groupe</p>
+          <h1>Cours en groupe</h1>
+          <div class="button-container">
+            <a href="/" class="small-btn"> En savoir plus</a>
+          </div>
+        </div>
+
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(../images/IMG-0014.jpg)">
+          <h1>Salle</h1>
           <div class="button-container">
             <a href="/" class="small-btn"> En savoir plus</a>
           </div>
@@ -83,9 +110,15 @@
       </div>
     </div>
 
+  <!-- Thin line splitter -->
+  <div class="container splitter">
+    <hr>
+  </div>
+
     <!-- Group class schedule image -->
     <div class="schedule-container">
-      <a href="/"><img src="../images/hiver 2023.jpg" alt="" class="group-schedule"></a>
+      <a href="../images/hiver 2023.jpg" target="_blank"><img src="../images/hiver 2023.jpg" alt="Group Class Schedule" class="group-schedule">
+    </a>
     </div>
 
     <!-- Last button to find out more -->
@@ -96,6 +129,10 @@
     <!-- Footer, with Google Map and other important info -->
     <footer id="footer">
       <div class="info-map">
+        <div id="map">
+          <!-- <div class="map-overlay"></div> -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca" width="700" height="300" scrolling="no" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
         <div class="contact-hours">
           <section class="contact">
             <h4>Coordonnées</h4>
@@ -109,10 +146,6 @@
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
           </section>
-        </div>
-        <div id="map">
-          <!-- <div class="map-overlay"></div> -->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca" width="700" height="300" scrolling="no" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
       <div id="copyright">

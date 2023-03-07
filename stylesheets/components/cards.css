@@ -15,17 +15,17 @@
 
 }
 
-.card-category p {
+.card-category h1 {
   padding: 30px;
   font-size: 40px;
-  font-weight: bold;
 }
 
 .cards {
+  /* margin-top: 9vh; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5vw;
-  padding-bottom: 5vh;
+  /* padding-bottom: 5vh; */
 }
 
 /* // Smallest device */

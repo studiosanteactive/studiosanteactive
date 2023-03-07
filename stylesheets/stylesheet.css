@@ -13,6 +13,11 @@
   margin-right: auto;
 }
 
+.splitter {
+  margin-top: 9vh;
+  margin-bottom: 9vh;
+}
+
 #turq-text {
   color: #4FC3C7
 }

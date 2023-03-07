@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: white;
   margin-right: 2vw;
 }
@@ -30,21 +30,32 @@
 }
 
 .contact {
-  padding: 2vh;
+  margin: 0px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: start;
   justify-content: center;
-  height: 150px;
+  height: 100px;
+  margin-bottom: 5vh;
+  margin-left: 5vw;
+}
+
+.contact p {
+  margin: 0px;
 }
 
 .hours {
-  padding: 2vh;
+  margin: 0px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: start;
   justify-content: center;
-  height: 150px;
+  height: 100px;
+  margin-left: 5vw;
+}
+
+.hours p {
+  margin: 0px;
 }
 
 #copyright {
