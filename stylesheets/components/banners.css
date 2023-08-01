@@ -1,0 +1,19 @@
+.banner {
+  /* background-image: url("../../images/IMG-0079.jpg"); */
+  background-size: cover;
+  background-position: center;
+  padding: 200px;
+  margin: 0px;
+}
+
+.banner h1 {
+  color: white;
+  text-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+}
+
+.banner p {
+  color: grey;
+  text-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  margin-bottom: 30px;
+}

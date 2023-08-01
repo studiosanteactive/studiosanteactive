@@ -1,0 +1,40 @@
+.navbar-ssa {
+  justify-content: space-between;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-ssa .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-ssa .navbar-logo img {
+  width: auto;
+  height: 5vh;
+}
+
+.navbar-logo {
+  padding: 0px;
+  margin: 0px;
+}
+
+.navbar {
+  border-bottom: 1px solid black;
+}
+
+.nav-link {
+  border-bottom: 3px solid white;
+  font-size: larger;
+  font-weight: 500;
+  transition: 0.6s ease;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid #B9E3E5;
+}
+
+.active {
+  border-bottom: 3px solid #4FC3C7
+}

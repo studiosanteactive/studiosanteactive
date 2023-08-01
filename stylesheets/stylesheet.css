@@ -1,0 +1,23 @@
+@import url("components/banners.css");
+@import url("components/cards.css");
+@import url("components/navbar.css");
+@import url("components/video.css");
+@import url("components/buttons.css");
+@import url("components/text.css");
+@import url("components/schedule.css");
+@import url("components/footer.css");
+
+.container {
+  width: 85vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.splitter {
+  margin-top: 9vh;
+  margin-bottom: 9vh;
+}
+
+#turq-text {
+  color: #4FC3C7
+}
