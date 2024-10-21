@@ -46,6 +46,12 @@
   font-weight: 100;
 }
 
+@media (min-width: 100px) and (max-width: 767px) {
+  #video-logo {
+    font-size: 5rem;
+  }
+}
+
 #video-logo span {
   font-weight: 400;
 }

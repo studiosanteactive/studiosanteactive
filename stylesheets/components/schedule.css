@@ -1,26 +1,24 @@
-/* .schedule-conatiner {
-  border: 1px solid black;
-  border-radius: 8px;
-  width: auto;
-  height: 40vh;
-  margin: auto;
+.schedule-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-} */
+  grid-template-columns: 1fr 1fr;
+}
 
 .group-schedule {
   border: 1px solid black;
-  border-radius: 8px;
-  width: auto;
-  height: 80vh;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  border-radius: 2px;
+  display: block;
 }
+
+.group-schedule img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 100px) and (max-width: 575px) {
+  .schedule-container {
+    max-width: 90vw;
+    height: auto;
+    margin: auto;
+  }
