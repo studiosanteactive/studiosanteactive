@@ -6,6 +6,7 @@
 @import url("components/text.css");
 @import url("components/schedule.css");
 @import url("components/footer.css");
+@import url("components/large-cards.css");
 
 .container {
   width: 85vw;

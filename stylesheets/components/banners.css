@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: space-around;
   justify-content: center;
   text-align: center;
 }
@@ -44,9 +45,7 @@
 #banner-logo {
   text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
   font-family: Barlow;
-  font-size: 10rem;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  font-size: 8rem;
   font-weight: 100;
 }
 
@@ -54,8 +53,8 @@
   text-shadow: 1px 1px 8px rgba(0,0,0,0.85);
   font-family: Barlow;
   font-size: 4rem;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
   font-weight: 400;
 }
 
