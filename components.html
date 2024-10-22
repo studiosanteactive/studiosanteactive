@@ -1,31 +1,138 @@
-  <!-- Navigation bar, borrowed from Le Wagon's UI Kit -->
-  <nav class="navbar navbar-expand-sm navbar-light navbar-ssa">
-    <div class="container-fluid px-5">
-      <a class="navbar-logo my-1" href="/index.html">
-        <img src="/images/logo_Studio_Sante_Active.png" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="/index.html">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/apropos.html">À propos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/nosservices.html">Nos services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="turq-text" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="turq-text" href="/contact.html">Contact</a>
-          </li>
-        </ul>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="trainers">
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Myriam Tremblay-Quevillon</h1>
+          <h2></h2>
+          <p>Diplômée de l'UQAM en interprétation de la danse contemporaine en 2010, Myriam cumule plus de 15 ans d'expérience comme entraîneuse personnelle. Passionnée par le mouvement du corps, elle obtient sa certification d'instructrice de pilates au sol en 2012 et de pilates sur appareils en 2019 chez Ann McMillan Pilates.</p>
+          <p>Grâce à sa formation, Myriam accorde une attention particulière à la posture, à la mobilité et à la conscience corporelle (somatique). C'est la coach toute désignée pour vous amener à repousser vos limites tout en respectant votre corps.</p>
+          <p>Autres spécialisations : Entraînement en circuit (HIIT) | Entraînement fonctionnel (cross training) | Gestion de poids | Préparation athlétique pour danseurs | Mise en forme générale | Aînés et prévention des chutes</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Yan Thach</h1>
+          <h2>Kinésiologue</h2>
+          <p>Membre de la Fédération des kinésiologues du Québec, Yan évolue dans le domaine du conditionnement physique depuis 10 ans. Il travaille avec une clientèle variée, et se spécialise dans la prévention des blessures et la réadaptation.</p>
+          <p>Autres spécialisations : Entraînement en circuit (HIIT) | Entraînement fonctionnel (cross training) | Préparation sportive | Gestion de poids | Réadaptation, cas symptomatiques et douleurs chroniques | Préparation au test d'aptitude physique pré-embauche | Posture | Aînés et prévention des chutes | Sport-études</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Simon Lavoie</h1>
+          <h2>Kinésiologue</h2>
+          <p>Diplômé de l'UQAM et candidat à la maîtrise en physiothérapie à McGill, Simon a plus de cinq ans d'expérience dans le domaine de l'activité physique. Avec ses connaissances en réadaptation et en performance sportive, Simon est un allié hors pair pour quiconque souhaite se mettre (ou se remettre!) en forme.</p>
+          <p>Autres spécialisations : Entraînement en circuit | Préparation sportive | Réadaptation, cas symptomatiques et douleurs chroniques | Préparation au test d'aptitude physique pré-embauche | Aînés et prévention des chutes | Sport-études</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Alex Parisien</h1>
+          <h2>Entraîneur certifié</h2>
+          <p>Alex est entraîneur certifié depuis 2017. Il se spécialise en musculation globale, en hypertrophie et en mise en forme. Son approche généraliste adaptative convient aux clients de tous les horizons, qu'ils soient de grands sportifs ou plutôt sédentaires. Alex sait tenir compte des limites de chacun et vous aide à atteindre vos objectifs de manière sécuritaire.</p>
+          <p>Autres spécialisations : Entraînement en circuit | Hypertrophie | Développement du tonus musculaire |Développement de la force | Mise en forme générale | Gestion du poids</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Roxane Dubuc Duval</h1>
+          <h2>Kinésiologue</h2>
+          <p>Pour Roxanne, la mise en forme passe avant tout par les relations humaines. Avec sa vaste expérience en conditionnement physique, elle accompagne les aînés, les clients ayant des troubles de santé mentale et les femmes enceintes dans l'atteinte de leurs objectifs. Avec Roxanne, vous bougerez en toute sécurité.</p>
+          <p>Autres spécialisations : Entraînement en circuit | Boxe | Aînés et prévention des chutes | Santé mentale | Femmes enceintes | Spor-études | Maladies chroniques</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Billy-Jean Chim</h1>
+          <h2>Étudiant en kinésiologie</h2>
+          <p>Marathonien et étudiant en kinésiologie à l'UQAM, Billy compte plus de cinq ans d'expérience dans le domaine de l'entraînement. Passionné de dynamophilie, il vous démontrera que les bienfaits de l'activité physique vont bien au-delà de l'apparence. Billy vous guidera vers l'atteinte de vos objectifs en toute sécurité.</p>
+          <p>Autres spécialisations : Dynamophilie (entraînement de force) | Mise en forme | Hypertrophie | Développement de l'endurance musculaire et cardiovasculaire | Course à pied | Entraînement en circuit</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Valérie Niro</h1>
+          <h2>Kinésiologue</h2>
+          <p>Valérie œuvre dans le domaine de l'entraînement depuis plus de 10 ans et a gradué en 2015 à l'Université de Montréal. Étant elle-même athlète de "powerlifting " et culturisme, elle se spécialise en gain de force, prise de masse musculaire et recomposition corporelle.</p>
+          <p>Valérie a également de l'expérience avec un amalgame de type de clientèle et démontre une grande dévotion dans l'accomplissement des objectifs de ses clients. Finalement, Valérie possède diverses formations à son actif passant de la nutrition fonctionnelle à la périodisation de l'entraînement en force et la préparation physique.</p>
+          <p>Joviale, dynamique, expérimentée et disponible, elle saura sans aucun doute vous encadrer optimalement dans votre processus de mise en forme.</p>
+          <p>Autres spécialisations :  Entraînement de la force |  Dynamophilie (Powerlifting) | Hypertrophie |  Perte de gras | Entraînement pour les aînés | Mise en forme générale</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Florence Carrière</h1>
+          <h2>Entraîneuse certifiée</h2>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Audrey Mercier</h1>
+          <h2>Instructrice de Pilates Ann McMilan</h2>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Laurie Pomerleau</h1>
+          <p>Adepte de volley-ball et étudiante en kinésiologie à l'UQAM, Laurie a l'idée que chaque personne est unique avec des besoins spécifiques. Passionnée par l'activité physique en général, elle se donne le devoir de promouvoir la santé et l'activité physique au quotidien. Son approche se base sur la confiance mutuelle qu'elle entretient avec les clients et sur sa volonté à effectuer un changement.</p>
+          <p>Autres spécialisations :  Perte de poids | Endurance musculaire et cardiovasculaire | Hypertrophie | Réadaptation | Préparation sportive pour le Volleyball</p>
+          <h2>Étudiante en kinésiologie</h2>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Ivanhe Martin</h1>
+          <h2>Entraîneur certifié</h2>
+          <p>Certifié en Europe et fort de plus de 5 ans d'expérience à Paris, Ivanhe s'est spécialisé dans l'haltérophilie et le renforcement musculaire. Ancien journaliste musical et intermittent du spectacle, il vit aujourd'hui à Montréal, où il accompagne ses clients vers leurs objectifs de santé et de bien-être.</p>
+          <p>L'une de ses priorités est l'amélioration de la posture, clé d'un corps fonctionnel et équilibré. Ivanhe adore expliquer la mécanique du corps humain pour aider chacun à mieux comprendre comment il fonctionne et comment progresser en toute sécurité. Passionné par les cours collectifs qu'il voit comme une source d'énergie partagée, il crée des séances qui allient techniques douces (Pilates, stretching) et efforts plus intenses (HIIT, circuits), adaptées à tous les niveaux.</p>
+          <p>Autres spécialisations :  Renforcement musculaire | Posture |  Endurance cardiovasculaire (HIIT, circuits) |  Techniques douces (Stretching) | Mobilité et assouplissements | Bien-être et relaxatio</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)"></div>
+        <div>
+          <h1>Matthew Hurley</h1>
+          <h2>Entraîneur certifié</h2>
+          <p>Matthew, entraîneur personnel certifié avec plus de 4 ans d'expérience en musculation, se distingue par sa passion inébranlable pour le fitness et son désir constant d'apprendre et d'évoluer. Il combine expertise et approche personnalisée pour offrir des séances adaptées à vos besoins et à votre style de vie. Que vous souhaitiez améliorer votre condition physique, renforcer votre musculature, ou simplement adopter un mode de vie plus sain, Matthew est déterminé à vous guider de manière sécuritaire, motivante et durable, tout en rendant chaque étape du processus aussi amusante qu'efficace.</p>
+          <p>Autres spécialisations : Endurance musculaire et cardiovasculaire | Renforcement musculaire | Hypertrophie | Mise en forme générale</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(../images/IMG-0009.jpg)">
+          <h1>Matthew Hurley</h1>
+        </div>
+        <div>
+          <h2>Entraîneur certifié</h2>
+          <p>Matthew, entraîneur personnel certifié avec plus de 4 ans d'expérience en musculation, se distingue par sa passion inébranlable pour le fitness et son désir constant d'apprendre et d'évoluer. Il combine expertise et approche personnalisée pour offrir des séances adaptées à vos besoins et à votre style de vie. Que vous souhaitiez améliorer votre condition physique, renforcer votre musculature, ou simplement adopter un mode de vie plus sain, Matthew est déterminé à vous guider de manière sécuritaire, motivante et durable, tout en rendant chaque étape du processus aussi amusante qu'efficace.</p>
+          <p>Autres spécialisations : Endurance musculaire et cardiovasculaire | Renforcement musculaire | Hypertrophie | Mise en forme générale</p>
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
+</body>
+</html>

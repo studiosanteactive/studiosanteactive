@@ -7,6 +7,8 @@
 @import url("components/schedule.css");
 @import url("components/footer.css");
 @import url("components/large-cards.css");
+@import url("components/form.css");
+@import url("components/trainer-cards.css");
 
 .container {
   width: 85vw;
@@ -22,3 +24,9 @@
 #turq-text {
   color: #4FC3C7
 }
+
+/* body {
+  background-image: url("/images/IMG-0361.jpg");
+  background-size: cover;
+  background-position: center top;
+} */

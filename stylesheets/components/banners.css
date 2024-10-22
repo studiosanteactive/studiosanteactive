@@ -44,14 +44,14 @@
 
 #banner-logo {
   text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
-  font-family: Barlow;
+  font-family: 'Barlow', sans-serif;
   font-size: 8rem;
   font-weight: 100;
 }
 
 #banner-content {
   text-shadow: 1px 1px 8px rgba(0,0,0,0.85);
-  font-family: Barlow;
+  font-family: 'Barlow', sans-serif;
   font-size: 4rem;
   padding-top: 4vh;
   padding-bottom: 4vh;
