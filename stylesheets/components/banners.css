@@ -66,6 +66,13 @@
   #banner-content {
     font-size: 2rem;
   }
+
+  .entrain {
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+    font-family: 'Barlow', sans-serif;
+    font-size: 3.7rem;
+    font-weight: 100;
+  }
 }
 
 #banner-logo span {
