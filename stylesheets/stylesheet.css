@@ -9,6 +9,8 @@
 @import url("components/large-cards.css");
 @import url("components/form.css");
 @import url("components/trainer-cards.css");
+@import url("components/conditions.css");
+@import url("components/faq.css");
 
 .container {
   width: 85vw;

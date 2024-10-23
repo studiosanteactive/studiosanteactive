@@ -63,10 +63,31 @@
 }
 
 #copyright p {
-  padding-top: 2vh;
   color: white;
-  margin: 3vh;
   font-size: 0.8em;
+}
+
+.links {
+  text-align: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-bottom: 2vh;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  text-decoration: underline;
+  font-size: 1em;
+}
+
+.links span {
+  color: white;
+  font-size: 0.8em;
+}
+
+.links a:hover {
+  color: #B9E3E5;
 }
 
 @media (min-width: 100px) and (max-width: 575px) {
@@ -79,7 +100,7 @@
 
   .contact p, .hours p {
     text-align: left;
-    font-size: 1em;
+    font-size: 0.8em;
     align-items: flex-start;
   }
 
@@ -94,5 +115,9 @@
     width: 100%;
     height: auto;
     margin: auto;
+  }
+
+  .links span {
+    font-size: 0.8em;
   }
 }

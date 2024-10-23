@@ -41,7 +41,7 @@
   }
 
   .card-category h1 {
-    font-size: 2.6rem;
+    font-size: 2.3rem;
   }
 
   .card-category:nth-last-child(1):nth-child(odd) {
