@@ -51,6 +51,12 @@
   align-items: flex-start; /* Align text to the start */
 }
 
+.contact a {
+  text-decoration: none;
+  text-decoration: underline;
+  color: white;
+}
+
 .contact p, .hours p {
   margin: 0;
 }
