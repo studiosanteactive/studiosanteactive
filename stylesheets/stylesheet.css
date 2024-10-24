@@ -11,6 +11,7 @@
 @import url("components/trainer-cards.css");
 @import url("components/conditions.css");
 @import url("components/faq.css");
+@import url("components/prices.css");
 
 .container {
   width: 85vw;

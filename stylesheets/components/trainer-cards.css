@@ -33,23 +33,24 @@
 
 .trainer-card h1 {
   padding-top: 2vh;
-  padding-bottom: 5vh;
+  padding-bottom: 2vh;
   font-weight: 400;
   font-family: 'Barlow', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   padding-left: 2vh;
   padding-right: 2vh;
+  text-align: center;
 }
 
 .trainer-card h2 {
   padding-top: 2vh;
   font-weight: 400;
   font-family: 'Barlow', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .trainer-card p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 400;
   padding-top: 2vh;
   padding-left: 2vw;
