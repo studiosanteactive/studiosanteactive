@@ -36,8 +36,24 @@ h1 h2 h3 h4 h5 {
   margin-bottom: 7vh;
 }
 
+.text-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.text-container div {
+  grid-column: span 2;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
 @media (min-width: 100px) and (max-width: 767px) {
   .intro-text h1 {
     font-size: 2rem;
+  }
+
+  .text-container div {
+    grid-column: span 4;
   }
 }
