@@ -28,7 +28,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 
@@ -49,6 +49,11 @@
 @media (min-width: 100px) and (max-width: 767px) {
   #video-logo {
     font-size: 5rem;
+  }
+
+  #banner-video {
+    height: 100vh;
+    width: auto;
   }
 }
 
