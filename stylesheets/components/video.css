@@ -26,7 +26,14 @@
 #banner-video {
   object-fit: cover;
   position: absolute;
-  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+}
+
+.banner-video {
+  object-fit: cover;
+  position: absolute;
   left: 0;
   height: auto;
   width: 100%;
@@ -54,6 +61,10 @@
   #banner-video {
     height: 100vh;
     width: auto;
+  }
+
+  .banner-video {
+    width: stretch;
   }
 }
 
