@@ -78,3 +78,21 @@
 #banner-logo span {
   font-weight: 400;
 }
+
+#banner-image {
+  object-fit: cover;
+  position: absolute;
+  height: auto;
+  width: 100%;
+}
+
+@media (min-width: 100px) and (max-width: 767px) {
+  #banner-image {
+    height: 100vh;
+    width: auto;
+  }
+
+  .banner-image {
+    width: stretch;
+  }
+}

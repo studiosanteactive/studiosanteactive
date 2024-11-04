@@ -31,14 +31,6 @@
   width: 100%;
 }
 
-.banner-video {
-  object-fit: cover;
-  position: absolute;
-  left: 0;
-  height: auto;
-  width: 100%;
-}
-
 #video-title {
   display: flex;
   text-align: center;
