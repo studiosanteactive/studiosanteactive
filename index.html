@@ -1,180 +1,194 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <title>Studio Santé Active</title>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-  <link rel="stylesheet" href="../stylesheets/stylesheet.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/c95ece7a27.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</head>
-<body>
-  <!-- Navigation bar, borrowed from Le Wagon's UI Kit -->
-  <nav class="container navbar navbar-expand-sm navbar-light navbar-ssa">
-    <div class="container-fluid">
-      <a class="navbar-logo" href="/index.html">
-        <img src="/images/logo-small.png" />
+  <head>
+    <title>Studio Santé Active</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c95ece7a27.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- Navigation bar, borrowed from Le Wagon's UI Kit -->
+    <nav class="container navbar navbar-expand-sm navbar-light navbar-ssa">
+      <div class="container-fluid">
+        <a class="navbar-logo" href="/index.html">
+          <img src="/images/logo-small.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/index.html">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/apropos.html">À propos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/nosservices.html">Nos services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ceg.html">Cours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="turq-text" href="/contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="turq-text" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+      <div></div>
+    <!-- Video container with overlay -->
+    <div class="video-container mb-4">
+      <!-- Video itself -->
+      <video autoplay muted loop id="banner-video" class="banner-video">
+        <source src="videos/Studio Santé Active 480p.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+
+      <!-- Text and Button overlay -->
+      <div id="video-text">
+        <div id="video-title">
+          <p id="video-logo">STUDIO<span> SANTÉ ACTIVE</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acceuil intro text -->
+    <div class="container" id="intro-text">
+      <p>Le Studio Santé Active est une salle d’entraînement et de cours de groupe en plein cœur de Villeray. C’est l’endroit par excellence pour une prise en charge humaine et à l’écoute de vos besoins.
+      </p>
+
+      <div class="button-container">
+        <a href="/contact.html" class="small-btn">En savoir plus!</a>
+      </div>
+    </div>
+
+    <!-- Thin line splitter -->
+    <div class="container splitter">
+      <hr>
+    </div>
+
+    <!-- Card links to the other main pages -->
+    <div class="container">
+      <div class="cards">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24100_IMG_2228.jpg)">
+          <h1>À propos</h1>
+          <div class="button-container">
+            <a href="/apropos.html" class="small-btn">En savoir plus!</a>
+          </div>
+        </div>
+
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24165_IMG_2419.jpg)">
+          <h1>Nos services</h1>
+          <div class="button-container">
+            <a href="/nosservices.html" class="small-btn">En savoir plus!</a>
+          </div>
+        </div>
+
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24005_IMG_1884.jpg)">
+          <h1>Cours en groupe</h1>
+          <div class="button-container">
+            <a href="/ceg.html" class="small-btn">En savoir plus!</a>
+          </div>
+        </div>
+
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24101_IMG_2229.jpg)">
+          <h1>Salle</h1>
+          <div class="button-container">
+            <a href="/apropos.html" class="small-btn">En savoir plus!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thin line splitter -->
+    <div class="container splitter">
+      <hr>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center">
+      <a href="https://www.bestinmtl.com/best-personal-trainers-montreal/" target="_blank">
+        <div>
+          <img src="images/MTL Badge-01.png" alt="Group Class Schedule">
+        </div>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="/index.html">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/apropos.html">À propos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/nosservices.html">Nos services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/ceg.html">Cours</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="turq-text" href="/contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="turq-text" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
-          </li>
-        </ul>
-      </div>
     </div>
-  </nav>
 
-  <!-- Video container with overlay -->
-  <div class="video-container mb-4">
-    <!-- Video itself -->
-    <video autoplay muted loop id="banner-video" class="banner-video">
-      <source src="videos/Studio Santé Active 480p.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
-
-    <!-- Text and Button overlay -->
-    <div id="video-text">
-      <div id="video-title">
-        <p id="video-logo">STUDIO<span> SANTÉ ACTIVE</span></p>
-      </div>
+    <!-- Thin line splitter -->
+    <div class="container splitter">
+      <hr>
     </div>
-  </div>
 
-  <!-- Acceuil intro text -->
-  <div class="container" id="intro-text">
-    <p>Le Studio Santé Active est une salle d’entraînement et de cours de groupe en plein cœur de Villeray. C’est l’endroit par excellence pour une prise en charge humaine et à l’écoute de vos besoins.
-    </p>
+    <!-- Group class schedule image -->
+    <div class="schedule-container">
+      <a href="images/Schedule-Fall-2024.jpg" target="_blank">
+        <div class="group-schedule">
+          <img src="images/Schedule-Fall-2024.jpg" alt="Group Class Schedule">
+        </div>
+      </a>
+    </div>
 
+    <!-- Thin line splitter -->
+    <div class="container splitter">
+      <hr>
+    </div>
+
+    <!-- Last button to find out more -->
     <div class="button-container">
       <a href="/contact.html" class="small-btn">En savoir plus!</a>
     </div>
-  </div>
 
-  <!-- Thin line splitter -->
-  <div class="container splitter">
-    <hr>
-  </div>
-
-  <!-- Card links to the other main pages -->
-  <div class="container">
-    <div class="cards">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24100_IMG_2228.jpg)">
-        <h1>À propos</h1>
-        <div class="button-container">
-          <a href="/apropos.html" class="small-btn">En savoir plus!</a>
+    <!-- Footer, with Google Map and other important info -->
+    <footer id="footer">
+      <div class="info-map">
+        <div class="contact-hours">
+          <section class="contact">
+            <h4>Coordonnées</h4>
+            <p>7422, rue Saint-Hubert # 101</p>
+            <p>Montréal (Qc)  H2R 2N3</p>
+            <p><a href="4388663438">(438) 866-3438</a></p>
+            <p><a href="admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
+            <p><a href="https://www.facebook.com/Studiosanteactive/"><i class="fa-brands fa-facebook"></i> Facebook</a> <a href="https://www.instagram.com/studiosanteactive/"><i class="fa-brands fa-square-instagram"></i> Instagram</a></p>
+          </section>
+          <section class="hours">
+            <h4>Horaire</h4>
+            <p>Du lundi au vendredi : 6h à 21h</p>
+            <p>Samedi : 8h à 18h</p>
+            <p>Dimanche : 9h à 15h</p>
+          </section>
+        </div>
+        <div id="map">
+          <!-- <div class="map-overlay"></div> -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca" scrolling="no" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
         </div>
       </div>
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24165_IMG_2419.jpg)">
-        <h1>Nos services</h1>
-        <div class="button-container">
-          <a href="/nosservices.html" class="small-btn">En savoir plus!</a>
-        </div>
+      <div class="links">
+        <a href="/conditions.html">Conditions</a><span> | </span>
+        <a href="/faq.html">FAQ</a><span> | </span>
+        <a href="/index.html">Accueil</a><span> | </span>
+        <a href="/apropos.html">À propos</a><span> | </span>
+        <a href="/nosservices.html">Nos Services</a><span> | </span>
+        <a href="/ceg.html">Cours en groupe</a><span> | </span>
+        <a href="/contact.html">Contact</a>
       </div>
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24005_IMG_1884.jpg)">
-        <h1>Cours en groupe</h1>
-        <div class="button-container">
-          <a href="/ceg.html" class="small-btn">En savoir plus!</a>
-        </div>
+      <div id="copyright">
+        <p>©Studio Santé Active 2023</p>
       </div>
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24101_IMG_2229.jpg)">
-        <h1>Salle</h1>
-        <div class="button-container">
-          <a href="/apropos.html" class="small-btn">En savoir plus!</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Thin line splitter -->
-  <div class="container splitter">
-    <hr>
-  </div>
-
-  <!-- Group class schedule image -->
-  <div class="schedule-container">
-    <a href="images/Schedule-Fall-2024.jpg" target="_blank">
-      <div class="group-schedule">
-        <img src="images/Schedule-Fall-2024.jpg" alt="Group Class Schedule">
-      </div>
-    </a>
-  </div>
-
-  <!-- Thin line splitter -->
-  <div class="container splitter">
-    <hr>
-  </div>
-
-  <!-- Last button to find out more -->
-  <div class="button-container">
-    <a href="/contact.html" class="small-btn">En savoir plus!</a>
-  </div>
-
-  <!-- Footer, with Google Map and other important info -->
-  <footer id="footer">
-    <div class="info-map">
-      <div class="contact-hours">
-        <section class="contact">
-          <h4>Coordonnées</h4>
-          <p>7422, rue Saint-Hubert # 101</p>
-          <p>Montréal (Qc)  H2R 2N3</p>
-          <p><a href="4388663438">(438) 866-3438</a></p>
-          <p><a href="admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
-          <p><a href="https://www.facebook.com/Studiosanteactive/"><i class="fa-brands fa-facebook"></i> Facebook</a> <a href="https://www.instagram.com/studiosanteactive/"><i class="fa-brands fa-square-instagram"></i> Instagram</a></p>
-        </section>
-        <section class="hours">
-          <h4>Horaire</h4>
-          <p>Du lundi au vendredi : 6h à 21h</p>
-          <p>Samedi : 8h à 18h</p>
-          <p>Dimanche : 9h à 15h</p>
-        </section>
-      </div>
-      <div id="map">
-        <!-- <div class="map-overlay"></div> -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca" scrolling="no" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-      </div>
-    </div>
-    <div class="links">
-      <a href="/conditions.html">Conditions</a><span> | </span>
-      <a href="/faq.html">FAQ</a><span> | </span>
-      <a href="/index.html">Accueil</a><span> | </span>
-      <a href="/apropos.html">À propos</a><span> | </span>
-      <a href="/nosservices.html">Nos Services</a><span> | </span>
-      <a href="/ceg.html">Cours en groupe</a><span> | </span>
-      <a href="/contact.html">Contact</a>
-    </div>
-    <div id="copyright">
-      <p>©Studio Santé Active 2023</p>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>
