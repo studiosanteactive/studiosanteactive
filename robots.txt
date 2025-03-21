@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://studiosanteactive.com/sitemap.xml
