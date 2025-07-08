@@ -1,9 +1,15 @@
 #contact-popin {
   position: fixed;
-  bottom: 20px;
+  bottom: 10vh;
   right: 20px;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 100px) and (max-width: 767px) {
+  #contact-popin {
+    display: none;
+  }
 }
