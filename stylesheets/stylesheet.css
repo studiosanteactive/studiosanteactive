@@ -12,6 +12,7 @@
 @import url("components/conditions.css");
 @import url("components/faq.css");
 @import url("components/prices.css");
+@import url("components/pop-in.css");
 
 .container {
   width: 85vw;
