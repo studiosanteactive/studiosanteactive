@@ -1,0 +1,7 @@
+# Netlify serves /apropos from apropos.html automatically; only legacy URLs need rules here.
+
+# Old URL that was listed in the previous sitemap and may still be indexed by Google.
+[[redirects]]
+  from = "/nosservices"
+  to = "/services"
+  status = 301

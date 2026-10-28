@@ -1,6 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr-CA">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1G490519RE"></script>
     <script>
@@ -9,166 +12,274 @@
         dataLayer.push(arguments);
       }
       gtag('js', new Date());
-
       gtag('config', 'G-1G490519RE');
     </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Studio Santé Active | Entraînement Privé à Montréal</title>
-    <meta
-      name="description"
-      content="Le Studio Santé Active est une salle d'entraînement et de cours de groupe en plein cœur de Villeray. C'est l'endroit par excellence pour une prise en charge humaine et à l'écoute de vos besoins."
-    >
-
-    <!-- Language & compatibility -->
-    <meta http-equiv="Content-Language" content="fr">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Canonical URL -->
+    <title>Studio Santé Active | Gym et entraînement privé à Villeray</title>
+    <meta name="description" content="Gym à Villeray, Montréal : entraînement privé et semi-privé avec kinésiologues, pilates, cours de groupe et thérapeutes. Consultation gratuite.">
     <link rel="canonical" href="https://studiosanteactive.com/">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Studio Santé Active | Entraînement Privé à Montréal">
-    <meta property="og:description" content="Entraînement privé et semi-privé à Montréal avec des coachs experts.">
-    <meta property="og:url" content="https://studiosanteactive.com/">
+    <!-- Social sharing -->
+    <meta property="og:site_name" content="Studio Santé Active">
+    <meta property="og:locale" content="fr_CA">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://studiosanteactive.com/path-to-your-image.jpg">
-
-    <!-- Twitter Card -->
+    <meta property="og:title" content="Studio Santé Active | Gym et entraînement privé à Villeray">
+    <meta property="og:description" content="Gym à Villeray, Montréal : entraînement privé et semi-privé avec kinésiologues, pilates, cours de groupe et thérapeutes. Consultation gratuite.">
+    <meta property="og:url" content="https://studiosanteactive.com/">
+    <meta property="og:image" content="https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg">
+    <meta property="og:image:width" content="985">
+    <meta property="og:image:height" content="657">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Studio Santé Active | Entraînement Privé à Montréal">
-    <meta
-      name="twitter:description"
-      content="Rejoignez notre studio pour un entraînement personnalisé avec nos coachs qualifiés à Montréal."
-    >
-    <meta name="twitter:image" content="https://studiosanteactive.com/path-to-your-image.jpg">
 
-    <!-- Favicon & styles -->
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="../stylesheets/stylesheet.css">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
-    >
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <meta name="theme-color" content="#4fc3c7">
+    <link rel="preload" as="image" href="/images/SSAOCT24100_IMG_2228.jpg" fetchpriority="high">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    >
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500&family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     >
 
-    <!-- Icons & Bootstrap JS -->
-    <script src="https://kit.fontawesome.com/c95ece7a27.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap first, so the site stylesheet can override it -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css">
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script defer src="/scripts/site.js"></script>
 
-    <!-- Structured data for SEO -->
+    <!-- Structured data for search engines -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
-        "name": "Studio Santé Active",
-        "image": "https://studiosanteactive.com/images/logo-small.png",
-        "url": "https://studiosanteactive.com",
-        "telephone": "+1-438-866-3438",
-        "email": "admin@studiosanteactive.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "7422 #101 rue Saint-Hubert",
-          "addressLocality": "Montréal",
-          "addressRegion": "QC",
-          "postalCode": "H2R 2N3",
-          "addressCountry": "CA"
-        },
-        "openingHoursSpecification": [
+        "@graph": [
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "06:00",
-            "closes": "21:00"
+            "@type": "ExerciseGym",
+            "@id": "https://studiosanteactive.com/#studio",
+            "name": "Studio Santé Active",
+            "url": "https://studiosanteactive.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://studiosanteactive.com/images/logo-small.png",
+              "width": 600,
+              "height": 160
+            },
+            "image": [
+              "https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg",
+              "https://studiosanteactive.com/images/SSAOCT24149_IMG_2363.jpg",
+              "https://studiosanteactive.com/images/SSAOCT24068_IMG_2109.jpg"
+            ],
+            "description": "Salle d'entraînement et studio de cours de groupe à Villeray, Montréal : entraînement privé et semi-privé avec kinésiologues et entraîneurs certifiés, pilates, cours de groupe et thérapeutes.",
+            "telephone": "+1-438-866-3438",
+            "email": "admin@studiosanteactive.com",
+            "priceRange": "$$",
+            "currenciesAccepted": "CAD",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "7422, rue Saint-Hubert, local 101",
+              "addressLocality": "Montréal",
+              "addressRegion": "QC",
+              "postalCode": "H2R 2N3",
+              "addressCountry": "CA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 45.54213,
+              "longitude": -73.616688
+            },
+            "hasMap": "https://maps.google.com/?q=7422+Rue+Saint-Hubert,+Montréal,+QC+H2R+2N3",
+            "areaServed": [
+              {
+                "@type": "Place",
+                "name": "Villeray"
+              },
+              {
+                "@type": "Place",
+                "name": "Petite-Patrie"
+              },
+              {
+                "@type": "City",
+                "name": "Montréal"
+              }
+            ],
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "06:00",
+                "closes": "21:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "08:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "09:00",
+                "closes": "15:00"
+              }
+            ],
+            "specialOpeningHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2026-12-25",
+                "validThrough": "2026-12-25"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-01-01",
+                "validThrough": "2027-01-01"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-03-28",
+                "validThrough": "2027-03-28"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-06-24",
+                "validThrough": "2027-06-24"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-07-01",
+                "validThrough": "2027-07-01"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-09-06",
+                "validThrough": "2027-09-06"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-10-11",
+                "validThrough": "2027-10-11"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "opens": "00:00",
+                "closes": "00:00",
+                "validFrom": "2027-12-25",
+                "validThrough": "2027-12-25"
+              }
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+1-438-866-3438",
+              "email": "admin@studiosanteactive.com",
+              "contactType": "customer service",
+              "areaServed": "CA",
+              "availableLanguage": [
+                "French",
+                "English"
+              ]
+            },
+            "sameAs": [
+              "https://www.facebook.com/Studiosanteactive",
+              "https://www.instagram.com/studiosanteactive"
+            ]
           },
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "08:00",
-            "closes": "18:00"
+            "@type": "WebSite",
+            "@id": "https://studiosanteactive.com/#website",
+            "url": "https://studiosanteactive.com/",
+            "name": "Studio Santé Active",
+            "inLanguage": "fr-CA",
+            "publisher": {
+              "@id": "https://studiosanteactive.com/#studio"
+            }
           },
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Sunday",
-            "opens": "09:00",
-            "closes": "15:00"
+            "@type": "WebPage",
+            "@id": "https://studiosanteactive.com/#webpage",
+            "url": "https://studiosanteactive.com/",
+            "name": "Studio Santé Active | Gym et entraînement privé à Villeray",
+            "description": "Gym à Villeray, Montréal : entraînement privé et semi-privé avec kinésiologues, pilates, cours de groupe et thérapeutes. Consultation gratuite.",
+            "inLanguage": "fr-CA",
+            "isPartOf": {
+              "@id": "https://studiosanteactive.com/#website"
+            },
+            "about": {
+              "@id": "https://studiosanteactive.com/#studio"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg",
+              "width": 985,
+              "height": 657
+            }
           }
-        ],
-        "priceRange": "$$",
-        "description": "Studio d'entraînement privé et semi-privé à Montréal, spécialisé en santé et bien-être avec des coachs qualifiés.",
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 45.542130,
-          "longitude": -73.616688
-        },
-        "hasMap": "https://maps.google.com/?q=7422+Rue+Saint-Hubert,+Montréal,+QC+H2R+2N3",
-        "areaServed": {
-          "@type": "Place",
-          "name": "Montréal"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+1-438-866-3438",
-          "contactType": "customer service",
-          "areaServed": "CA",
-          "availableLanguage": ["French", "English"]
-        },
-        "sameAs": [
-          "https://www.facebook.com/Studiosanteactive",
-          "https://www.instagram.com/studiosanteactive"
         ]
       }
     </script>
   </head>
 
   <body>
-    <!-- Floating contact call-to-action -->
-    <div id="contact-popin">
+    <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <!-- Floating contact call-to-action (large screens only; scripts/site.js shows it after the banner) -->
+    <div class="contact-popin">
       <a href="/contact.html" class="small-btn">Vous voulez en savoir plus? Contactez-nous!</a>
     </div>
 
     <!-- Main navigation -->
-    <nav class="container navbar navbar-expand-sm navbar-light navbar-ssa">
-      <div class="container-fluid">
-        <a class="navbar-logo" href="/index.html">
-          <img src="/images/logo-small.png" alt="Logo du Studio Santé Active">
+    <header class="site-header">
+      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+        <a class="navbar-logo" href="/">
+          <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
 
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-bs-target="#menu-principal"
+          aria-controls="menu-principal"
           aria-expanded="false"
           aria-label="Ouvrir le menu de navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="/index.html">Accueil</a>
+              <a class="nav-link active" aria-current="page" href="/">Accueil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/apropos.html">À propos</a>
@@ -183,192 +294,170 @@
               <a class="nav-link" href="/ceg.html">Cours</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="turq-text" href="/contact.html">Contact</a>
+              <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="turq-text" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
+              <a class="nav-link nav-link-accent" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <!-- Hero video banner -->
-    <div class="video-container mb-4">
-      <video autoplay muted loop id="banner-video" class="banner-video">
-        <source src="videos/Studio Santé Active 480p.mp4" type="video/mp4">
-        Studio Santé Active offre des services d'entraînement privé et semi-privé à Montréal. Atteignez vos objectifs de santé avec nos coachs qualifiés.
-      </video>
-
-      <!-- Overlay text on video -->
-      <div id="video-text">
-        <div id="video-title">
-          <p id="video-logo">STUDIO<span> SANTÉ ACTIVE</span></p>
-        </div>
-      </div>
+    <!-- Upcoming holiday closure (shown by scripts/site.js) -->
+    <div class="holiday-notice" data-holiday-notice hidden>
+      <p><strong>Congé :</strong> <span data-holiday-notice-text></span> <a href="/faq.html#conges">Tous les congés</a></p>
     </div>
 
-    <!-- Intro section -->
-    <div class="container" id="intro-text">
-      <h1 id="intro">
-        Le Studio Santé Active est une salle d'entraînement et de cours de groupe en plein cœur de Villeray.
-        C'est l'endroit par excellence pour une prise en charge humaine et à l'écoute de vos besoins.
-      </h1>
-      
+    <main id="contenu">
+      <!-- Hero video banner (decorative; the poster photo shows while loading and when motion is reduced) -->
+      <div class="banner banner-hero">
+        <video class="banner-media" autoplay muted loop playsinline preload="metadata" poster="/images/SSAOCT24100_IMG_2228.jpg" aria-hidden="true">
+          <source src="/videos/studio-sante-active-480p.mp4" type="video/mp4">
+        </video>
+        <div class="banner-overlay">
+          <h1 class="banner-title">STUDIO <span>SANTÉ ACTIVE</span></h1>
+          <p class="banner-subtitle">Entraînement privé, kinésiologie et cours de groupe à Villeray</p>
+        </div>
+      </div>
+
+      <!-- Intro section -->
+      <div class="container intro">
+        <p class="intro-lead">
+          Le Studio Santé Active est une salle d'entraînement et de cours de groupe en plein cœur de Villeray.
+          C'est l'endroit par excellence pour une prise en charge humaine et à l'écoute de vos besoins.
+        </p>
+        <div class="button-container">
+          <a href="/contact.html" class="small-btn">En savoir plus!</a>
+        </div>
+      </div>
+
+      <!-- Optional seasonal notice
+      <div class="container intro">
+        <h2>Congé des fêtes</h2>
+        <p>Mercredi 24 décembre - fermeture à 13h</p>
+        <p>Jeudi 25 décembre - fermé</p>
+        <p>Vendredi 26 décembre - fermé</p>
+        <p>Mercredi 31 décembre - fermeture à 13h</p>
+        <p>Jeudi 1 janvier - fermé</p>
+        <p>Vendredi 2 janvier - fermé</p>
+      </div>
+      -->
+
+      <!-- Section divider -->
+      <div class="container splitter">
+        <hr>
+      </div>
+
+      <!-- Navigation cards to main sections -->
+      <div class="container">
+        <div class="cards">
+          <div class="card-category" style="--bg: url('/images/SSAOCT24100_IMG_2228.jpg')">
+            <h2>À propos</h2>
+            <div class="button-container">
+              <a href="/apropos.html" class="small-btn">En savoir plus<span class="visually-hidden"> : À propos</span>!</a>
+            </div>
+          </div>
+
+          <div class="card-category" style="--bg: url('/images/SSAOCT24165_IMG_2419.jpg')">
+            <h2>Services</h2>
+            <div class="button-container">
+              <a href="/services.html" class="small-btn">En savoir plus<span class="visually-hidden"> : Services</span>!</a>
+            </div>
+          </div>
+
+          <div class="card-category" style="--bg: url('/images/SSAOCT24005_IMG_1884.jpg')">
+            <h2>Cours en groupe</h2>
+            <div class="button-container">
+              <a href="/ceg.html" class="small-btn">En savoir plus<span class="visually-hidden"> : Cours en groupe</span>!</a>
+            </div>
+          </div>
+
+          <div class="card-category" style="--bg: url('/images/SSAOCT24101_IMG_2229.jpg')">
+            <h2>Salle</h2>
+            <div class="button-container">
+              <a href="/apropos.html" class="small-btn">En savoir plus<span class="visually-hidden"> : Salle</span>!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section divider -->
+      <div class="container splitter">
+        <hr>
+      </div>
+
+      <!-- Group class schedule -->
+      <figure class="media-figure schedule">
+        <a href="/images/CEG-schedule.jpeg" target="_blank" rel="noopener">
+          <img src="/images/CEG-schedule.jpeg" alt="Horaire des cours en groupe du Studio Santé Active" width="1000" height="745">
+          <span class="visually-hidden"> (ouvre l'horaire en grand dans un nouvel onglet)</span>
+        </a>
+        <figcaption>Touchez l'horaire pour l'agrandir.</figcaption>
+      </figure>
+
+      <!-- Section divider -->
+      <div class="container splitter">
+        <hr>
+      </div>
+
+      <!-- Final call-to-action -->
       <div class="button-container">
         <a href="/contact.html" class="small-btn">En savoir plus!</a>
       </div>
-    </div>
-
-    <!-- Optional seasonal notice
-    <div class="container" id="intro-text">
-      <h4>Congé des fêtes</h4>
-      <p>Mercredi 24 décembre - fermeture à 13h</p>
-      <p>Jeudi 25 décembre - fermé</p>
-      <p>Vendredi 26 décembre - fermé</p>
-      <p>Mercredi 31 décembre - fermeture à 13h</p>
-      <p>Jeudi 1 janvier - fermé</p>
-      <p>Vendredi 2 janvier - fermé</p>
-    </div>
-    -->
-
-    <!-- Section divider -->
-    <div class="container splitter">
-      <hr>
-    </div>
-
-    <!-- Navigation cards to main sections -->
-    <div class="container">
-      <div class="cards">
-        <div
-          class="card-category"
-          style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24100_IMG_2228.jpg)"
-        >
-          <h2>À propos</h2>
-          <div class="button-container">
-            <a href="/apropos.html" class="small-btn">En savoir plus!</a>
-          </div>
-        </div>
-
-        <div
-          class="card-category"
-          style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24165_IMG_2419.jpg)"
-        >
-          <h2>Services</h2>
-          <div class="button-container">
-            <a href="/services.html" class="small-btn">En savoir plus!</a>
-          </div>
-        </div>
-
-        <div
-          class="card-category"
-          style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24005_IMG_1884.jpg)"
-        >
-          <h2>Cours en groupe</h2>
-          <div class="button-container">
-            <a href="/ceg.html" class="small-btn">En savoir plus!</a>
-          </div>
-        </div>
-
-        <div
-          class="card-category"
-          style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url(images/SSAOCT24101_IMG_2229.jpg)"
-        >
-          <h2>Salle</h2>
-          <div class="button-container">
-            <a href="/apropos.html" class="small-btn">En savoir plus!</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section divider -->
-    <div class="container splitter">
-      <hr>
-    </div>
-
-    <!-- Group class schedule -->
-    <div class="schedule-container">
-      <a href="images/CEG-schedule.jpeg" target="_blank">
-        <div class="group-schedule">
-          <img
-            src="images/CEG-schedule.jpeg"
-            alt="Horaire des cours en groupe du Studio Santé Active"
-          >
-        </div>
-      </a>
-    </div>
-
-    <!-- Section divider -->
-    <div class="container splitter">
-      <hr>
-    </div>
-
-    <!-- Final call-to-action -->
-    <div class="button-container">
-      <a href="/contact.html" class="small-btn">En savoir plus!</a>
-    </div>
+    </main>
 
     <!-- Footer with contact info, hours, map, and quick links -->
-    <footer id="footer">
-      <div class="info-map">
-        <div class="contact-hours">
-          <!-- Contact information -->
-          <section class="contact">
-            <h4>Coordonnées</h4>
-            <p>7422, rue Saint-Hubert # 101</p>
-            <p>Montréal (Qc) H2R 2N3</p>
-            <p><a href="tel:4388663438">(438) 866-3438</a></p>
-            <p><a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
-            <p>
-              <a href="https://www.facebook.com/Studiosanteactive/">
-                <i class="fa-brands fa-facebook" aria-hidden="true"></i> Facebook
-              </a>
-              <a href="https://www.instagram.com/studiosanteactive/">
-                <i class="fa-brands fa-square-instagram" aria-hidden="true"></i> Instagram
-              </a>
-            </p>
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-info">
+          <section aria-labelledby="footer-contact">
+            <h2 class="footer-heading" id="footer-contact">Coordonnées</h2>
+            <address>
+              <p>7422, rue Saint-Hubert # 101<br>Montréal (Qc) H2R 2N3</p>
+              <p><a href="tel:+14388663438">(438) 866-3438</a></p>
+              <p><a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
+            </address>
+            <ul class="social-links">
+              <li><a href="https://www.facebook.com/Studiosanteactive/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg> Facebook</a></li>
+              <li><a href="https://www.instagram.com/studiosanteactive/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3"/></svg> Instagram</a></li>
+            </ul>
           </section>
 
-          <!-- Business hours -->
-          <section class="hours">
-            <h4>Horaire</h4>
+          <section aria-labelledby="footer-hours">
+            <h2 class="footer-heading" id="footer-hours">Horaire</h2>
+            <p class="hours-status" data-hours-status hidden></p>
             <p>Du lundi au vendredi : 6h à 21h</p>
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
           </section>
         </div>
 
-        <!-- Embedded Google Map -->
-        <div id="map">
+        <div class="footer-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca"
-            scrolling="no"
-            allowfullscreen
+            title="Carte Google Maps du Studio Santé Active"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            class="map"
-            title="Carte Google Maps du Studio Santé Active"
+            allowfullscreen
           ></iframe>
         </div>
       </div>
 
-      <!-- Footer navigation links -->
-      <div class="links">
-        <a href="/conditions.html">Conditions</a><span> | </span>
-        <a href="/faq.html">FAQ</a><span> | </span>
-        <a href="/index.html">Accueil</a><span> | </span>
-        <a href="/apropos.html">À propos</a><span> | </span>
-        <a href="/services.html">Services</a><span> | </span>
-        <a href="/therapeutes.html">Thérapeutes</a><span> | </span>
-        <a href="/ceg.html">Cours en groupe</a><span> | </span>
-        <a href="/contact.html">Contact</a>
-      </div>
+      <nav class="footer-links" aria-label="Liens du pied de page">
+        <ul>
+          <li><a href="/conditions.html">Conditions</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/apropos.html">À propos</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/ceg.html">Cours en groupe</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
 
-      <!-- Copyright -->
-      <div id="copyright">
-        <p>© Studio Santé Active 2026</p>
-      </div>
+      <p class="copyright">© Studio Santé Active <span data-current-year>2026</span></p>
     </footer>
   </body>
 </html>
