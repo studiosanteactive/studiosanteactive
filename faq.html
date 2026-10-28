@@ -1,70 +1,264 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr-CA">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1G490519RE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
-
       gtag('config', 'G-1G490519RE');
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Studio Santé Active | Entraînement Privé à Montréal</title>
-    <meta name="description" content="Le Studio Santé Active est une salle d’entraînement et de cours de groupe en plein cœur de Villeray. C’est l’endroit par excellence pour une prise en charge humaine et à l’écoute de vos besoins.">    <meta charset="UTF-8">
+    <title>FAQ : horaires, congés et abonnements | Studio Santé Active</title>
+    <meta name="description" content="Réponses aux questions fréquentes : heures d'ouverture, jours fériés, âge minimum, réservations FLiiP, abonnements, suspension et annulation.">
+    <link rel="canonical" href="https://studiosanteactive.com/faq">
 
-    <!-- Language & Compatibility -->
-    <meta http-equiv="Content-Language" content="fr">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://studiosanteactive.com/">
-
-    <!-- Open Graph (for social media sharing) -->
-    <meta property="og:title" content="Studio Santé Active | Entraînement Privé à Montréal">
-    <meta property="og:description" content="Entraînement privé et semi-privé à Montréal avec des coachs experts.">
-    <meta property="og:url" content="https://studiosanteactive.com/">
+    <!-- Social sharing -->
+    <meta property="og:site_name" content="Studio Santé Active">
+    <meta property="og:locale" content="fr_CA">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://studiosanteactive.com/path-to-your-image.jpg"> <!-- replace with real image -->
-
-    <!-- Twitter Card -->
+    <meta property="og:title" content="FAQ : horaires, congés et abonnements | Studio Santé Active">
+    <meta property="og:description" content="Réponses aux questions fréquentes : heures d'ouverture, jours fériés, âge minimum, réservations FLiiP, abonnements, suspension et annulation.">
+    <meta property="og:url" content="https://studiosanteactive.com/faq">
+    <meta property="og:image" content="https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg">
+    <meta property="og:image:width" content="985">
+    <meta property="og:image:height" content="657">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Studio Santé Active | Entraînement Privé à Montréal">
-    <meta name="twitter:description" content="Rejoignez notre studio pour un entraînement personnalisé avec nos coachs qualifiés à Montréal.">
-    <meta name="twitter:image" content="https://studiosanteactive.com/path-to-your-image.jpg">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <meta name="theme-color" content="#4fc3c7">
 
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="../stylesheets/stylesheet.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/c95ece7a27.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500&family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    >
+
+    <!-- Bootstrap first, so the site stylesheet can override it -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css">
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/scripts/site.js"></script>
+
+    <!-- Structured data for search engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "ExerciseGym",
+            "@id": "https://studiosanteactive.com/#studio",
+            "name": "Studio Santé Active",
+            "url": "https://studiosanteactive.com/"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://studiosanteactive.com/#website",
+            "url": "https://studiosanteactive.com/",
+            "name": "Studio Santé Active",
+            "inLanguage": "fr-CA",
+            "publisher": {
+              "@id": "https://studiosanteactive.com/#studio"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://studiosanteactive.com/faq#webpage",
+            "url": "https://studiosanteactive.com/faq",
+            "name": "FAQ : horaires, congés et abonnements | Studio Santé Active",
+            "description": "Réponses aux questions fréquentes : heures d'ouverture, jours fériés, âge minimum, réservations FLiiP, abonnements, suspension et annulation.",
+            "inLanguage": "fr-CA",
+            "isPartOf": {
+              "@id": "https://studiosanteactive.com/#website"
+            },
+            "about": {
+              "@id": "https://studiosanteactive.com/#studio"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg",
+              "width": 985,
+              "height": 657
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Accueil",
+                  "item": "https://studiosanteactive.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "FAQ",
+                  "item": "https://studiosanteactive.com/faq"
+                }
+              ]
+            },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Où êtes-vous situé?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "7422, rue Saint-Hubert # 101 En face de la rue Everett Montréal (Qc) H2R 2N3 438 866-3438"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quelles sont vos heures d'ouverture?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Du lundi au vendredi : 6 h à 21 h Samedi : 8 h à 18 h Dimanche : 9 h à 15 h"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quels sont les congés à venir?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Le studio est fermé lors des jours fériés suivants : Jeudi 1er janvier 2026 - Jour de l'An - Fermé Dimanche 5 avril 2026 - Pâques - Fermé Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé Mercredi 1er juillet 2026 - Fête du Canada - Fermé Lundi 7 septembre 2026 - Fête du travail - Fermé Lundi 12 octobre 2026 - Action de grâce - Fermé Vendredi 25 décembre 2026 - Noël - Fermé Vendredi 1er janvier 2027 - Jour de l'An - Fermé Dimanche 28 mars 2027 - Pâques - Fermé Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé Jeudi 1er juillet 2027 - Fête du Canada - Fermé Lundi 6 septembre 2027 - Fête du travail - Fermé Lundi 11 octobre 2027 - Action de grâce - Fermé Samedi 25 décembre 2027 - Noël - Fermé"
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quel est l'âge minimum pour accéder à votre studio?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "L'âge minimum est de 14 ans. Un parent ou un tuteur légal doit être présent au moment de l'inscription."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quelles sont les mesures d'hygiène en vigueur?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "S'il y a lieu, nous respectons les recommandations émises par le gouvernement. Actuellement, nous demandons le lavage des mains/désinfection avant et après l'entraînement. Nettoyage de l'équipement après usage. Port du masque obligatoire si vous présentez des symptômes grippaux comme la toux, le mal de gorge ou la congestion nasale."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Dois-je réserver ma place lorsque je viens m'entraîner seul.e?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui, vous devez réserver votre place sur l'appli FLiiP pour accéder au bloc d'entraînement libre et aux cours de groupe."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment obtenir une copie de mon contrat?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Une copie vous a été envoyée par courriel au moment de votre inscription. Il est aussi possible de consulter votre contrat sur l'appli FLiiP."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Est-ce que mon abonnement se renouvelle automatiquement?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Non."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Que faire en cas de rejet de paiement?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Rien, il y aura une autre tentative quelques jours plus tard."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment changer mon numéro de carte de crédit?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Vous pouvez modifier vos renseignements de paiement sur l'appli FLiiP. Accédez à votre profil et sélectionnez \"Paiement\" dans le menu."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Est-il possible de modifier mon contrat?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Si vous souhaitez bonifier votre forfait (par exemple, vous passez d'un entraînement hebdomadaire à deux), vous n'aurez aucun frais supplémentaire à payer. Un nouveau contrat reflétant les nouveaux tarifs vous sera émis. Contactez-nous au admin@studiosanteactive.com pour en savoir davantage."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Est-il possible de suspendre mon abonnement?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Bien sûr. Toute demande de suspension doit être formulée auprès de la direction. Il est possible de suspendre jusqu'à 21 jours pour les détenteurs d'un abonnement de 3 mois et de 90 jours pour les détenteurs d'un abonnement de 12 mois. Les paiements prévu au contrat seront perçus comme prévus selon les modalités de l'entente. Les jours manqués seront ajoutés à la fin du terme original prévu au contrat."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment procéder si je souhaite annuler mon abonnement?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Vous devez envoyer une demande par écrit à admin@studiosanteactive.com. L'annulation prendra effet au moment de la réception de votre courriel et les frais, si applicables, vous seront facturés. Situation 1 : L'abonnement n'est pas encore commencé. L'abonnement sera annulé sans frais. Situation 2 : L'abonnement est en cours et vous avez envoyé une demande de résiliation dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat (9 ou 36 jours) à partir du moment où le studio a commencé à vous offrir les services. Le commerçant est en droit de vous réclamer une somme correspondant à un dixième (1/10) de la valeur totale prévue au contrat. Par exemple : Vous avez conclu une entente de 10 mois, pour un coût total de 400 $. Vous pouvez résilier le contrat au cours des quatre (4) premières semaines. Vous auriez alors à verser 40 $ de frais, soit un dixième (1/10) de 400 $. Si certains services ont été devancés, ils s'additionneront aux frais de résiliation. Situation 3 : L'abonnement est en cours et la demande de résiliation est envoyée dans un délai supérieur à un dixième (1/10) de la durée du contrat (9 ou 36 jours). Le studio vous réclamera alors le coût des services rendus ainsi que 10 % de la valeur des séances restantes."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
-  <div id="contact-popin">
-    <a href="/contact.html" class="small-btn">Vous voulez en savoir plus? Contactez-nous!</a>
-  </div>
+
   <body>
-    <!-- Navigation bar, borrowed from Le Wagon's UI Kit -->
-    <nav class="container navbar navbar-expand-sm navbar-light navbar-ssa">
-      <div class="container-fluid">
-        <a class="navbar-logo" href="/index.html">
-          <img src="/images/logo-small.png" alt="SSA Logo"/>
+    <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <!-- Floating contact call-to-action (large screens only; scripts/site.js shows it after the banner) -->
+    <div class="contact-popin">
+      <a href="/contact.html" class="small-btn">Vous voulez en savoir plus? Contactez-nous!</a>
+    </div>
+
+    <!-- Main navigation -->
+    <header class="site-header">
+      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+        <a class="navbar-logo" href="/">
+          <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menu-principal"
+          aria-controls="menu-principal"
+          aria-expanded="false"
+          aria-label="Ouvrir le menu de navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="/index.html">Accueil</a>
+              <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/apropos.html">À propos</a>
@@ -79,126 +273,156 @@
               <a class="nav-link" href="/ceg.html">Cours</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="turq-text" href="/contact.html">Contact</a>
+              <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="turq-text" href="https://studiosanteactive.FLiiPapp.com/">Espace client</a>
+              <a class="nav-link nav-link-accent" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <div class="container faq">
-      <h1>FAQ</h1>
-
-      <h2>Générale</h2>
-      <h4>Où êtes-vous situé?</h4>
-      <p>7422, rue Saint-Hubert # 101</p>
-      <p>En face de la rue Everett</p>
-      <p>Montréal (Qc)  H2R 2N3</p>
-      <p>438 866-3438</p>
-
-      <h4>Quelles sont vos heures d'ouverture?</h4>
-      <p>Du lundi au vendredi : 6 h à 21 h</p>
-      <p>Samedi : 8 h à 18 h</p>
-      <p>Dimanche : 9 h à 15 h</p>
-
-      <h4>Quels sont les congés à venir en 2025?</h4>
-      <p>Mercredi 1er janvier - Jour de l'An - Fermé</p>
-      <p>Dimanche 20 avril - Pâques - Fermé</p>
-      <p>Mardi 24 juin - Fête nationale du Québec - Fermé</p>
-      <p>Mardi 1er juillet - Fête du Canada - Fermé</p>
-      <p>Lundi 1er septembre - Fête du travail - Fermé</p>
-      <p>Lundi 13 octobre - Action de grâce - Fermé</p>
-      <p>Jeudi 25 décembre - Noël - Fermé</p>
-
-      <h4>Quel est l'âge minimum pour accéder à votre studio?</h4>
-      <p>L'âge minimum est de 14 ans. Un parent ou un tuteur légal doit être présent au moment de l'inscription.</p>
-
-      <h4>Quelles sont les mesures d'hygiène en vigueur?</h4>
-      <p>S'il y a lieu, nous respectons les recommandations émises par le gouvernement.</p>
-      <ul>
-        <li>Actuellement, nous demandons le lavage des mains/désinfection avant et après l'entraînement.</li>
-        <li>Nettoyage de l'équipement après usage.</li>
-        <li>Port du masque obligatoire si vous présentez des symptômes grippaux comme la toux, le mal de gorge ou la congestion nasale.</li>
-      </ul>
-
-      <h4>Dois-je réserver ma place lorsque je viens m'entraîner seul.e?</h4>
-      <p>Oui, vous devez réserver votre place sur l'appli FLiiP pour accéder au bloc d'entraînement libre et aux cours de groupe.</p>
-
-      <h2>Abonnement</h2>
-      <h4>Comment obtenir une copie de mon contrat?</h4>
-      <ul>
-        <li>Une copie vous a été envoyée par courriel au moment de votre inscription.</li>
-        <li>Il est aussi possible de consulter votre contrat sur l'appli FLiiP.</li>
-      </ul>
-
-      <h4>Est-ce que mon abonnement se renouvelle automatiquement?</h4>
-      <p>Non.</p>
-
-      <h4>Que faire en cas de rejet de paiement?</h4>
-      <p>Rien, il y aura une autre tentative quelques jours plus tard.</p>
-
-      <h4>Comment changer mon numéro de carte de crédit?</h4>
-      <p>Vous pouvez modifier vos renseignements de paiement sur l'appli FLiiP. Accédez à votre profil et sélectionnez "Paiement" dans le menu.</p>
-
-      <h4>Est-il possible de modifier mon contrat?</h4>
-      <p>Si vous souhaitez bonifier votre forfait (par exemple, vous passez d'un entraînement hebdomadaire à deux), vous n'aurez aucun frais supplémentaire à payer. Un nouveau contrat reflétant les nouveaux tarifs vous sera émis. Contactez-nous au <span>admin@studiosanteactive.com</span> pour en savoir davantage.</p>
-
-      <h4>Est-il possible de suspendre mon abonnement?</h4>
-      <p>Bien sûr. Toute demande de suspension doit être formulée auprès de la direction. Il est possible de suspendre jusqu'à 21 jours pour les détenteurs d'un abonnement de 3 mois et de 90 jours pour les détenteurs d'un abonnement de 12 mois. Les paiements prévu au contrat seront perçus comme prévus selon les modalités de l'entente. Les jours manqués seront ajoutés à la fin du terme original prévu au contrat.</p>
-
-      <h4>Comment procéder si je souhaite annuler mon abonnement?</h4>
-
-      <p>Vous devez envoyer une demande par écrit à <span>admin@studiosanteactive.com</span>. L'annulation prendra effet au moment de la réception de votre courriel et les frais, si applicables, vous seront facturés.</p>
-      <p>Situation 1 : L'abonnement n'est pas encore commencé. L'abonnement sera annulé sans frais.</p>
-      <p>Situation 2 : L'abonnement est en cours et vous avez envoyé une demande de résiliation dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat (9 ou 36 jours) à partir du moment où le studio a commencé à vous offrir les services. Le commerçant est en droit de vous réclamer une somme correspondant à un dixième (1/10) de la valeur totale prévue au contrat.</p>
-      <p>Par exemple : Vous avez conclu une entente de 10 mois, pour un coût total de 400 $. Vous pouvez résilier le contrat au cours des quatre (4) premières semaines. Vous auriez alors à verser 40 $ de frais, soit un dixième (1/10) de 400 $. Si certains services ont été devancés, ils s'additionneront aux frais de résiliation.</p>
-      <p>Situation 3 : L'abonnement est en cours et la demande de résiliation est envoyée dans un délai supérieur à un dixième (1/10) de la durée du contrat (9 ou 36 jours). Le studio vous réclamera alors le coût des services rendus ainsi que 10 % de la valeur des séances restantes.</p>
-
-      <h3>
-        <a href="https://www.opc.gouv.qc.ca/commercant/permis-certificat/studio-sante/droit-obligation/contrat/">Office de la protection du consommateur</a>
-      </h3>
+    <!-- Upcoming holiday closure (shown by scripts/site.js) -->
+    <div class="holiday-notice" data-holiday-notice hidden>
+      <p><strong>Congé :</strong> <span data-holiday-notice-text></span> <a href="/faq.html#conges">Tous les congés</a></p>
     </div>
 
-    <!-- Footer, with Google Map and other important info -->
-    <footer id="footer">
-      <div class="info-map">
-        <div class="contact-hours">
-          <section class="contact">
-            <h4>Coordonnées</h4>
-            <p>7422, rue Saint-Hubert # 101</p>
-            <p>Montréal (Qc)  H2R 2N3</p>
-            <p><a href="4388663438">(438) 866-3438</a></p>
-            <p><a href="admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
-            <p><a href="https://www.facebook.com/Studiosanteactive/"><i class="fa-brands fa-facebook"></i> Facebook</a> <a href="https://www.instagram.com/studiosanteactive/"><i class="fa-brands fa-square-instagram"></i> Instagram</a></p>
+    <main id="contenu">
+      <div class="container prose">
+        <h1>FAQ</h1>
+
+        <h2>Générale</h2>
+        <h3>Où êtes-vous situé?</h3>
+        <p>7422, rue Saint-Hubert # 101</p>
+        <p>En face de la rue Everett</p>
+        <p>Montréal (Qc) H2R 2N3</p>
+        <p><a href="tel:+14388663438">438 866-3438</a></p>
+
+        <h3>Quelles sont vos heures d'ouverture?</h3>
+        <p>Du lundi au vendredi : 6 h à 21 h</p>
+        <p>Samedi : 8 h à 18 h</p>
+        <p>Dimanche : 9 h à 15 h</p>
+
+        <h3 id="conges">Quels sont les congés à venir?</h3>
+        <p>Le studio est fermé lors des jours fériés suivants :</p>
+        <!-- Static list for 2026-2027; scripts/site.js replaces it with the next 12 months -->
+        <ul data-holiday-list>
+          <li>Jeudi 1er janvier 2026 - Jour de l'An - Fermé</li>
+          <li>Dimanche 5 avril 2026 - Pâques - Fermé</li>
+          <li>Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé</li>
+          <li>Mercredi 1er juillet 2026 - Fête du Canada - Fermé</li>
+          <li>Lundi 7 septembre 2026 - Fête du travail - Fermé</li>
+          <li>Lundi 12 octobre 2026 - Action de grâce - Fermé</li>
+          <li>Vendredi 25 décembre 2026 - Noël - Fermé</li>
+          <li>Vendredi 1er janvier 2027 - Jour de l'An - Fermé</li>
+          <li>Dimanche 28 mars 2027 - Pâques - Fermé</li>
+          <li>Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé</li>
+          <li>Jeudi 1er juillet 2027 - Fête du Canada - Fermé</li>
+          <li>Lundi 6 septembre 2027 - Fête du travail - Fermé</li>
+          <li>Lundi 11 octobre 2027 - Action de grâce - Fermé</li>
+          <li>Samedi 25 décembre 2027 - Noël - Fermé</li>
+        </ul>
+
+        <h3>Quel est l'âge minimum pour accéder à votre studio?</h3>
+        <p>L'âge minimum est de 14 ans. Un parent ou un tuteur légal doit être présent au moment de l'inscription.</p>
+
+        <h3>Quelles sont les mesures d'hygiène en vigueur?</h3>
+        <p>S'il y a lieu, nous respectons les recommandations émises par le gouvernement.</p>
+        <ul>
+          <li>Actuellement, nous demandons le lavage des mains/désinfection avant et après l'entraînement.</li>
+          <li>Nettoyage de l'équipement après usage.</li>
+          <li>Port du masque obligatoire si vous présentez des symptômes grippaux comme la toux, le mal de gorge ou la congestion nasale.</li>
+        </ul>
+
+        <h3>Dois-je réserver ma place lorsque je viens m'entraîner seul.e?</h3>
+        <p>Oui, vous devez réserver votre place sur l'appli FLiiP pour accéder au bloc d'entraînement libre et aux cours de groupe.</p>
+
+        <h2>Abonnement</h2>
+        <h3>Comment obtenir une copie de mon contrat?</h3>
+        <ul>
+          <li>Une copie vous a été envoyée par courriel au moment de votre inscription.</li>
+          <li>Il est aussi possible de consulter votre contrat sur l'appli FLiiP.</li>
+        </ul>
+
+        <h3>Est-ce que mon abonnement se renouvelle automatiquement?</h3>
+        <p>Non.</p>
+
+        <h3>Que faire en cas de rejet de paiement?</h3>
+        <p>Rien, il y aura une autre tentative quelques jours plus tard.</p>
+
+        <h3>Comment changer mon numéro de carte de crédit?</h3>
+        <p>Vous pouvez modifier vos renseignements de paiement sur l'appli FLiiP. Accédez à votre profil et sélectionnez "Paiement" dans le menu.</p>
+
+        <h3>Est-il possible de modifier mon contrat?</h3>
+        <p>Si vous souhaitez bonifier votre forfait (par exemple, vous passez d'un entraînement hebdomadaire à deux), vous n'aurez aucun frais supplémentaire à payer. Un nouveau contrat reflétant les nouveaux tarifs vous sera émis. Contactez-nous au <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a> pour en savoir davantage.</p>
+
+        <h3>Est-il possible de suspendre mon abonnement?</h3>
+        <p>Bien sûr. Toute demande de suspension doit être formulée auprès de la direction. Il est possible de suspendre jusqu'à 21 jours pour les détenteurs d'un abonnement de 3 mois et de 90 jours pour les détenteurs d'un abonnement de 12 mois. Les paiements prévu au contrat seront perçus comme prévus selon les modalités de l'entente. Les jours manqués seront ajoutés à la fin du terme original prévu au contrat.</p>
+
+        <h3>Comment procéder si je souhaite annuler mon abonnement?</h3>
+
+        <p>Vous devez envoyer une demande par écrit à <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a>. L'annulation prendra effet au moment de la réception de votre courriel et les frais, si applicables, vous seront facturés.</p>
+        <p>Situation 1 : L'abonnement n'est pas encore commencé. L'abonnement sera annulé sans frais.</p>
+        <p>Situation 2 : L'abonnement est en cours et vous avez envoyé une demande de résiliation dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat (9 ou 36 jours) à partir du moment où le studio a commencé à vous offrir les services. Le commerçant est en droit de vous réclamer une somme correspondant à un dixième (1/10) de la valeur totale prévue au contrat.</p>
+        <p>Par exemple : Vous avez conclu une entente de 10 mois, pour un coût total de 400 $. Vous pouvez résilier le contrat au cours des quatre (4) premières semaines. Vous auriez alors à verser 40 $ de frais, soit un dixième (1/10) de 400 $. Si certains services ont été devancés, ils s'additionneront aux frais de résiliation.</p>
+        <p>Situation 3 : L'abonnement est en cours et la demande de résiliation est envoyée dans un délai supérieur à un dixième (1/10) de la durée du contrat (9 ou 36 jours). Le studio vous réclamera alors le coût des services rendus ainsi que 10 % de la valeur des séances restantes.</p>
+
+        <p class="prose-note">Pour en savoir plus sur vos droits : <a href="https://www.opc.gouv.qc.ca/commercant/permis-certificat/studio-sante/droit-obligation/contrat/">Office de la protection du consommateur</a></p>
+      </div>
+    </main>
+
+    <!-- Footer with contact info, hours, map, and quick links -->
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-info">
+          <section aria-labelledby="footer-contact">
+            <h2 class="footer-heading" id="footer-contact">Coordonnées</h2>
+            <address>
+              <p>7422, rue Saint-Hubert # 101<br>Montréal (Qc) H2R 2N3</p>
+              <p><a href="tel:+14388663438">(438) 866-3438</a></p>
+              <p><a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
+            </address>
+            <ul class="social-links">
+              <li><a href="https://www.facebook.com/Studiosanteactive/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0 0 24 12z"/></svg> Facebook</a></li>
+              <li><a href="https://www.instagram.com/studiosanteactive/"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.6" cy="6.4" r="1.3"/></svg> Instagram</a></li>
+            </ul>
           </section>
-          <section class="hours">
-            <h4>Horaire</h4>
+
+          <section aria-labelledby="footer-hours">
+            <h2 class="footer-heading" id="footer-hours">Horaire</h2>
+            <p class="hours-status" data-hours-status hidden></p>
             <p>Du lundi au vendredi : 6h à 21h</p>
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
           </section>
         </div>
-        <div id="map">
-          <!-- <div class="map-overlay"></div> -->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca" scrolling="no" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2794.403009088119!2d-73.61895718423118!3d45.54221783625481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc91927c4cbfac5%3A0x4d59047fc5b2bfcc!2sStudio%20Sant%C3%A9%20Active!5e0!3m2!1sen!2sca!4v1673303569682!5m2!1sen!2sca"
+            title="Carte Google Maps du Studio Santé Active"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
-      <div class="links">
-        <a href="/conditions.html">Conditions</a><span> | </span>
-        <a href="/faq.html">FAQ</a><span> | </span>
-        <a href="/apropos.html">À propos</a><span> | </span>
-        <a href="/index.html">Accueil</a><span> | </span>
-        <a href="/services.html">Services</a><span> | </span>
-        <a href="/therapeutes.html">Thérapeutes</a><span> | </span>
-        <a href="/ceg.html">Cours en groupe</a><span> | </span>
-        <a href="/contact.html">Contact</a>
-      </div>
-      <div id="copyright">
-        <p>©Studio Santé Active 2026</p>
-      </div>
+
+      <nav class="footer-links" aria-label="Liens du pied de page">
+        <ul>
+          <li><a href="/conditions.html">Conditions</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/apropos.html">À propos</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/ceg.html">Cours en groupe</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <p class="copyright">© Studio Santé Active <span data-current-year>2026</span></p>
     </footer>
   </body>
 </html>
