@@ -6,6 +6,8 @@
  *   2. "Ouvert maintenant / Fermé" status next to the footer hours
  *   3. Notice bar for upcoming holiday closures + always-current list on the FAQ
  *   4. Floating contact button that appears after the banner and hides at the footer
+ *   5. Pause / play button for the homepage video
+ *   6. Opening the FAQ question that a link points to
  */
 (function () {
   'use strict';
@@ -29,13 +31,20 @@
 
   // One-off closures or reduced hours (Christmas Eve, a renovation day...).
   // Omit open/close for a full-day closure. Entries override the regular hours and statutory holidays.
+  // Also add them to the FAQ list (faq.html) and to specialOpeningHoursSpecification in the
+  // JSON-LD of index.html and contact.html.
   var SPECIAL_DAYS = [
-    // { date: '2026-12-24', name: 'Veille de Noël', open: 6, close: 13 },
-    // { date: '2026-12-26', name: 'Lendemain de Noël' },
+    // Holiday season 2026-2027 (same pattern as 2025-2026)
+    { date: '2026-12-24', name: 'Veille de Noël', open: 6, close: 13 },
+    { date: '2026-12-26', name: 'Lendemain de Noël' },
+    { date: '2026-12-31', name: 'Veille du jour de l\'An', open: 6, close: 13 },
+    { date: '2027-01-02', name: 'Lendemain du jour de l\'An' }
   ];
 
-  // How many days ahead the notice bar starts announcing a closure.
+  // How many days ahead the notice bar starts announcing a closure, and how many dates it lists at most
+  // (the rest are one click away on the FAQ).
   var NOTICE_DAYS_AHEAD = 10;
+  var NOTICE_MAX_ITEMS = 3;
 
   // ---------------------------------------------------------------------------
   // Dates (all computed in Montréal time, whatever the visitor's time zone)
@@ -190,7 +199,7 @@
     var el = document.querySelector('[data-holiday-notice]');
     if (!el) return;
     var today = key(montrealNow().today);
-    var items = upcoming(NOTICE_DAYS_AHEAD).map(function (x) {
+    var items = upcoming(NOTICE_DAYS_AHEAD).slice(0, NOTICE_MAX_ITEMS).map(function (x) {
       var when = key(x.date) === today ? 'aujourd\'hui' : 'le ' + formatDate(x.date);
       return capitalize(describe(x)) + ' ' + when + (x.name ? ' (' + x.name + ')' : '');
     });
@@ -239,6 +248,59 @@
   }
 
   // ---------------------------------------------------------------------------
+  // 5. Pause / play for the homepage video (the choice is remembered on this device)
+  // ---------------------------------------------------------------------------
+
+  var VIDEO_PAUSED_KEY = 'ssa-video-paused';
+
+  function videoToggle() {
+    var button = document.querySelector('[data-video-toggle]');
+    var video = button && button.parentElement.querySelector('video');
+    if (!video) return;
+
+    function setPaused(paused) {
+      if (paused) {
+        video.pause();
+      } else {
+        var playing = video.play();
+        if (playing && playing.catch) playing.catch(function () {});
+      }
+      button.classList.toggle('is-paused', paused);
+      button.setAttribute('aria-label', paused ? 'Lire la vidéo' : 'Mettre la vidéo en pause');
+    }
+
+    // Visitors who ask for less motion get the still poster (CSS hides the video); stop it loading too.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause();
+      return;
+    }
+
+    var remembered = false;
+    try { remembered = localStorage.getItem(VIDEO_PAUSED_KEY) === '1'; } catch (e) {}
+    setPaused(remembered);
+    button.hidden = false;
+
+    button.addEventListener('click', function () {
+      var paused = !button.classList.contains('is-paused');
+      setPaused(paused);
+      try { localStorage.setItem(VIDEO_PAUSED_KEY, paused ? '1' : '0'); } catch (e) {}
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 6. Open the FAQ question a link points to (e.g. /faq.html#conges)
+  // ---------------------------------------------------------------------------
+
+  function openLinkedQuestion() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    var target = id && document.getElementById(id);
+    var details = target && target.closest('details');
+    if (!details) return;
+    details.open = true;
+    details.scrollIntoView();
+  }
+
+  // ---------------------------------------------------------------------------
 
   function init() {
     updateYear();
@@ -246,6 +308,9 @@
     updateNotice();
     updateHolidayList();
     smartContactButton();
+    videoToggle();
+    openLinkedQuestion();
+    window.addEventListener('hashchange', openLinkedQuestion);
     setInterval(updateStatus, 60000);
   }
 
