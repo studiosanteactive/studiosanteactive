@@ -307,6 +307,48 @@ video {
   font-size: clamp(3rem, 13vw, 10rem);
 }
 
+/* Pause / play button over the hero video */
+.video-toggle {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+}
+
+.video-toggle:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.video-toggle:focus-visible {
+  outline-color: #fff;
+}
+
+.video-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.video-toggle .icon-play,
+.video-toggle.is-paused .icon-pause {
+  display: none;
+}
+
+.video-toggle.is-paused .icon-play {
+  display: block;
+}
+
 @media (min-width: 768px) {
   .banner-title {
     font-weight: 100;
@@ -398,6 +440,52 @@ video {
 
 .prose-note {
   margin-top: 2.5rem;
+}
+
+/* FAQ: each question is a native <details> that opens on click or Enter/Space */
+.faq-item {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.faq-question {
+  position: relative;
+  display: block;
+  padding: 1rem 2.5rem 1rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: "+";
+  content: "+" / ""; /* hidden from screen readers where supported; they announce expanded/collapsed */
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ssa-turquoise-text);
+}
+
+.faq-item[open] > .faq-question::after {
+  content: "−";
+  content: "−" / "";
+}
+
+.faq-question:hover {
+  color: var(--ssa-turquoise-text);
+}
+
+.faq-answer {
+  padding-bottom: 1rem;
 }
 
 /* ==========================================================================
