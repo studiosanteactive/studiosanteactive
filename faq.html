@@ -150,7 +150,7 @@
                 "name": "Quels sont les congés à venir?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Le studio est fermé ou a un horaire réduit aux dates suivantes : Jeudi 1er janvier 2026 - Jour de l'An - Fermé Dimanche 5 avril 2026 - Pâques - Fermé Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé Mercredi 1er juillet 2026 - Fête du Canada - Fermé Lundi 7 septembre 2026 - Fête du travail - Fermé Lundi 12 octobre 2026 - Action de grâce - Fermé Jeudi 24 décembre 2026 - Veille de Noël - Ouvert de 6h à 13h Vendredi 25 décembre 2026 - Noël - Fermé Samedi 26 décembre 2026 - Lendemain de Noël - Fermé Jeudi 31 décembre 2026 - Veille du jour de l'An - Ouvert de 6h à 13h Vendredi 1er janvier 2027 - Jour de l'An - Fermé Samedi 2 janvier 2027 - Lendemain du jour de l'An - Fermé Dimanche 28 mars 2027 - Pâques - Fermé Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé Jeudi 1er juillet 2027 - Fête du Canada - Fermé Lundi 6 septembre 2027 - Fête du travail - Fermé Lundi 11 octobre 2027 - Action de grâce - Fermé Samedi 25 décembre 2027 - Noël - Fermé"
+                  "text": "Le studio est fermé ou a un horaire réduit aux dates suivantes : Jeudi 24 décembre 2026 - Veille de Noël - Ouvert de 6h à 13h Vendredi 25 décembre 2026 - Noël - Fermé Samedi 26 décembre 2026 - Lendemain de Noël - Fermé Jeudi 31 décembre 2026 - Veille du jour de l'An - Ouvert de 6h à 13h Vendredi 1er janvier 2027 - Jour de l'An - Fermé Samedi 2 janvier 2027 - Lendemain du jour de l'An - Fermé Vendredi 26 mars 2027 - Vendredi saint - Fermé Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé Jeudi 1er juillet 2027 - Fête du Canada - Fermé Dimanche 18 juillet 2027 - Vacances de la construction - Fermé Dimanche 25 juillet 2027 - Vacances de la construction - Fermé Lundi 6 septembre 2027 - Fête du travail - Fermé Lundi 11 octobre 2027 - Action de grâce - Fermé Vendredi 24 décembre 2027 - Veille de Noël - Ouvert de 6h à 13h Samedi 25 décembre 2027 - Noël - Fermé Dimanche 26 décembre 2027 - Lendemain de Noël - Fermé Vendredi 31 décembre 2027 - Veille du jour de l'An - Ouvert de 6h à 13h Samedi 1er janvier 2028 - Jour de l'An - Fermé Dimanche 2 janvier 2028 - Lendemain du jour de l'An - Fermé"
                 }
               },
               {
@@ -243,14 +243,14 @@
   <body>
     <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
-    <!-- Floating contact call-to-action (large screens only; scripts/site.js shows it after the banner) -->
+    <!-- Floating "Réserver votre consultation" button (bottom bar on phones; scripts/site.js shows it after the banner) -->
     <div class="contact-popin">
-      <a href="/contact.html" class="small-btn">Vous voulez en savoir plus? Contactez-nous!</a>
+      <a href="/contact.html" class="small-btn">Réserver votre consultation</a>
     </div>
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-ssa" aria-label="Navigation principale">
+      <nav class="container navbar navbar-expand-xl navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
@@ -289,14 +289,17 @@
               <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/services-complementaires.html">Autres services</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-accent" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
-            </li>
+          </ul>
+          <!-- Calls to action, in priority order: consultation (main CTA), free group class trial, member portal -->
+          <ul class="nav-actions">
+            <li><a class="nav-cta" href="/contact.html">Réserver votre consultation</a></li>
+            <li><a class="nav-trial" href="https://studiosanteactive.fliipapp.com/user/register">Cours d'essai gratuit</a></li>
+            <li><a class="nav-client" href="https://studiosanteactive.fliipapp.com/">Espace client</a></li>
           </ul>
         </div>
       </nav>
@@ -369,26 +372,27 @@
             <summary class="faq-question">Quels sont les congés à venir?</summary>
             <div class="faq-answer">
               <p>Le studio est fermé ou a un horaire réduit aux dates suivantes :</p>
-              <!-- Static list for 2026-2027; scripts/site.js replaces it with the next 12 months -->
+              <!-- Static list (from the "Congés 2026 + 2027" doc); scripts/site.js replaces it with the next 12 months -->
               <ul data-holiday-list>
-                <li>Jeudi 1er janvier 2026 - Jour de l'An - Fermé</li>
-                <li>Dimanche 5 avril 2026 - Pâques - Fermé</li>
-                <li>Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé</li>
-                <li>Mercredi 1er juillet 2026 - Fête du Canada - Fermé</li>
-                <li>Lundi 7 septembre 2026 - Fête du travail - Fermé</li>
-                <li>Lundi 12 octobre 2026 - Action de grâce - Fermé</li>
                 <li>Jeudi 24 décembre 2026 - Veille de Noël - Ouvert de 6h à 13h</li>
                 <li>Vendredi 25 décembre 2026 - Noël - Fermé</li>
                 <li>Samedi 26 décembre 2026 - Lendemain de Noël - Fermé</li>
                 <li>Jeudi 31 décembre 2026 - Veille du jour de l'An - Ouvert de 6h à 13h</li>
                 <li>Vendredi 1er janvier 2027 - Jour de l'An - Fermé</li>
                 <li>Samedi 2 janvier 2027 - Lendemain du jour de l'An - Fermé</li>
-                <li>Dimanche 28 mars 2027 - Pâques - Fermé</li>
+                <li>Vendredi 26 mars 2027 - Vendredi saint - Fermé</li>
                 <li>Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé</li>
                 <li>Jeudi 1er juillet 2027 - Fête du Canada - Fermé</li>
+                <li>Dimanche 18 juillet 2027 - Vacances de la construction - Fermé</li>
+                <li>Dimanche 25 juillet 2027 - Vacances de la construction - Fermé</li>
                 <li>Lundi 6 septembre 2027 - Fête du travail - Fermé</li>
                 <li>Lundi 11 octobre 2027 - Action de grâce - Fermé</li>
+                <li>Vendredi 24 décembre 2027 - Veille de Noël - Ouvert de 6h à 13h</li>
                 <li>Samedi 25 décembre 2027 - Noël - Fermé</li>
+                <li>Dimanche 26 décembre 2027 - Lendemain de Noël - Fermé</li>
+                <li>Vendredi 31 décembre 2027 - Veille du jour de l'An - Ouvert de 6h à 13h</li>
+                <li>Samedi 1er janvier 2028 - Jour de l'An - Fermé</li>
+                <li>Dimanche 2 janvier 2028 - Lendemain du jour de l'An - Fermé</li>
               </ul>
             </div>
           </details>
@@ -486,8 +490,7 @@
     <!-- Footer with contact info, hours, map, and quick links -->
     <footer class="site-footer">
       <div class="footer-main">
-        <div class="footer-info">
-          <section aria-labelledby="footer-contact">
+        <section class="footer-col" aria-labelledby="footer-contact">
             <h2 class="footer-heading" id="footer-contact">Coordonnées</h2>
             <address>
               <p>7422, rue Saint-Hubert # 101<br>Montréal (Qc) H2R 2N3</p>
@@ -500,14 +503,28 @@
             </ul>
           </section>
 
-          <section aria-labelledby="footer-hours">
+        <section class="footer-col" aria-labelledby="footer-hours">
             <h2 class="footer-heading" id="footer-hours">Horaire</h2>
             <p class="hours-status" data-hours-status hidden></p>
             <p>Du lundi au vendredi : 6h à 21h</p>
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
           </section>
-        </div>
+
+        <nav class="footer-col footer-links" aria-labelledby="footer-nav">
+          <h2 class="footer-heading" id="footer-nav">Liens</h2>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/equipe.html">Équipe d'entraînement</a></li>
+            <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
+            <li><a href="/services-complementaires.html">Services complémentaires</a></li>
+            <li><a href="/ceg.html">Cours en groupe</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/conditions.html">Termes et conditions</a></li>
+            <li><a href="/carrieres.html">Carrières</a></li>
+          </ul>
+        </nav>
 
         <div class="footer-map">
           <iframe
@@ -519,18 +536,6 @@
           ></iframe>
         </div>
       </div>
-
-      <nav class="footer-links" aria-label="Liens du pied de page">
-        <ul>
-          <li><a href="/conditions.html">Conditions</a></li>
-          <li><a href="/faq.html">FAQ</a></li>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/equipe.html">Équipe</a></li>
-          <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
-          <li><a href="/ceg.html">Cours en groupe</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
 
       <p class="copyright">© Studio Santé Active <span data-current-year>2026</span></p>
     </footer>

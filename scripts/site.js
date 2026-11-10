@@ -11,6 +11,7 @@
  *      plus "Tout ouvrir / Tout fermer" on the FAQ and conditions
  *   7. Night mode switch (the saved choice is applied earlier, by an inline script in each <head>)
  *   8. Hiding homepage events once they are over
+ *   9. A "swipe" hint under price tables that are wider than the screen
  */
 (function () {
   'use strict';
@@ -37,11 +38,20 @@
   // Also add them to the FAQ list (faq.html) and to specialOpeningHoursSpecification in the
   // JSON-LD of index.html and contact.html.
   var SPECIAL_DAYS = [
-    // Holiday season 2026-2027 (same pattern as 2025-2026)
+    // Source: Google Doc "Congés 2026 + 2027"
+    // Holiday season 2026-2027
     { date: '2026-12-24', name: 'Veille de Noël', open: 6, close: 13 },
     { date: '2026-12-26', name: 'Lendemain de Noël' },
     { date: '2026-12-31', name: 'Veille du jour de l\'An', open: 6, close: 13 },
-    { date: '2027-01-02', name: 'Lendemain du jour de l\'An' }
+    { date: '2027-01-02', name: 'Lendemain du jour de l\'An' },
+    // Vacances de la construction 2027: regular hours except these Sundays (group class schedule adjusted 18-31 July)
+    { date: '2027-07-18', name: 'Vacances de la construction' },
+    { date: '2027-07-25', name: 'Vacances de la construction' },
+    // Holiday season 2027-2028
+    { date: '2027-12-24', name: 'Veille de Noël', open: 6, close: 13 },
+    { date: '2027-12-26', name: 'Lendemain de Noël' },
+    { date: '2027-12-31', name: 'Veille du jour de l\'An', open: 6, close: 13 },
+    { date: '2028-01-02', name: 'Lendemain du jour de l\'An' }
   ];
 
   // How many days ahead the notice bar starts announcing a closure, and how many dates it lists at most
@@ -87,11 +97,11 @@
     return addDays(first, ((8 - first.getUTCDay()) % 7) + 7 * (n - 1));
   }
 
-  // Statutory holidays the studio closes for (same list as the FAQ).
+  // Statutory holidays the studio closes for (same list as the FAQ). Journée nationale des patriotes: open.
   function holidays(y) {
     return [
       { date: day(y, 1, 1), name: "Jour de l'An" },
-      { date: easterSunday(y), name: 'Pâques' },
+      { date: addDays(easterSunday(y), -2), name: 'Vendredi saint' },
       { date: day(y, 6, 24), name: 'Fête nationale du Québec' },
       { date: day(y, 7, 1), name: 'Fête du Canada' },
       { date: nthMonday(y, 9, 1), name: 'Fête du travail' },
@@ -373,6 +383,33 @@
   }
 
   // ---------------------------------------------------------------------------
+  // 9. "Glissez pour voir tous les forfaits" under price tables wider than the screen
+  // ---------------------------------------------------------------------------
+
+  function tableScrollHints() {
+    var wraps = document.querySelectorAll('.price-table-wrap');
+    if (!wraps.length) return;
+    function update() {
+      wraps.forEach(function (wrap) {
+        var hint = wrap.nextElementSibling;
+        var has = hint && hint.classList.contains('price-scroll-hint');
+        var overflows = wrap.scrollWidth > wrap.clientWidth + 2;
+        if (overflows && !has) {
+          hint = document.createElement('p');
+          hint.className = 'price-scroll-hint';
+          hint.setAttribute('aria-hidden', 'true');
+          hint.textContent = 'Glissez le tableau pour voir tous les forfaits →';
+          wrap.insertAdjacentElement('afterend', hint);
+        } else if (!overflows && has) {
+          hint.remove();
+        }
+      });
+    }
+    update();
+    window.addEventListener('resize', update);
+  }
+
+  // ---------------------------------------------------------------------------
   // 8. Remove events whose last day (data-event-end="YYYY-MM-DD") has passed.
   //    When none are left, CSS shows the "Aucun événement" message.
   // ---------------------------------------------------------------------------
@@ -396,6 +433,7 @@
     linkedDetails();
     themeToggle();
     pruneEvents();
+    tableScrollHints();
     setInterval(updateStatus, 60000);
   }
 
