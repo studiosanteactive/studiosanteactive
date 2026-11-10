@@ -259,36 +259,54 @@ hr {
   border-bottom-color: var(--color-accent);
 }
 
+/* Calls to action: the two buttons sit side by side at the same size (consultation filled, trial outlined),
+   with "Espace client" after them. On narrow phones "Espace client" wraps to its own line. */
 .nav-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
   gap: 0.6rem;
   margin: 0;
   padding: 0.5rem 0 1.25rem;
   list-style: none;
 }
 
+.nav-actions li {
+  display: flex;
+}
+
+.nav-actions li:nth-child(-n+2) {
+  flex: 1 1 0;
+}
+
+.nav-actions li:last-child {
+  flex: 1 0 100%;
+  justify-content: center;
+}
+
 .nav-actions a {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 48px;
-  padding: 0.5rem 1.25rem;
+  padding: 0.45rem 0.75rem;
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
   font-family: var(--font-body);
+  font-size: 1rem;
   font-weight: 700;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Main call to action: filled, bigger, bolder */
+/* Main call to action: filled */
 .nav-actions .nav-cta {
-  border: 2px solid var(--color-accent);
   background: var(--color-accent);
   color: var(--color-on-accent);
-  font-size: 1.2rem;
   font-weight: 900;
   box-shadow: 0 2px 10px var(--shadow-color);
 }
@@ -306,9 +324,7 @@ hr {
 }
 
 .nav-actions .nav-trial {
-  border: 2px solid var(--color-accent);
   color: var(--color-heading);
-  font-size: 1.05rem;
 }
 
 .nav-actions .nav-trial:hover,
@@ -317,9 +333,22 @@ hr {
 }
 
 .nav-actions .nav-client {
+  width: auto;
+  min-height: 44px;
+  border-color: transparent;
   color: var(--color-accent-text);
-  font-size: 1rem;
+  font-weight: 700;
   text-decoration: underline;
+}
+
+@media (min-width: 576px) {
+  .nav-actions {
+    flex-wrap: nowrap;
+  }
+
+  .nav-actions li:last-child {
+    flex: 0 0 auto;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -350,29 +379,18 @@ hr {
   }
 
   .nav-actions {
-    flex-direction: row;
-    align-items: center;
     gap: 0.75rem;
     padding: 0;
   }
 
+  /* Same width for both buttons: the wider label sets it */
+  .nav-actions li:nth-child(-n+2) {
+    flex: 0 0 16.5rem;
+  }
+
   .nav-actions a {
-    min-height: 40px;
+    min-height: 42px;
     padding: 0.3rem 1rem;
-  }
-
-  .nav-actions .nav-cta {
-    padding: 0.35rem 1.4rem;
-    font-size: 1.15rem;
-  }
-
-  .nav-actions .nav-trial,
-  .nav-actions .nav-client {
-    font-size: 0.95rem;
-  }
-
-  .nav-actions .nav-client {
-    padding: 0.3rem 0.25rem;
   }
 }
 
