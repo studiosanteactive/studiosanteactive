@@ -658,7 +658,11 @@ hr {
 }
 
 .banner-hero .banner-title {
-  font-size: clamp(3rem, 13vw, 10rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.banner-hero .banner-subtitle {
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
 }
 
 /* Pause / play button over the hero video */
