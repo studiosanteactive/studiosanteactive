@@ -34,6 +34,18 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
+    <!-- Night mode: apply the saved choice (or the device setting) before the page paints; the switch is in scripts/site.js -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -273,10 +285,20 @@
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+      <nav class="container navbar navbar-expand-lg navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
+
+        <!-- Night mode switch (shown by scripts/site.js) -->
+        <button type="button" class="theme-toggle" role="switch" aria-checked="false" data-theme-toggle hidden>
+          <span class="visually-hidden">Mode nuit</span>
+          <span class="theme-toggle-track" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
 
         <button
           class="navbar-toggler"
@@ -296,16 +318,13 @@
               <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/apropos.html">À propos</a>
+              <a class="nav-link" href="/equipe.html">Équipe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services.html">Services</a>
+              <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/therapeutes.html">Thérapeutes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/ceg.html">Cours</a>
+              <a class="nav-link active" aria-current="page" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
@@ -335,165 +354,209 @@
 
       <!-- Introductory text -->
       <div class="container intro">
-        <p>
+        <p class="intro-lead">
           Les cours de groupe offrent une motivation unique grâce à l'énergie collective, vous aidant à vous dépasser
           tout en rendant l'entraînement plus amusant. Encadrés par un coach professionnel, ces cours s'adaptent à
           différents niveaux et favorisent la régularité. En plus de vous engager davantage dans votre routine, vous
           profitez du soutien social et des liens créés avec les autres participants, tout en progressant ensemble vers
           vos objectifs.
         </p>
-        <div class="button-container">
-          <a href="/contact.html" class="small-btn">En savoir plus!</a>
-        </div>
       </div>
+
+      <!-- Prices (same photo + table layout as the private training page) -->
+      <section class="container offer" id="tarifs" aria-labelledby="tarifs-titre">
+        <div class="offer-info">
+          <img class="offer-media" src="/images/SSAOCT24060_IMG_2086.jpg" alt="Cours de pilates au sol en groupe" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="offer-text">
+            <h2 id="tarifs-titre">Tarifs</h2>
+            <p>Des cours diversifiés et accessibles, encadrés par un coach professionnel.</p>
+            <p>Vos deux premiers cours sont gratuits : <a href="https://studiosanteactive.fliipapp.com/user/register">inscrivez-vous à l'essai</a>.</p>
+            <p>
+              Les forfaits d'<a href="/entrainement-prive.html">entraînement privé et semi-privé</a> incluent aussi
+              l'accès illimité aux cours de groupe.
+            </p>
+          </div>
+        </div>
+        <div class="offer-prices">
+        <section class="price-table-wrap" aria-label="Tarifs : Forfait 3 mois" tabindex="0">
+          <table class="price-table">
+            <caption>Forfait 3 mois</caption>
+            <thead>
+              <tr>
+                <th scope="col">Cours inclus dans l'abonnement</th>
+                <th scope="col">10</th>
+                <th scope="col">20</th>
+                <th scope="col">Illimité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Pause d'abonnement sans frais</th>
+                <td>21 jours</td>
+                <td>21 jours</td>
+                <td>21 jours</td>
+              </tr>
+              <tr>
+                <th scope="row">Prix par cours</th>
+                <td>18.90 $</td>
+                <td>18.00 $</td>
+                <td><span aria-hidden="true">–</span><span class="visually-hidden">Sans objet</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Accès illimité à la salle et aux appareils</th>
+                <td><span class="price-no" aria-hidden="true">✕</span><span class="visually-hidden">Non inclus</span></td>
+                <td><span class="price-no" aria-hidden="true">✕</span><span class="visually-hidden">Non inclus</span></td>
+                <td><span class="price-no" aria-hidden="true">✕</span><span class="visually-hidden">Non inclus</span></td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="price-group"><th scope="rowgroup" colspan="4">Vos versements — tout compris</th></tr>
+              <tr class="price-main">
+                <th scope="row">Aux 2 semaines</th>
+                <td>31.50 $</td>
+                <td>60.00 $</td>
+                <td>64.00 $</td>
+              </tr>
+              <tr>
+                <th scope="row">Mensuel</th>
+                <td>62.99 $</td>
+                <td>119.99 $</td>
+                <td>127.99 $</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="price-table-wrap" aria-label="Tarifs : À la carte" tabindex="0">
+          <table class="price-table">
+            <caption>À la carte</caption>
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Prix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Essais cours en groupe (2)</th>
+                <td class="price-free">Sans frais</td>
+              </tr>
+              <tr>
+                <th scope="row">Cours en groupe à la carte – 1 visite</th>
+                <td>19.99 $</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <ul class="price-notes">
+          <li>* Si le nombre minimum de participant·e·s n'est pas atteint (2), le cours de groupe sera annulé et aucune séance ne sera retirée de votre forfait. Les personnes inscrites seront avisées au plus tard 6&nbsp;heures avant le début du cours.</li>
+        </ul>
+        </div>
+      </section>
+
+      <!-- Class list -->
+      <section class="container page-section" id="cours" aria-labelledby="cours-titre">
+        <h2 class="section-heading" id="cours-titre">Nos cours</h2>
+        <ul class="class-list">
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24034_IMG_1990.jpg" alt="" width="1182" height="788" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Entraînement en circuit mixte</h3>
+                <p>Ce cours est un excellent mélange de musculation complète du corps et d'entraînement cardiovasculaire. Peu importe le niveau, notre instructeur saura s'adapter à vous.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24047_IMG_2047.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Muscu ACTIVE</h3>
+                <p>Ce cours dynamique est idéal pour définir votre musculature de l'entièreté de votre corps ainsi que gagner en force. Plusieurs équipements seront à votre disposition tels que poids libres, élastiques, etc. Une heure de pur bonheur à se dépenser avec un entraîneur qui saura vous motiver.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24030_IMG_1982.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Boxe technique et conditionnement</h3>
+                <p>Un cours accessible à tous les niveaux qui combine apprentissage des bases techniques de la boxe, conditionnement physique complet (musculaire et cardiovasculaire) et quelques notions d’autodéfense.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24168_IMG_2433.jpg" alt="" width="1200" height="1800" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Souplesse &amp; Flexibilité</h3>
+                <p>Un cours axé sur les étirements et la mobilité pour améliorer ta posture, prévenir les blessures et gagner en amplitude de mouvement, dans une ambiance douce et accessible à tous niveaux.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24058_IMG_2083.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Pilates (endurance musculaire)</h3>
+                <p>Vous cherchez une façon de tonifier votre corps et n'avez pas peur des défis? Ce cours est parfait pour vous. Le concept du pilates débute avant tout par la respiration et la conscience corporelle. S'ajoute à cela l'amélioration de la posture, de la stabilité articulaire, de l'équilibre et du tonus musculaire.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24128_IMG_2303.jpg" alt="" width="1176" height="784" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Pilates (mobilité et détente)</h3>
+                <p>Le cours de mobilité est un moment de détente auquel on ajoute une prise de conscience corporelle. Il permet de comprendre le corps dans l'espace et d'optimiser les amplitudes de mouvements tout en douceur.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24074_IMG_2130.jpg" alt="" width="1142" height="761" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Power Pilates</h3>
+                <p>Ce cours est un croisement entre le Pilates et le conditionnement physique traditionnel. Vous y trouverez un heureux mariage entre force, précision et intensité. De plus, les accessoires avec lesquels vous pourrez travailler offrent un éventail de possibilités de façon à ajouter un peu plus de défi dans vos mouvements/enchaînements.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24084_IMG_2174.jpg" alt="" width="1200" height="800" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Yoga (Hatha doux)</h3>
+                <p>Le Hatha yoga doux invite le corps à bouger au rythme de la respiration. Vous apprendrez à maintenir les postures et à cultiver la présence dans l'immobilité pour mieux ressentir le moment présent. Parfaitement adaptable à vos capacités, le Hatha yoga doux vous permet de ralentir pour mieux vous recentrer.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="class-item">
+              <img src="/images/SSAOCT24080_IMG_2161.jpg" alt="" width="1500" height="1000" loading="lazy" decoding="async">
+              <div class="class-body">
+                <h3>Yogalates</h3>
+                <p>Le Yogalates combine la fluidité du yoga et le renforcement du Pilates dans une pratique complète et équilibrée. Vous travaillerez la force, la mobilité et le contrôle du corps à travers des mouvements guidés par la respiration. Accessible et adaptable à vos capacités, le Yogalates vous permet de bouger avec intention tout en développant stabilité et souplesse.</p>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
 
       <!-- Group class schedule -->
-      <figure class="media-figure schedule">
-        <a href="/images/CEG-schedule.jpeg" target="_blank" rel="noopener">
-          <img src="/images/CEG-schedule.jpeg" alt="Horaire des cours en groupe du Studio Santé Active" width="1000" height="745">
-          <span class="visually-hidden"> (ouvre l'horaire en grand dans un nouvel onglet)</span>
-        </a>
-        <figcaption>Touchez l'horaire pour l'agrandir.</figcaption>
-      </figure>
-
-      <!-- Section divider -->
-      <div class="container splitter">
-        <hr>
-      </div>
-
-      <!-- Group class pricing -->
-      <figure class="container media-figure">
-        <a href="/images/prices/web_CoursEnGroupe.png" target="_blank" rel="noopener">
-          <picture>
-            <source media="(min-width: 768px)" srcset="/images/prices/web_CoursEnGroupe.png" width="1757" height="577">
-            <img src="/images/prices/mobile_CoursEnGroupe.png" alt="Tarifs des cours en groupe" width="1084" height="640" loading="lazy">
-          </picture>
-          <span class="visually-hidden"> (ouvre l'image en grand dans un nouvel onglet)</span>
-        </a>
-      </figure>
-
-      <!-- Section divider -->
-      <div class="container splitter">
-        <hr>
-      </div>
-
-      <!-- Individual course information cards -->
-      <div class="container">
-        <div class="large-cards">
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24034_IMG_1990.jpg')">
-            <h2>Entraînement en circuit mixte</h2>
-            <p>
-              Ce cours est un excellent mélange de musculation complète du corps et d'entraînement cardiovasculaire.
-              Peu importe le niveau, notre instructeur saura s'adapter à vous.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Entraînement en circuit mixte</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24047_IMG_2047.jpg')">
-            <h2>Muscu ACTIVE</h2>
-            <p>
-              Ce cours dynamique est idéal pour définir votre musculature de l'entièreté de votre corps ainsi que gagner
-              en force. Plusieurs équipements seront à votre disposition tels que poids libres, élastiques, etc. Une
-              heure de pur bonheur à se dépenser avec un entraîneur qui saura vous motiver.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Muscu ACTIVE</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24030_IMG_1982.jpg')">
-            <h2>Boxe technique et conditionnement, accessible à tous.</h2>
-            <p>
-              Un cours accessible à tous les niveaux qui combine apprentissage des bases techniques de la boxe, conditionnement physique complet (musculaire et cardiovasculaire) et quelques notions d’autodéfense.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Boxe technique et conditionnement, accessible à tous</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24168_IMG_2433.jpg')">
-            <h2>Souplesse &amp; Flexibilité</h2>
-            <p>
-              Un cours axé sur les étirements et la mobilité pour améliorer ta posture, prévenir les blessures et gagner
-              en amplitude de mouvement, dans une ambiance douce et accessible à tous niveaux.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Souplesse &amp; Flexibilité</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24058_IMG_2083.jpg')">
-            <h2>Pilates (endurance musculaire)</h2>
-            <p>
-              Vous cherchez une façon de tonifier votre corps et n'avez pas peur des défis? Ce cours est parfait pour
-              vous. Le concept du pilates débute avant tout par la respiration et la conscience corporelle. S'ajoute à
-              cela l'amélioration de la posture, de la stabilité articulaire, de l'équilibre et du tonus musculaire.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Pilates (endurance musculaire)</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24128_IMG_2303.jpg')">
-            <h2>Pilates (mobilité et détente)</h2>
-            <p>
-              Le cours de mobilité est un moment de détente auquel on ajoute une prise de conscience corporelle. Il permet
-              de comprendre le corps dans l'espace et d'optimiser les amplitudes de mouvements tout en douceur.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Pilates (mobilité et détente)</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24074_IMG_2130.jpg')">
-            <h2>Power Pilates</h2>
-            <p>
-              Ce cours est un croisement entre le Pilates et le conditionnement physique traditionnel. Vous y trouverez un
-              heureux mariage entre force, précision et intensité. De plus, les accessoires avec lesquels vous pourrez
-              travailler offrent un éventail de possibilités de façon à ajouter un peu plus de défi dans vos
-              mouvements/enchaînements.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Power Pilates</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24084_IMG_2174.jpg')">
-            <h2>Yoga (Hatha doux)</h2>
-            <p>
-              Le Hatha yoga doux invite le corps à bouger au rythme de la respiration. Vous apprendrez à maintenir les
-              postures et à cultiver la présence dans l'immobilité pour mieux ressentir le moment présent. Parfaitement
-              adaptable à vos capacités, le Hatha yoga doux vous permet de ralentir pour mieux vous recentrer.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Yoga (Hatha doux)</span></a>
-            </div>
-          </div>
-
-          <div class="large-card-category" style="--bg: url('/images/SSAOCT24084_IMG_2174.jpg')">
-            <h2>Yogalates</h2>
-            <p>
-              Le Yogalates combine la fluidité du yoga et le renforcement du Pilates dans une pratique complète et équilibrée.
-              Vous travaillerez la force, la mobilité et le contrôle du corps à travers des mouvements guidés par la respiration.
-              Accessible et adaptable à vos capacités, le Yogalates vous permet de bouger avec intention tout en développant stabilité et souplesse.
-            </p>
-            <div class="button-container">
-              <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit<span class="visually-hidden"> : Yogalates</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section divider -->
-      <div class="container splitter">
-        <hr>
-      </div>
+      <section class="page-section" id="horaire" aria-labelledby="horaire-titre">
+        <h2 class="section-heading" id="horaire-titre">Horaire des cours</h2>
+        <figure class="media-figure schedule">
+          <a href="/images/CEG-schedule.jpeg" target="_blank" rel="noopener">
+            <img src="/images/CEG-schedule.jpeg" alt="Horaire des cours en groupe du Studio Santé Active" width="1000" height="745" loading="lazy">
+            <span class="visually-hidden"> (ouvre l'horaire en grand dans un nouvel onglet)</span>
+          </a>
+          <figcaption>Touchez l'horaire pour l'agrandir.</figcaption>
+        </figure>
+      </section>
 
       <!-- Final call-to-action -->
-      <div class="button-container">
-        <a href="/contact.html" class="small-btn">En savoir plus!</a>
+      <div class="button-container section-cta">
+        <a href="https://studiosanteactive.fliipapp.com/user/register" class="small-btn">Essai gratuit</a>
+        <a href="/contact.html" class="small-btn">Nous contacter</a>
       </div>
     </main>
 
@@ -539,9 +602,8 @@
           <li><a href="/conditions.html">Conditions</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/apropos.html">À propos</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/equipe.html">Équipe</a></li>
+          <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
           <li><a href="/ceg.html">Cours en groupe</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>

@@ -34,6 +34,18 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
+    <!-- Night mode: apply the saved choice (or the device setting) before the page paints; the switch is in scripts/site.js -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,10 +310,20 @@
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+      <nav class="container navbar navbar-expand-lg navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
+
+        <!-- Night mode switch (shown by scripts/site.js) -->
+        <button type="button" class="theme-toggle" role="switch" aria-checked="false" data-theme-toggle hidden>
+          <span class="visually-hidden">Mode nuit</span>
+          <span class="theme-toggle-track" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
 
         <button
           class="navbar-toggler"
@@ -321,16 +343,13 @@
               <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/apropos.html">À propos</a>
+              <a class="nav-link" href="/equipe.html">Équipe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services.html">Services</a>
+              <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/therapeutes.html">Thérapeutes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ceg.html">Cours</a>
+              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-accent active" aria-current="page" href="/contact.html">Contact</a>
@@ -424,9 +443,8 @@
           <li><a href="/conditions.html">Conditions</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/apropos.html">À propos</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/equipe.html">Équipe</a></li>
+          <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
           <li><a href="/ceg.html">Cours en groupe</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>

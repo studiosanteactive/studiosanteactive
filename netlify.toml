@@ -1,7 +1,40 @@
-# Netlify serves /apropos from apropos.html automatically; only legacy URLs need rules here.
+# Netlify serves /equipe from equipe.html automatically; only legacy URLs need rules here.
+# Each old page gets a rule for both its extensionless and .html URL, since the files no longer exist.
 
-# Old URL that was listed in the previous sitemap and may still be indexed by Google.
+# 2026-11 restructure: À propos became Équipe d'entraînement, Thérapeutes moved into it,
+# and Services became Entraînement privé (its group class prices moved to /ceg).
+[[redirects]]
+  from = "/apropos"
+  to = "/equipe"
+  status = 301
+
+[[redirects]]
+  from = "/apropos.html"
+  to = "/equipe"
+  status = 301
+
+[[redirects]]
+  from = "/therapeutes"
+  to = "/equipe"
+  status = 301
+
+[[redirects]]
+  from = "/therapeutes.html"
+  to = "/equipe"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/entrainement-prive"
+  status = 301
+
+[[redirects]]
+  from = "/services.html"
+  to = "/entrainement-prive"
+  status = 301
+
+# Old URL that was listed in an earlier sitemap and may still be indexed by Google.
 [[redirects]]
   from = "/nosservices"
-  to = "/services"
+  to = "/entrainement-prive"
   status = 301

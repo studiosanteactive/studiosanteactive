@@ -34,6 +34,18 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
+    <!-- Night mode: apply the saved choice (or the device setting) before the page paints; the switch is in scripts/site.js -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,10 +144,20 @@
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+      <nav class="container navbar navbar-expand-lg navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
+
+        <!-- Night mode switch (shown by scripts/site.js) -->
+        <button type="button" class="theme-toggle" role="switch" aria-checked="false" data-theme-toggle hidden>
+          <span class="visually-hidden">Mode nuit</span>
+          <span class="theme-toggle-track" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
 
         <button
           class="navbar-toggler"
@@ -155,16 +177,13 @@
               <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/apropos.html">À propos</a>
+              <a class="nav-link" href="/equipe.html">Équipe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services.html">Services</a>
+              <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/therapeutes.html">Thérapeutes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ceg.html">Cours</a>
+              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
@@ -186,50 +205,84 @@
       <div class="container prose">
         <h1>Conditions Générales</h1>
 
-        <h2>1. Engagement du Membre</h2>
-        <ol>
-          <li>Apporter une paire de chaussures de rechange en période hivernale.</li>
-          <li>Garder les installations propres, désinfecter et ranger son matériel après usage.</li>
-          <li>Réserver sa place sur l'application FLiiP avant chaque entraînement libre ou cours de groupe.</li>
-          <li>Annuler sa réservation lorsque vous saurez que vous ne pourrez pas vous présenter au studio.</li>
-          <li>S'assurer que les prélèvements indiqués à son contrat puissent être perçus selon les modalités prévues.</li>
-          <li>Avoir une hygiène corporelle responsable.</li>
-          <li>Avoir sa trousse de désinfection (fournie par nous) en tout temps et désinfecter le matériel après usage.</li>
-        </ol>
+        <nav class="toc" aria-labelledby="toc-titre">
+          <h2 class="toc-title" id="toc-titre">Sur cette page</h2>
+          <ol>
+            <li><a href="#engagement">Engagement du Membre</a></li>
+            <li><a href="#resiliation">Politique de Résiliation</a></li>
+            <li><a href="#suspension">Politique de Suspension d'Abonnement</a></li>
+            <li><a href="#annulation-rendez-vous">Politique d'Annulation d'un Rendez-vous</a></li>
+            <li><a href="#annulation-cours-de-groupe">Politique d'Annulation d'un Cours de Groupe</a></li>
+          </ol>
+          <div class="toc-actions" data-toc-actions hidden>
+            <button type="button" class="text-btn" data-expand-all>Tout ouvrir</button>
+            <button type="button" class="text-btn" data-collapse-all>Tout fermer</button>
+          </div>
+        </nav>
 
-        <h2>2. Politique de Résiliation</h2>
+        <details class="faq-item faq-section" id="engagement">
+          <summary class="faq-question"><h2>1. Engagement du Membre</h2></summary>
+          <div class="faq-answer">
+            <ol>
+              <li>Apporter une paire de chaussures de rechange en période hivernale.</li>
+              <li>Garder les installations propres, désinfecter et ranger son matériel après usage.</li>
+              <li>Réserver sa place sur l'application FLiiP avant chaque entraînement libre ou cours de groupe.</li>
+              <li>Annuler sa réservation lorsque vous saurez que vous ne pourrez pas vous présenter au studio.</li>
+              <li>S'assurer que les prélèvements indiqués à son contrat puissent être perçus selon les modalités prévues.</li>
+              <li>Avoir une hygiène corporelle responsable.</li>
+              <li>Avoir sa trousse de désinfection (fournie par nous) en tout temps et désinfecter le matériel après usage.</li>
+            </ol>
+          </div>
+        </details>
 
-        <h3>Procédure de Résiliation</h3>
-        <p>Pour annuler son contrat, le client doit remplir le formulaire joint au contrat d'origine ou rédiger une lettre de résiliation. Le contrat sera annulé dès la réception du formulaire dûment rempli ou de la lettre de résiliation par notre équipe.</p>
+        <details class="faq-item faq-section" id="resiliation">
+          <summary class="faq-question"><h2>2. Politique de Résiliation</h2></summary>
+          <div class="faq-answer">
+            <h3>Procédure de Résiliation</h3>
+            <p>Pour annuler son contrat, le client doit remplir le formulaire joint au contrat d'origine ou rédiger une lettre de résiliation. Le contrat sera annulé dès la réception du formulaire dûment rempli ou de la lettre de résiliation par notre équipe.</p>
 
-        <h3>Délai d'Annulation : à court terme</h3>
-        <p>Vous pouvez annuler votre contrat à deux moments :</p>
-        <ul>
-          <li>Avant d'avoir accès aux biens et services prévus au contrat. Dans ce cas, Studio Santé Active ne vous facturera aucun frais.</li>
-          <li>Dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat, à partir du moment où vous avez eu accès aux biens et services prévus au contrat.</li>
-        </ul>
-        <p>Par exemple, si vous avez signé un contrat d'un an, vous pourriez l'annuler jusqu'à 36 jours après le début de la prestation des services. Dans ce cas, vous pourriez exiger un remboursement équivalent à un dixième (1/10) de la valeur totale du contrat. Studio Santé Active vous remettra cette somme dans les 10 jours suivant l'annulation.</p>
+            <h3>Délai d'Annulation : à court terme</h3>
+            <p>Vous pouvez annuler votre contrat à deux moments :</p>
+            <ul>
+              <li>Avant d'avoir accès aux biens et services prévus au contrat. Dans ce cas, Studio Santé Active ne vous facturera aucun frais.</li>
+              <li>Dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat, à partir du moment où vous avez eu accès aux biens et services prévus au contrat.</li>
+            </ul>
+            <p>Par exemple, si vous avez signé un contrat d'un an, vous pourriez l'annuler jusqu'à 36 jours après le début de la prestation des services. Dans ce cas, vous pourriez exiger un remboursement équivalent à un dixième (1/10) de la valeur totale du contrat. Studio Santé Active vous remettra cette somme dans les 10 jours suivant l'annulation.</p>
 
-        <h3>Délai d'Annulation : à plus long terme</h3>
-        <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire, tel que prévu au Code civil du Québec. Le studio vous réclamera alors une indemnité</p>
-        <p>Par exemple : Après 4 mois, vous souhaitez mettre fin à votre contrat d'une durée d'un (1) an, pour un total de 420 $. Le Studio Santé Active pourrait :</p>
-        <ul>
-          <li>Exiger un remboursement de 140 $ pour la période au cours de laquelle les services ont été rendus;</li>
-          <li>Vous réclamer une somme supplémentaire s'il est en mesure de démontrer qu'il a subi un préjudice causé par la résiliation de l'entente. Le cas échéant, le studio se réserve le droit de vous facturer l'équivalent de 10 % du coût total des séances restantes.</li>
-        </ul>
-        <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire. Le studio vous réclamera alors une indemnité.</p>
+            <h3>Délai d'Annulation : à plus long terme</h3>
+            <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire, tel que prévu au Code civil du Québec. Le studio vous réclamera alors une indemnité</p>
+            <p>Par exemple : Après 4 mois, vous souhaitez mettre fin à votre contrat d'une durée d'un (1) an, pour un total de 420 $. Le Studio Santé Active pourrait :</p>
+            <ul>
+              <li>Exiger un remboursement de 140 $ pour la période au cours de laquelle les services ont été rendus;</li>
+              <li>Vous réclamer une somme supplémentaire s'il est en mesure de démontrer qu'il a subi un préjudice causé par la résiliation de l'entente. Le cas échéant, le studio se réserve le droit de vous facturer l'équivalent de 10 % du coût total des séances restantes.</li>
+            </ul>
+            <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire. Le studio vous réclamera alors une indemnité.</p>
+          </div>
+        </details>
 
-        <h2>3. Politique de Suspension d'Abonnement</h2>
-        <p>Toute demande de suspension d'abonnement doit être faite auprès de la direction. Les détenteurs d'un abonnement de trois (3) mois peuvent le suspendre jusqu'à vingt et un (21) jours et les détenteurs d'un abonnement de douze (12) mois peuvent le suspendre jusqu'à quatre-vingt-dix (90) jours. Les paiements prévus au contrat seront perçus selon les modalités de l'entente. Les jours suspendus seront ajoutés au terme du contrat d'origine.</p>
+        <details class="faq-item faq-section" id="suspension">
+          <summary class="faq-question"><h2>3. Politique de Suspension d'Abonnement</h2></summary>
+          <div class="faq-answer">
+            <p>Toute demande de suspension d'abonnement doit être faite auprès de la direction. Les détenteurs d'un abonnement de trois (3) mois peuvent le suspendre jusqu'à vingt et un (21) jours et les détenteurs d'un abonnement de douze (12) mois peuvent le suspendre jusqu'à quatre-vingt-dix (90) jours. Les paiements prévus au contrat seront perçus selon les modalités de l'entente. Les jours suspendus seront ajoutés au terme du contrat d'origine.</p>
+          </div>
+        </details>
 
-        <h2>4. Politique d'Annulation d'un Rendez-vous</h2>
-        <p>Pour annuler un rendez-vous sans frais, vous devez nous contacter au moins 24 heures à l'avance. Dans le cas contraire, le rendez-vous vous sera facturé dans son entièreté. Vous pourrez toutefois le récupérer en déboursant 50 % du prix coûtant.</p>
-        <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit d'octroyer votre plage horaire à un autre client.</p>
+        <details class="faq-item faq-section" id="annulation-rendez-vous">
+          <summary class="faq-question"><h2>4. Politique d'Annulation d'un Rendez-vous</h2></summary>
+          <div class="faq-answer">
+            <p>Pour annuler un rendez-vous sans frais, vous devez nous contacter au moins 24 heures à l'avance. Dans le cas contraire, le rendez-vous vous sera facturé dans son entièreté. Vous pourrez toutefois le récupérer en déboursant 50 % du prix coûtant.</p>
+            <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit d'octroyer votre plage horaire à un autre client.</p>
+          </div>
+        </details>
 
-        <h2>5. Politique d'Annulation d'un Cours de Groupe</h2>
-        <p>Pour annuler votre présence à un cours sans frais supplémentaires, vous devez vous désinscrire sur l'appli FLiiP au moins 10 heures avant le début du cours. Dans le cas contraire, l'annulation sera considérée comme tardive et le coût du cours vous sera facturé.</p>
-        <p>Si vous devez annuler tardivement, veuillez vous désinscrire sur l'appli FLiiP pour libérer votre place.</p>
-        <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit de vous refuser l'accès aux cours de groupe.</p>
+        <details class="faq-item faq-section" id="annulation-cours-de-groupe">
+          <summary class="faq-question"><h2>5. Politique d'Annulation d'un Cours de Groupe</h2></summary>
+          <div class="faq-answer">
+            <p>Pour annuler votre présence à un cours sans frais supplémentaires, vous devez vous désinscrire sur l'appli FLiiP au moins 10 heures avant le début du cours. Dans le cas contraire, l'annulation sera considérée comme tardive et le coût du cours vous sera facturé.</p>
+            <p>Si vous devez annuler tardivement, veuillez vous désinscrire sur l'appli FLiiP pour libérer votre place.</p>
+            <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit de vous refuser l'accès aux cours de groupe.</p>
+          </div>
+        </details>
       </div>
     </main>
 
@@ -275,9 +328,8 @@
           <li><a href="/conditions.html">Conditions</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/apropos.html">À propos</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/equipe.html">Équipe</a></li>
+          <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
           <li><a href="/ceg.html">Cours en groupe</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>

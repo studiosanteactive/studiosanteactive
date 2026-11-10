@@ -34,6 +34,18 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
+    <!-- Night mode: apply the saved choice (or the device setting) before the page paints; the switch is in scripts/site.js -->
+    <script>
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme);
+      })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -238,10 +250,20 @@
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+      <nav class="container navbar navbar-expand-lg navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
+
+        <!-- Night mode switch (shown by scripts/site.js) -->
+        <button type="button" class="theme-toggle" role="switch" aria-checked="false" data-theme-toggle hidden>
+          <span class="visually-hidden">Mode nuit</span>
+          <span class="theme-toggle-track" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
 
         <button
           class="navbar-toggler"
@@ -261,16 +283,13 @@
               <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/apropos.html">À propos</a>
+              <a class="nav-link" href="/equipe.html">Équipe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services.html">Services</a>
+              <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/therapeutes.html">Thérapeutes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/ceg.html">Cours</a>
+              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
@@ -292,136 +311,173 @@
       <div class="container prose">
         <h1>FAQ</h1>
 
-        <h2>Générale</h2>
-        <details class="faq-item">
-          <summary class="faq-question">Où êtes-vous situé?</summary>
-          <div class="faq-answer">
-            <p>7422, rue Saint-Hubert # 101</p>
-            <p>En face de la rue Everett</p>
-            <p>Montréal (Qc) H2R 2N3</p>
-            <p><a href="tel:+14388663438">438 866-3438</a></p>
+        <nav class="toc" aria-labelledby="toc-titre">
+          <h2 class="toc-title" id="toc-titre">Sur cette page</h2>
+          <ol>
+            <li>
+              <a href="#generale">Générale</a>
+              <ol>
+                <li><a href="#ou-etes-vous-situe">Où êtes-vous situé?</a></li>
+                <li><a href="#quelles-sont-vos-heures-d-ouverture">Quelles sont vos heures d'ouverture?</a></li>
+                <li><a href="#conges">Quels sont les congés à venir?</a></li>
+                <li><a href="#quel-est-l-age-minimum-pour">Quel est l'âge minimum pour accéder à votre studio?</a></li>
+                <li><a href="#quelles-sont-les-mesures-d-hygiene">Quelles sont les mesures d'hygiène en vigueur?</a></li>
+                <li><a href="#dois-je-reserver-ma-place-lorsque">Dois-je réserver ma place lorsque je viens m'entraîner seul.e?</a></li>
+              </ol>
+            </li>
+            <li>
+              <a href="#abonnement">Abonnement</a>
+              <ol>
+                <li><a href="#comment-obtenir-une-copie-de-mon">Comment obtenir une copie de mon contrat?</a></li>
+                <li><a href="#est-ce-que-mon-abonnement-se">Est-ce que mon abonnement se renouvelle automatiquement?</a></li>
+                <li><a href="#que-faire-en-cas-de-rejet">Que faire en cas de rejet de paiement?</a></li>
+                <li><a href="#comment-changer-mon-numero-de-carte">Comment changer mon numéro de carte de crédit?</a></li>
+                <li><a href="#est-il-possible-de-modifier-mon">Est-il possible de modifier mon contrat?</a></li>
+                <li><a href="#est-il-possible-de-suspendre-mon">Est-il possible de suspendre mon abonnement?</a></li>
+                <li><a href="#comment-proceder-si-je-souhaite-annuler">Comment procéder si je souhaite annuler mon abonnement?</a></li>
+              </ol>
+            </li>
+          </ol>
+          <div class="toc-actions" data-toc-actions hidden>
+            <button type="button" class="text-btn" data-expand-all>Tout ouvrir</button>
+            <button type="button" class="text-btn" data-collapse-all>Tout fermer</button>
           </div>
-        </details>
+        </nav>
 
-        <details class="faq-item">
-          <summary class="faq-question">Quelles sont vos heures d'ouverture?</summary>
-          <div class="faq-answer">
-            <p>Du lundi au vendredi : 6 h à 21 h</p>
-            <p>Samedi : 8 h à 18 h</p>
-            <p>Dimanche : 9 h à 15 h</p>
-          </div>
-        </details>
+        <section id="generale" aria-labelledby="generale-titre">
+          <h2 id="generale-titre">Générale</h2>
+          <details class="faq-item" id="ou-etes-vous-situe">
+            <summary class="faq-question">Où êtes-vous situé?</summary>
+            <div class="faq-answer">
+              <p>7422, rue Saint-Hubert # 101</p>
+              <p>En face de la rue Everett</p>
+              <p>Montréal (Qc) H2R 2N3</p>
+              <p><a href="tel:+14388663438">438 866-3438</a></p>
+            </div>
+          </details>
 
-        <details class="faq-item" id="conges">
-          <summary class="faq-question">Quels sont les congés à venir?</summary>
-          <div class="faq-answer">
-            <p>Le studio est fermé ou a un horaire réduit aux dates suivantes :</p>
-            <!-- Static list for 2026-2027; scripts/site.js replaces it with the next 12 months -->
-            <ul data-holiday-list>
-              <li>Jeudi 1er janvier 2026 - Jour de l'An - Fermé</li>
-              <li>Dimanche 5 avril 2026 - Pâques - Fermé</li>
-              <li>Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé</li>
-              <li>Mercredi 1er juillet 2026 - Fête du Canada - Fermé</li>
-              <li>Lundi 7 septembre 2026 - Fête du travail - Fermé</li>
-              <li>Lundi 12 octobre 2026 - Action de grâce - Fermé</li>
-              <li>Jeudi 24 décembre 2026 - Veille de Noël - Ouvert de 6h à 13h</li>
-              <li>Vendredi 25 décembre 2026 - Noël - Fermé</li>
-              <li>Samedi 26 décembre 2026 - Lendemain de Noël - Fermé</li>
-              <li>Jeudi 31 décembre 2026 - Veille du jour de l'An - Ouvert de 6h à 13h</li>
-              <li>Vendredi 1er janvier 2027 - Jour de l'An - Fermé</li>
-              <li>Samedi 2 janvier 2027 - Lendemain du jour de l'An - Fermé</li>
-              <li>Dimanche 28 mars 2027 - Pâques - Fermé</li>
-              <li>Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé</li>
-              <li>Jeudi 1er juillet 2027 - Fête du Canada - Fermé</li>
-              <li>Lundi 6 septembre 2027 - Fête du travail - Fermé</li>
-              <li>Lundi 11 octobre 2027 - Action de grâce - Fermé</li>
-              <li>Samedi 25 décembre 2027 - Noël - Fermé</li>
-            </ul>
-          </div>
-        </details>
+          <details class="faq-item" id="quelles-sont-vos-heures-d-ouverture">
+            <summary class="faq-question">Quelles sont vos heures d'ouverture?</summary>
+            <div class="faq-answer">
+              <p>Du lundi au vendredi : 6 h à 21 h</p>
+              <p>Samedi : 8 h à 18 h</p>
+              <p>Dimanche : 9 h à 15 h</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Quel est l'âge minimum pour accéder à votre studio?</summary>
-          <div class="faq-answer">
-            <p>L'âge minimum est de 14 ans. Un parent ou un tuteur légal doit être présent au moment de l'inscription.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="conges">
+            <summary class="faq-question">Quels sont les congés à venir?</summary>
+            <div class="faq-answer">
+              <p>Le studio est fermé ou a un horaire réduit aux dates suivantes :</p>
+              <!-- Static list for 2026-2027; scripts/site.js replaces it with the next 12 months -->
+              <ul data-holiday-list>
+                <li>Jeudi 1er janvier 2026 - Jour de l'An - Fermé</li>
+                <li>Dimanche 5 avril 2026 - Pâques - Fermé</li>
+                <li>Mercredi 24 juin 2026 - Fête nationale du Québec - Fermé</li>
+                <li>Mercredi 1er juillet 2026 - Fête du Canada - Fermé</li>
+                <li>Lundi 7 septembre 2026 - Fête du travail - Fermé</li>
+                <li>Lundi 12 octobre 2026 - Action de grâce - Fermé</li>
+                <li>Jeudi 24 décembre 2026 - Veille de Noël - Ouvert de 6h à 13h</li>
+                <li>Vendredi 25 décembre 2026 - Noël - Fermé</li>
+                <li>Samedi 26 décembre 2026 - Lendemain de Noël - Fermé</li>
+                <li>Jeudi 31 décembre 2026 - Veille du jour de l'An - Ouvert de 6h à 13h</li>
+                <li>Vendredi 1er janvier 2027 - Jour de l'An - Fermé</li>
+                <li>Samedi 2 janvier 2027 - Lendemain du jour de l'An - Fermé</li>
+                <li>Dimanche 28 mars 2027 - Pâques - Fermé</li>
+                <li>Jeudi 24 juin 2027 - Fête nationale du Québec - Fermé</li>
+                <li>Jeudi 1er juillet 2027 - Fête du Canada - Fermé</li>
+                <li>Lundi 6 septembre 2027 - Fête du travail - Fermé</li>
+                <li>Lundi 11 octobre 2027 - Action de grâce - Fermé</li>
+                <li>Samedi 25 décembre 2027 - Noël - Fermé</li>
+              </ul>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Quelles sont les mesures d'hygiène en vigueur?</summary>
-          <div class="faq-answer">
-            <p>S'il y a lieu, nous respectons les recommandations émises par le gouvernement.</p>
-            <ul>
-              <li>Actuellement, nous demandons le lavage des mains/désinfection avant et après l'entraînement.</li>
-              <li>Nettoyage de l'équipement après usage.</li>
-              <li>Port du masque obligatoire si vous présentez des symptômes grippaux comme la toux, le mal de gorge ou la congestion nasale.</li>
-            </ul>
-          </div>
-        </details>
+          <details class="faq-item" id="quel-est-l-age-minimum-pour">
+            <summary class="faq-question">Quel est l'âge minimum pour accéder à votre studio?</summary>
+            <div class="faq-answer">
+              <p>L'âge minimum est de 14 ans. Un parent ou un tuteur légal doit être présent au moment de l'inscription.</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Dois-je réserver ma place lorsque je viens m'entraîner seul.e?</summary>
-          <div class="faq-answer">
-            <p>Oui, vous devez réserver votre place sur l'appli FLiiP pour accéder au bloc d'entraînement libre et aux cours de groupe.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="quelles-sont-les-mesures-d-hygiene">
+            <summary class="faq-question">Quelles sont les mesures d'hygiène en vigueur?</summary>
+            <div class="faq-answer">
+              <p>S'il y a lieu, nous respectons les recommandations émises par le gouvernement.</p>
+              <ul>
+                <li>Actuellement, nous demandons le lavage des mains/désinfection avant et après l'entraînement.</li>
+                <li>Nettoyage de l'équipement après usage.</li>
+                <li>Port du masque obligatoire si vous présentez des symptômes grippaux comme la toux, le mal de gorge ou la congestion nasale.</li>
+              </ul>
+            </div>
+          </details>
 
-        <h2>Abonnement</h2>
-        <details class="faq-item">
-          <summary class="faq-question">Comment obtenir une copie de mon contrat?</summary>
-          <div class="faq-answer">
-            <ul>
-              <li>Une copie vous a été envoyée par courriel au moment de votre inscription.</li>
-              <li>Il est aussi possible de consulter votre contrat sur l'appli FLiiP.</li>
-            </ul>
-          </div>
-        </details>
+          <details class="faq-item" id="dois-je-reserver-ma-place-lorsque">
+            <summary class="faq-question">Dois-je réserver ma place lorsque je viens m'entraîner seul.e?</summary>
+            <div class="faq-answer">
+              <p>Oui, vous devez réserver votre place sur l'appli FLiiP pour accéder au bloc d'entraînement libre et aux cours de groupe.</p>
+            </div>
+          </details>
+        </section>
 
-        <details class="faq-item">
-          <summary class="faq-question">Est-ce que mon abonnement se renouvelle automatiquement?</summary>
-          <div class="faq-answer">
-            <p>Non.</p>
-          </div>
-        </details>
+        <section id="abonnement" aria-labelledby="abonnement-titre">
+          <h2 id="abonnement-titre">Abonnement</h2>
+          <details class="faq-item" id="comment-obtenir-une-copie-de-mon">
+            <summary class="faq-question">Comment obtenir une copie de mon contrat?</summary>
+            <div class="faq-answer">
+              <ul>
+                <li>Une copie vous a été envoyée par courriel au moment de votre inscription.</li>
+                <li>Il est aussi possible de consulter votre contrat sur l'appli FLiiP.</li>
+              </ul>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Que faire en cas de rejet de paiement?</summary>
-          <div class="faq-answer">
-            <p>Rien, il y aura une autre tentative quelques jours plus tard.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="est-ce-que-mon-abonnement-se">
+            <summary class="faq-question">Est-ce que mon abonnement se renouvelle automatiquement?</summary>
+            <div class="faq-answer">
+              <p>Non.</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Comment changer mon numéro de carte de crédit?</summary>
-          <div class="faq-answer">
-            <p>Vous pouvez modifier vos renseignements de paiement sur l'appli FLiiP. Accédez à votre profil et sélectionnez "Paiement" dans le menu.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="que-faire-en-cas-de-rejet">
+            <summary class="faq-question">Que faire en cas de rejet de paiement?</summary>
+            <div class="faq-answer">
+              <p>Rien, il y aura une autre tentative quelques jours plus tard.</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Est-il possible de modifier mon contrat?</summary>
-          <div class="faq-answer">
-            <p>Si vous souhaitez bonifier votre forfait (par exemple, vous passez d'un entraînement hebdomadaire à deux), vous n'aurez aucun frais supplémentaire à payer. Un nouveau contrat reflétant les nouveaux tarifs vous sera émis. Contactez-nous au <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a> pour en savoir davantage.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="comment-changer-mon-numero-de-carte">
+            <summary class="faq-question">Comment changer mon numéro de carte de crédit?</summary>
+            <div class="faq-answer">
+              <p>Vous pouvez modifier vos renseignements de paiement sur l'appli FLiiP. Accédez à votre profil et sélectionnez "Paiement" dans le menu.</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Est-il possible de suspendre mon abonnement?</summary>
-          <div class="faq-answer">
-            <p>Bien sûr. Toute demande de suspension doit être formulée auprès de la direction. Il est possible de suspendre jusqu'à 21 jours pour les détenteurs d'un abonnement de 3 mois et de 90 jours pour les détenteurs d'un abonnement de 12 mois. Les paiements prévu au contrat seront perçus comme prévus selon les modalités de l'entente. Les jours manqués seront ajoutés à la fin du terme original prévu au contrat.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="est-il-possible-de-modifier-mon">
+            <summary class="faq-question">Est-il possible de modifier mon contrat?</summary>
+            <div class="faq-answer">
+              <p>Si vous souhaitez bonifier votre forfait (par exemple, vous passez d'un entraînement hebdomadaire à deux), vous n'aurez aucun frais supplémentaire à payer. Un nouveau contrat reflétant les nouveaux tarifs vous sera émis. Contactez-nous au <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a> pour en savoir davantage.</p>
+            </div>
+          </details>
 
-        <details class="faq-item">
-          <summary class="faq-question">Comment procéder si je souhaite annuler mon abonnement?</summary>
-          <div class="faq-answer">
-            <p>Vous devez envoyer une demande par écrit à <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a>. L'annulation prendra effet au moment de la réception de votre courriel et les frais, si applicables, vous seront facturés.</p>
-            <p>Situation 1 : L'abonnement n'est pas encore commencé. L'abonnement sera annulé sans frais.</p>
-            <p>Situation 2 : L'abonnement est en cours et vous avez envoyé une demande de résiliation dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat (9 ou 36 jours) à partir du moment où le studio a commencé à vous offrir les services. Le commerçant est en droit de vous réclamer une somme correspondant à un dixième (1/10) de la valeur totale prévue au contrat.</p>
-            <p>Par exemple : Vous avez conclu une entente de 10 mois, pour un coût total de 400 $. Vous pouvez résilier le contrat au cours des quatre (4) premières semaines. Vous auriez alors à verser 40 $ de frais, soit un dixième (1/10) de 400 $. Si certains services ont été devancés, ils s'additionneront aux frais de résiliation.</p>
-            <p>Situation 3 : L'abonnement est en cours et la demande de résiliation est envoyée dans un délai supérieur à un dixième (1/10) de la durée du contrat (9 ou 36 jours). Le studio vous réclamera alors le coût des services rendus ainsi que 10 % de la valeur des séances restantes.</p>
-          </div>
-        </details>
+          <details class="faq-item" id="est-il-possible-de-suspendre-mon">
+            <summary class="faq-question">Est-il possible de suspendre mon abonnement?</summary>
+            <div class="faq-answer">
+              <p>Bien sûr. Toute demande de suspension doit être formulée auprès de la direction. Il est possible de suspendre jusqu'à 21 jours pour les détenteurs d'un abonnement de 3 mois et de 90 jours pour les détenteurs d'un abonnement de 12 mois. Les paiements prévu au contrat seront perçus comme prévus selon les modalités de l'entente. Les jours manqués seront ajoutés à la fin du terme original prévu au contrat.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" id="comment-proceder-si-je-souhaite-annuler">
+            <summary class="faq-question">Comment procéder si je souhaite annuler mon abonnement?</summary>
+            <div class="faq-answer">
+              <p>Vous devez envoyer une demande par écrit à <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a>. L'annulation prendra effet au moment de la réception de votre courriel et les frais, si applicables, vous seront facturés.</p>
+              <p>Situation 1 : L'abonnement n'est pas encore commencé. L'abonnement sera annulé sans frais.</p>
+              <p>Situation 2 : L'abonnement est en cours et vous avez envoyé une demande de résiliation dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat (9 ou 36 jours) à partir du moment où le studio a commencé à vous offrir les services. Le commerçant est en droit de vous réclamer une somme correspondant à un dixième (1/10) de la valeur totale prévue au contrat.</p>
+              <p>Par exemple : Vous avez conclu une entente de 10 mois, pour un coût total de 400 $. Vous pouvez résilier le contrat au cours des quatre (4) premières semaines. Vous auriez alors à verser 40 $ de frais, soit un dixième (1/10) de 400 $. Si certains services ont été devancés, ils s'additionneront aux frais de résiliation.</p>
+              <p>Situation 3 : L'abonnement est en cours et la demande de résiliation est envoyée dans un délai supérieur à un dixième (1/10) de la durée du contrat (9 ou 36 jours). Le studio vous réclamera alors le coût des services rendus ainsi que 10 % de la valeur des séances restantes.</p>
+            </div>
+          </details>
+        </section>
 
         <p class="prose-note">Pour en savoir plus sur vos droits : <a href="https://www.opc.gouv.qc.ca/commercant/permis-certificat/studio-sante/droit-obligation/contrat/">Office de la protection du consommateur</a></p>
       </div>
@@ -469,9 +525,8 @@
           <li><a href="/conditions.html">Conditions</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/apropos.html">À propos</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/therapeutes.html">Thérapeutes</a></li>
+          <li><a href="/equipe.html">Équipe</a></li>
+          <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
           <li><a href="/ceg.html">Cours en groupe</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>

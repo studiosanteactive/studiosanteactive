@@ -7,7 +7,10 @@
  *   3. Notice bar for upcoming holiday closures + always-current list on the FAQ
  *   4. Floating contact button that appears after the banner and hides at the footer
  *   5. Pause / play button for the homepage video
- *   6. Opening the FAQ question that a link points to
+ *   6. Opening the FAQ question, conditions section or trainer bio that a link points to,
+ *      plus "Tout ouvrir / Tout fermer" on the FAQ and conditions
+ *   7. Night mode switch (the saved choice is applied earlier, by an inline script in each <head>)
+ *   8. Hiding homepage events once they are over
  */
 (function () {
   'use strict';
@@ -288,16 +291,97 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 6. Open the FAQ question a link points to (e.g. /faq.html#conges)
+  // 6. Open the <details> a link points to (e.g. /faq.html#conges, /equipe.html#yan-thach)
   // ---------------------------------------------------------------------------
 
-  function openLinkedQuestion() {
-    var id = decodeURIComponent(location.hash.slice(1));
+  // The target may sit inside a <details> (FAQ answer), be one (conditions section),
+  // or be a trainer card holding its bio.
+  function detailsFor(target) {
+    return target.closest('details') || (target.matches('.trainer-card') && target.querySelector('details'));
+  }
+
+  function openTarget(id, scroll) {
     var target = id && document.getElementById(id);
-    var details = target && target.closest('details');
+    var details = target && detailsFor(target);
     if (!details) return;
     details.open = true;
-    details.scrollIntoView();
+    if (scroll) target.scrollIntoView();
+  }
+
+  function openLinkedQuestion() {
+    openTarget(decodeURIComponent(location.hash.slice(1)), true);
+  }
+
+  function linkedDetails() {
+    openLinkedQuestion();
+    window.addEventListener('hashchange', openLinkedQuestion);
+
+    // Clicking a table-of-contents link whose hash is already in the URL fires no hashchange
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('.toc a[href^="#"]');
+      if (link) openTarget(decodeURIComponent(link.getAttribute('href').slice(1)), false);
+    });
+
+    var actions = document.querySelector('[data-toc-actions]');
+    if (!actions) return;
+    var all = document.querySelectorAll('main details');
+    function setAll(open) {
+      all.forEach(function (d) { d.open = open; });
+    }
+    actions.querySelector('[data-expand-all]').addEventListener('click', function () { setAll(true); });
+    actions.querySelector('[data-collapse-all]').addEventListener('click', function () { setAll(false); });
+    actions.hidden = false;
+  }
+
+  // ---------------------------------------------------------------------------
+  // 7. Night mode switch
+  // ---------------------------------------------------------------------------
+
+  var THEME_KEY = 'ssa-theme';
+
+  function themeToggle() {
+    var button = document.querySelector('[data-theme-toggle]');
+    if (!button) return;
+    var root = document.documentElement;
+
+    function apply(theme) {
+      root.setAttribute('data-theme', theme);
+      root.setAttribute('data-bs-theme', theme);
+      button.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+    }
+
+    function saved() {
+      try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+    }
+
+    apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+    button.hidden = false;
+
+    button.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      apply(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+
+    // Until the visitor flips the switch, follow the device setting as it changes
+    var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+    if (media && media.addEventListener) {
+      media.addEventListener('change', function (e) {
+        if (!saved()) apply(e.matches ? 'dark' : 'light');
+      });
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // 8. Remove events whose last day (data-event-end="YYYY-MM-DD") has passed.
+  //    When none are left, CSS shows the "Aucun événement" message.
+  // ---------------------------------------------------------------------------
+
+  function pruneEvents() {
+    var today = key(montrealNow().today);
+    document.querySelectorAll('.event[data-event-end]').forEach(function (el) {
+      if (el.getAttribute('data-event-end') < today) el.remove();
+    });
   }
 
   // ---------------------------------------------------------------------------
@@ -309,8 +393,9 @@
     updateHolidayList();
     smartContactButton();
     videoToggle();
-    openLinkedQuestion();
-    window.addEventListener('hashchange', openLinkedQuestion);
+    linkedDetails();
+    themeToggle();
+    pruneEvents();
     setInterval(updateStatus, 60000);
   }
 
