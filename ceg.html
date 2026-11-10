@@ -34,16 +34,16 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
-    <!-- Night mode: apply the saved choice (or the device setting) before the page paints; the switch is in scripts/site.js -->
+    <!-- Theme: apply the saved choice (or the device setting) before the page paints; the slider is in scripts/site.js -->
     <script>
       (function () {
         var theme;
         try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
-        if (theme !== 'dark' && theme !== 'light') {
+        if (theme !== 'dark' && theme !== 'light' && theme !== 'pride') {
           theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.setAttribute('data-bs-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme === 'dark' ? 'dark' : 'light');
       })();
     </script>
 
@@ -311,15 +311,21 @@
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
 
-        <!-- Night mode switch (shown by scripts/site.js) -->
-        <button type="button" class="theme-toggle" role="switch" aria-checked="false" data-theme-toggle hidden>
-          <span class="visually-hidden">Mode nuit</span>
-          <span class="theme-toggle-track" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <svg viewBox="0 0 24 24" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-            <span class="theme-toggle-thumb"></span>
-          </span>
-        </button>
+        <!-- Theme slider: light / night (scripts/site.js shows it and can add extra themes) -->
+        <fieldset class="theme-toggle" data-theme-toggle hidden>
+          <legend class="visually-hidden">Thème d'affichage</legend>
+          <label class="theme-option" title="Mode clair">
+            <input type="radio" name="theme" value="light" class="visually-hidden">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Mode clair</span>
+          </label>
+          <label class="theme-option" title="Mode nuit">
+            <input type="radio" name="theme" value="dark" class="visually-hidden">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="visually-hidden">Mode nuit</span>
+          </label>
+          <span class="theme-toggle-thumb" aria-hidden="true"></span>
+        </fieldset>
 
         <button
           class="navbar-toggler"

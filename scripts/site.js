@@ -9,10 +9,11 @@
  *   5. Pause / play button for the homepage video
  *   6. Opening the FAQ question, conditions section or trainer bio that a link points to,
  *      plus "Tout ouvrir / Tout fermer" on the FAQ and conditions
- *   7. Night mode switch (the saved choice is applied earlier, by an inline script in each <head>)
+ *   7. Theme slider: light / night / rainbow (the saved choice is applied earlier, by an inline script in each <head>)
  *   8. Hiding homepage events once they are over
  *   9. A "swipe" hint under price tables that are wider than the screen
  *  10. Trainer bios open in a full-width panel under their row of cards
+ *  11. Reviews carousel: previous / next buttons and position dots
  */
 (function () {
   'use strict';
@@ -345,36 +346,56 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 7. Night mode switch
+  // 7. Theme slider: light / night, plus the optional rainbow theme
   // ---------------------------------------------------------------------------
 
   var THEME_KEY = 'ssa-theme';
 
+  // Rainbow ("pride") theme. To remove it: set this to false, or also delete the
+  // "PRIDE THEME" block at the end of stylesheets/stylesheet.css.
+  var PRIDE_THEME = true;
+
   function themeToggle() {
-    var button = document.querySelector('[data-theme-toggle]');
-    if (!button) return;
+    var group = document.querySelector('[data-theme-toggle]');
+    if (!group) return;
     var root = document.documentElement;
 
+    if (PRIDE_THEME) {
+      var pride = document.createElement('label');
+      pride.className = 'theme-option theme-option-pride';
+      pride.title = 'Mode fierté';
+      pride.innerHTML = '<input type="radio" name="theme" value="pride" class="visually-hidden">' +
+        '<span aria-hidden="true">🌈</span><span class="visually-hidden">Mode fierté</span>';
+      group.insertBefore(pride, group.querySelector('.theme-toggle-thumb'));
+    }
+
+    var inputs = Array.prototype.slice.call(group.querySelectorAll('input[name="theme"]'));
+    var values = inputs.map(function (i) { return i.value; });
+
     function apply(theme) {
+      if (values.indexOf(theme) < 0) theme = 'light';
       root.setAttribute('data-theme', theme);
-      root.setAttribute('data-bs-theme', theme);
-      button.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
+      root.setAttribute('data-bs-theme', theme === 'dark' ? 'dark' : 'light');
+      inputs[values.indexOf(theme)].checked = true;
+      group.style.setProperty('--theme-index', values.indexOf(theme));
     }
 
     function saved() {
       try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
     }
 
-    apply(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
-    button.hidden = false;
+    apply(root.getAttribute('data-theme'));
+    group.hidden = false;
 
-    button.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      apply(next);
-      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    // Native radios: click, tap and arrow keys all fire "change"
+    inputs.forEach(function (input) {
+      input.addEventListener('change', function () {
+        apply(input.value);
+        try { localStorage.setItem(THEME_KEY, input.value); } catch (e) {}
+      });
     });
 
-    // Until the visitor flips the switch, follow the device setting as it changes
+    // Until the visitor picks a theme, follow the device setting as it changes
     var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     if (media && media.addEventListener) {
       media.addEventListener('change', function (e) {
@@ -382,6 +403,80 @@
       });
     }
   }
+
+  // ---------------------------------------------------------------------------
+  // 8. Remove events whose last day (data-event-end="YYYY-MM-DD") has passed.
+  //    When none are left, CSS shows the "Aucun événement" message.
+  // ---------------------------------------------------------------------------
+
+  function pruneEvents() {
+    var today = key(montrealNow().today);
+    document.querySelectorAll('.event[data-event-end]').forEach(function (el) {
+      if (el.getAttribute('data-event-end') < today) el.remove();
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // 11. Reviews carousel. The track is a native scroll-snap row (swipeable without JavaScript);
+  //     this adds the arrow buttons and the dots, and keeps them in step with the scroll position.
+  // ---------------------------------------------------------------------------
+
+  function reviewsCarousel() {
+    var box = document.querySelector('[data-reviews-carousel]');
+    if (!box) return;
+    var track = box.querySelector('.reviews');
+    var cards = Array.prototype.slice.call(track.children);
+    var prev = box.querySelector('[data-reviews-prev]');
+    var next = box.querySelector('[data-reviews-next]');
+    var dotsBox = box.querySelector('[data-reviews-dots]');
+    var dots = [];
+
+    function perView() {
+      return Math.max(1, Math.round(track.clientWidth / cards[0].getBoundingClientRect().width));
+    }
+
+    function pages() { return Math.max(1, Math.ceil(cards.length - perView() + 1)); }
+
+    function current() {
+      var step = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+      return Math.round(track.scrollLeft / step);
+    }
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(i, pages() - 1));
+      track.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+    }
+
+    function buildDots() {
+      dotsBox.innerHTML = '';
+      dots = [];
+      for (var i = 0; i < pages(); i++) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'reviews-dot';
+        d.setAttribute('aria-label', 'Avis ' + (i + 1));
+        d.addEventListener('click', goTo.bind(null, i));
+        dotsBox.appendChild(d);
+        dots.push(d);
+      }
+      update();
+    }
+
+    function update() {
+      var i = current();
+      prev.disabled = i <= 0;
+      next.disabled = i >= pages() - 1;
+      dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+    }
+
+    prev.addEventListener('click', function () { goTo(current() - 1); });
+    next.addEventListener('click', function () { goTo(current() + 1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener('resize', buildDots);
+    box.classList.add('is-ready');
+    buildDots();
+  }
+
 
   // ---------------------------------------------------------------------------
   // 9. "Glissez pour voir tous les forfaits" under price tables wider than the screen
@@ -501,17 +596,6 @@
     window.addEventListener('resize', place);
   }
 
-  // ---------------------------------------------------------------------------
-  // 8. Remove events whose last day (data-event-end="YYYY-MM-DD") has passed.
-  //    When none are left, CSS shows the "Aucun événement" message.
-  // ---------------------------------------------------------------------------
-
-  function pruneEvents() {
-    var today = key(montrealNow().today);
-    document.querySelectorAll('.event[data-event-end]').forEach(function (el) {
-      if (el.getAttribute('data-event-end') < today) el.remove();
-    });
-  }
 
   // ---------------------------------------------------------------------------
 
@@ -527,6 +611,7 @@
     themeToggle();
     pruneEvents();
     tableScrollHints();
+    reviewsCarousel();
     setInterval(updateStatus, 60000);
   }
 

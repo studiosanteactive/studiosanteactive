@@ -259,34 +259,29 @@ hr {
   border-bottom-color: var(--color-accent);
 }
 
-/* Calls to action: three buttons in one row, in priority order (consultation filled, then trial, then member portal) */
+/* Calls to action, in priority order: consultation (filled), free trial, member portal.
+   Phones: stacked full width in the menu. Desktop: on the same row as the links. */
 .nav-actions {
   display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.6rem;
   margin: 0;
   padding: 0.5rem 0 1.25rem;
   list-style: none;
-}
-
-.nav-actions li {
-  display: flex;
-  flex: 1 1 0;
 }
 
 .nav-actions a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   min-height: 48px;
-  padding: 0.4rem 0.5rem;
+  padding: 0.4rem 1rem;
   border: 2px solid var(--color-accent);
   border-radius: 8px;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -329,122 +324,156 @@ hr {
   background: var(--color-surface);
 }
 
-@media (min-width: 576px) {
-  .nav-actions a {
-    font-size: 1rem;
-  }
-}
-
+/* Desktop: logo, links, the three buttons and the theme slider all on one row */
 @media (min-width: 1200px) {
+  .navbar-ssa.container {
+    max-width: 1440px; /* a little wider than the page content so the full row fits */
+  }
+
   .navbar-ssa {
-    --bs-navbar-padding-y: 0.6rem;
+    --bs-navbar-padding-y: 0.5rem;
+  }
+
+  .navbar-logo {
+    flex-shrink: 0;
+    margin-right: 0.5rem;
   }
 
   .navbar-logo img {
-    height: 68px;
+    height: 46px;
   }
 
   .navbar-ssa .navbar-collapse {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.35rem;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
     max-height: none;
     overflow: visible;
   }
 
   .navbar-ssa .navbar-nav {
-    gap: 0.25rem;
+    gap: 0;
     padding: 0;
   }
 
   .navbar-ssa .nav-link {
-    padding: 0.25rem 0.5rem;
-    font-size: 1.1rem;
-  }
-
-  .nav-actions {
-    gap: 0.75rem;
-    padding: 0;
-  }
-
-  /* Consultation and trial share one width; the shorter "Espace client" button fits its label */
-  .nav-actions li {
-    flex: 0 0 auto;
-  }
-
-  .nav-actions a {
-    width: auto;
+    padding: 0.25rem 0.3rem;
+    font-size: 0.95rem;
     white-space: nowrap;
   }
 
-  .nav-actions li:nth-child(-n+2) a {
-    width: 16rem;
+  .nav-actions {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0;
   }
 
   .nav-actions a {
-    min-height: 42px;
-    padding: 0.3rem 1rem;
+    min-height: 44px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  /* Consultation and trial share one width; their labels wrap to two lines until there is room */
+  .nav-actions .nav-cta,
+  .nav-actions .nav-trial {
+    width: 8.25rem;
+  }
+
+  .nav-actions .nav-client {
+    white-space: nowrap;
   }
 }
 
-/* Night mode switch (shown by scripts/site.js). Beside the menu button on phones, after the links on desktop. */
+@media (min-width: 1440px) {
+  .navbar-logo img {
+    height: 58px;
+  }
+
+  .navbar-ssa .nav-link {
+    padding: 0.25rem 0.55rem;
+    font-size: 1.05rem;
+  }
+
+  .nav-actions a {
+    font-size: 0.95rem;
+  }
+
+  .nav-actions .nav-cta,
+  .nav-actions .nav-trial {
+    width: 14.5rem;
+  }
+}
+
+/* Theme slider (shown by scripts/site.js): one segment per theme, the thumb slides to the active one.
+   Beside the menu button on phones, at the end of the row on desktop. */
 .theme-toggle {
+  --theme-index: 0;
+  position: relative;
   display: inline-flex;
+  min-width: 0;
   align-items: center;
   margin-left: auto;
   margin-right: 0.75rem;
-  padding: 0.5rem 0;
-  border: 0;
-  background: none;
-  color: var(--color-text);
-  cursor: pointer;
+  padding: 2px;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  background: var(--color-surface);
 }
 
 .theme-toggle[hidden] {
   display: none;
 }
 
-.theme-toggle-track {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 3.6rem;
-  height: 2rem;
-  padding: 0 0.4rem;
-  border: 2px solid var(--color-accent);
-  border-radius: 999px;
-  background: var(--color-surface);
-}
-
-.theme-toggle-track svg {
+.theme-option {
   position: relative;
   z-index: 1;
-  width: 0.95rem;
-  height: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
   color: var(--color-accent-text);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-option svg {
+  width: 1rem;
+  height: 1rem;
   fill: currentColor;
+}
+
+.theme-option:has(input:checked) {
+  color: var(--color-on-accent);
+}
+
+.theme-option:has(input:focus-visible) {
+  outline: 3px solid var(--color-accent-text);
+  outline-offset: 2px;
 }
 
 .theme-toggle-thumb {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background: var(--color-accent);
+  transform: translateX(calc(var(--theme-index) * 100%));
   transition: transform 0.25s ease;
-}
-
-.theme-toggle[aria-checked="true"] .theme-toggle-thumb {
-  transform: translateX(1.6rem);
 }
 
 @media (min-width: 1200px) {
   .theme-toggle {
     order: 1; /* after the menu */
-    margin-left: 1.25rem;
+    margin-left: 0.5rem;
     margin-right: 0;
   }
 }
@@ -1090,48 +1119,112 @@ hr {
   letter-spacing: 0.1em;
 }
 
-/* Phones: a row of review cards to swipe through. Tablet and up: a grid. */
+/* Reviews carousel: a scroll-snap row (1 card on phones, 2 on tablets, 3 on desktop).
+   scripts/site.js adds the arrows and dots; without it the row still swipes. */
+.reviews-carousel {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+
 .reviews {
   display: flex;
+  align-items: flex-start; /* phones: each card as tall as its text */
   gap: 1rem;
-  margin: 0 -1rem 0.5rem;
-  padding: 0.5rem 1rem 1rem;
+  margin: 0;
+  padding: 0.75rem 0.25rem 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   list-style: none;
 }
 
-.reviews > li {
-  flex: 0 0 85%;
-  scroll-snap-align: center;
+.reviews::-webkit-scrollbar {
+  display: none;
 }
 
-.reviews-hint {
-  margin: 0 0 1.5rem;
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-  text-align: center;
+.reviews > li {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.reviews-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.reviews-carousel.is-ready .reviews-controls {
+  display: flex;
+}
+
+.reviews-arrow {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-heading);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reviews-arrow:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.reviews-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.reviews-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+/* 24px tap area around a 10px dot */
+.reviews-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.reviews-dot::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.reviews-dot[aria-current="true"]::before {
+  background: var(--color-accent);
 }
 
 @media (min-width: 768px) {
-  .reviews {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto 2rem;
-    padding: 0;
-    overflow: visible;
+  .reviews > li {
+    flex-basis: calc((100% - 1.5rem) / 2);
   }
 
-  .reviews-hint {
-    display: none;
+  .reviews {
+    align-items: stretch; /* side-by-side cards share a height */
+    gap: 1.5rem;
   }
 }
 
 @media (min-width: 1200px) {
-  .reviews {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .reviews > li {
+    flex-basis: calc((100% - 3rem) / 3);
   }
 }
 
@@ -2047,4 +2140,103 @@ hr {
   .banner-hero video {
     display: none;
   }
+}
+
+/* ==========================================================================
+   PRIDE THEME (rainbow), the third option in the theme slider. Not meant for publication.
+   To remove it: delete this whole block and set PRIDE_THEME = false in scripts/site.js
+   (setting the flag alone also hides it; a visitor who had picked it falls back to light).
+   ========================================================================== */
+
+:root[data-theme="pride"] {
+  --pride-rainbow: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982);
+  --pride-pastel: linear-gradient(90deg, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #bdb2ff);
+  --pride-text: linear-gradient(90deg, #c1121f, #c45000, #8a6d00, #00753a, #1f4fa3, #6a1b9a);
+  --pride-conic: conic-gradient(#e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303);
+
+  --color-accent: #9b5de5;
+  --color-accent-soft: #e2d4fb;
+  --color-accent-text: #6a1b9a;
+  --color-surface: #fbf7ff;
+  --color-surface-strong: #efe5ff;
+  --color-notice-bg: #e2d4fb;
+  --color-footer-accent: #ffd6a5;
+  --color-footer-hover: #caffbf;
+}
+
+/* Rainbow stripes on the header and footer */
+[data-theme="pride"] .site-header::before {
+  content: "";
+  display: block;
+  height: 6px;
+  background: var(--pride-rainbow);
+}
+
+[data-theme="pride"] .site-footer {
+  border-top: 6px solid transparent;
+  border-image: var(--pride-rainbow) 1;
+}
+
+[data-theme="pride"] .status-bar {
+  background: var(--pride-pastel);
+}
+
+[data-theme="pride"] .hours-status {
+  color: #000;
+}
+
+/* Rainbow slider thumb and main buttons */
+[data-theme="pride"] .theme-toggle-thumb {
+  background: var(--pride-conic);
+}
+
+[data-theme="pride"] .theme-option:has(input:checked) {
+  color: #000;
+}
+
+[data-theme="pride"] .nav-actions .nav-cta,
+[data-theme="pride"] .contact-popin .small-btn,
+[data-theme="pride"] .price-table caption {
+  border-color: transparent;
+  background: var(--pride-pastel);
+  color: #000;
+}
+
+[data-theme="pride"] .small-btn:hover,
+[data-theme="pride"] .small-btn:focus-visible {
+  background: var(--pride-pastel);
+}
+
+/* A rainbow wash over the banner photos */
+[data-theme="pride"] .banner-overlay {
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)),
+    linear-gradient(135deg, rgba(228, 3, 3, 0.4), rgba(255, 140, 0, 0.35), rgba(255, 237, 0, 0.3),
+      rgba(0, 128, 38, 0.35), rgba(36, 64, 142, 0.4), rgba(115, 41, 130, 0.45));
+}
+
+/* Rainbow headings (darker rainbow so the text keeps its contrast on white) */
+[data-theme="pride"] .section-title,
+[data-theme="pride"] .section-heading,
+[data-theme="pride"] .prose h1,
+[data-theme="pride"] .offer-text h2 {
+  background: var(--pride-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tags cycle through the flag colours */
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 1) { border-color: #e40303; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 2) { border-color: #ff8c00; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 3) { border-color: #e6c800; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 4) { border-color: #008026; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 5) { border-color: #24408e; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 6) { border-color: #732982; }
+
+[data-theme="pride"] .review-stars {
+  background: var(--pride-rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
