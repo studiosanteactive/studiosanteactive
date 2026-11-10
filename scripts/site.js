@@ -12,6 +12,7 @@
  *   7. Night mode switch (the saved choice is applied earlier, by an inline script in each <head>)
  *   8. Hiding homepage events once they are over
  *   9. A "swipe" hint under price tables that are wider than the screen
+ *  10. Trainer bios open in a full-width panel under their row of cards
  */
 (function () {
   'use strict';
@@ -410,6 +411,97 @@
   }
 
   // ---------------------------------------------------------------------------
+  // 10. Trainer bios: without JavaScript each bio opens inside its own card. With it, the open bio is shown
+  //     in one panel spanning the whole row, placed right after the last card of the clicked card's row.
+  // ---------------------------------------------------------------------------
+
+  function bioPanels() {
+    var bios = document.querySelectorAll('.trainer-bio');
+    if (!bios.length) return;
+    document.documentElement.classList.add('js-bio-panels');
+
+    var panel = document.createElement('section');
+    panel.className = 'trainer-bio-panel';
+    panel.tabIndex = -1;
+    var current = null;
+    var fromKeyboard = false;
+
+    function place() {
+      panel.remove();
+      if (!current) return;
+      var card = current.closest('.trainer-card');
+      var last = card;
+      card.parentElement.querySelectorAll('.trainer-card').forEach(function (c) {
+        if (c.offsetTop === card.offsetTop) last = c;
+      });
+      last.insertAdjacentElement('afterend', panel);
+    }
+
+    function render(details) {
+      var card = details.closest('.trainer-card');
+      var name = card.querySelector('.trainer-name').textContent;
+      var role = card.querySelector('.trainer-role').textContent;
+      var body = details.querySelector('.trainer-bio-body');
+      panel.innerHTML = '';
+      panel.setAttribute('aria-label', 'Bio de ' + name);
+
+      var close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'trainer-bio-close';
+      close.innerHTML = '<span aria-hidden="true">×</span><span class="visually-hidden">Fermer la bio de ' + name + '</span>';
+      close.addEventListener('click', function () {
+        var summary = current && current.querySelector('summary');
+        if (current) current.open = false;
+        if (summary) summary.focus();
+      });
+
+      var title = document.createElement('p');
+      title.className = 'trainer-bio-panel-title';
+      title.innerHTML = '<strong></strong> <span></span>';
+      title.firstChild.textContent = name;
+      title.lastChild.textContent = role;
+
+      var cols = document.createElement('div');
+      cols.className = 'trainer-bio-panel-body';
+      var text = document.createElement('div');
+      var specs = document.createElement('div');
+      Array.prototype.forEach.call(body.children, function (el) {
+        (el.tagName === 'P' ? text : specs).appendChild(el.cloneNode(true));
+      });
+      cols.appendChild(text);
+      cols.appendChild(specs);
+
+      panel.appendChild(close);
+      panel.appendChild(title);
+      panel.appendChild(cols);
+    }
+
+    bios.forEach(function (details) {
+      var summary = details.querySelector('summary');
+      summary.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') fromKeyboard = true;
+      });
+      details.addEventListener('toggle', function () {
+        var card = details.closest('.trainer-card');
+        card.classList.toggle('is-open', details.open);
+        if (details.open) {
+          bios.forEach(function (other) { if (other !== details) other.open = false; });
+          current = details;
+          render(details);
+          place();
+          if (fromKeyboard) panel.focus();
+        } else if (current === details) {
+          current = null;
+          place();
+        }
+        fromKeyboard = false;
+      });
+    });
+
+    window.addEventListener('resize', place);
+  }
+
+  // ---------------------------------------------------------------------------
   // 8. Remove events whose last day (data-event-end="YYYY-MM-DD") has passed.
   //    When none are left, CSS shows the "Aucun événement" message.
   // ---------------------------------------------------------------------------
@@ -430,6 +522,7 @@
     updateHolidayList();
     smartContactButton();
     videoToggle();
+    bioPanels();
     linkedDetails();
     themeToggle();
     pruneEvents();

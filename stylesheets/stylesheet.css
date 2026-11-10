@@ -95,7 +95,13 @@
    ========================================================================== */
 
 html {
-  scroll-padding-top: 6rem; /* keeps anchored content clear of the sticky header */
+  scroll-padding-top: 7.5rem; /* keeps anchored content clear of the sticky header (status strip + navbar) */
+}
+
+@media (min-width: 1200px) {
+  html {
+    scroll-padding-top: 9.5rem;
+  }
 }
 
 body {
@@ -160,6 +166,45 @@ hr {
   box-shadow: 0 1px 0 var(--color-border);
 }
 
+/* Top strip with the "Ouvert maintenant / Fermé" status (filled in by scripts/site.js; hidden until then) */
+.status-bar {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.status-bar:has(.hours-status[hidden]) {
+  display: none;
+}
+
+.status-bar .container {
+  padding: 0.2rem 1rem;
+}
+
+.hours-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.hours-status::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-no);
+}
+
+.hours-status.is-open {
+  color: var(--color-text);
+}
+
+.hours-status.is-open::before {
+  background: var(--color-yes);
+}
+
 /* Bootstrap's .navbar padding would otherwise cancel the .container side gutter */
 .navbar-ssa {
   --bs-navbar-padding-x: 1rem;
@@ -184,7 +229,7 @@ hr {
 
 /* Opened menu on phones: generous tap targets, centred */
 .navbar-ssa .navbar-collapse {
-  max-height: calc(100vh - 70px);
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
 }
 
@@ -1371,6 +1416,9 @@ hr {
 }
 
 .class-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1.25rem 1.5rem 1.5rem;
 }
 
@@ -1383,6 +1431,38 @@ hr {
 .class-body p {
   margin: 0;
   font-size: 1rem;
+}
+
+/* Emoji tags under each class description (the emoji is decorative) */
+.class-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.class-body .class-tags {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.class-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.tag-emoji {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 /* ==========================================================================
@@ -1535,6 +1615,92 @@ hr {
   border: 1px solid var(--color-accent);
   border-radius: 999px;
   font-size: 0.85rem;
+}
+
+/* Full-width bio panel (scripts/site.js), inserted after the last card of the open card's row */
+.js-bio-panels .trainer-bio-body {
+  display: none;
+}
+
+.trainer-card.is-open .trainer-photo {
+  box-shadow: 0 0 0 4px var(--color-accent), var(--shadow);
+}
+
+.trainer-bio-panel {
+  position: relative;
+  grid-column: 1 / -1;
+  margin-top: -1.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border-top: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.trainer-bio-panel:focus-visible {
+  outline: 3px solid var(--color-accent-text);
+}
+
+.trainer-bio-panel-title {
+  margin: 0 3rem 1rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+}
+
+.trainer-bio-panel-title strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.trainer-bio-panel-title span {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.trainer-bio-panel-body {
+  display: grid;
+  gap: 1rem 2.5rem;
+}
+
+.trainer-bio-panel-body p {
+  font-size: 1rem;
+}
+
+.trainer-bio-panel-body h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.trainer-bio-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--color-heading);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.trainer-bio-close:hover {
+  background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .trainer-bio-panel {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  .trainer-bio-panel-body {
+    grid-template-columns: 3fr 2fr;
+  }
 }
 
 /* Collaborators link out to their own sites */
@@ -1714,21 +1880,6 @@ hr {
 
 .site-footer :focus-visible {
   outline-color: var(--color-footer-accent);
-}
-
-/* "Ouvert maintenant / Fermé" line, filled in by scripts/site.js */
-.site-footer .hours-status {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.1rem 0.6rem;
-  border: 1px solid var(--color-footer-text);
-  border-radius: 999px;
-  font-size: 0.95rem;
-}
-
-.site-footer .hours-status.is-open {
-  border-color: var(--color-footer-accent);
-  color: var(--color-footer-accent);
 }
 
 .social-links {

@@ -348,6 +348,12 @@
 
     <!-- Main navigation -->
     <header class="site-header">
+      <!-- "Ouvert maintenant / Fermé" status, filled in by scripts/site.js (the bar stays hidden without it) -->
+      <div class="status-bar">
+        <div class="container">
+          <p class="hours-status" data-hours-status hidden></p>
+        </div>
+      </div>
       <nav class="container navbar navbar-expand-xl navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
@@ -387,10 +393,10 @@
               <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services-complementaires.html">Autres services</a>
+              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
+              <a class="nav-link" href="/services-complementaires.html">Autres services</a>
             </li>
           </ul>
           <!-- Calls to action, in priority order: consultation (main CTA), free group class trial, member portal -->
@@ -603,7 +609,6 @@
 
         <section class="footer-col" aria-labelledby="footer-hours">
             <h2 class="footer-heading" id="footer-hours">Horaire</h2>
-            <p class="hours-status" data-hours-status hidden></p>
             <p>Du lundi au vendredi : 6h à 21h</p>
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
@@ -615,10 +620,10 @@
             <li><a href="/">Accueil</a></li>
             <li><a href="/equipe.html">Équipe d'entraînement</a></li>
             <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
-            <li><a href="/services-complementaires.html">Services complémentaires</a></li>
             <li><a href="/ceg.html">Cours en groupe</a></li>
+            <li><a href="/services-complementaires.html">Services complémentaires</a></li>
             <li><a href="/contact.html">Contact</a></li>
-            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/faq.html">Foire aux questions</a></li>
             <li><a href="/conditions.html">Termes et conditions</a></li>
             <li><a href="/carrieres.html">Carrières</a></li>
           </ul>
