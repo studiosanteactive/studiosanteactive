@@ -15,16 +15,16 @@
       gtag('config', 'G-1G490519RE');
     </script>
 
-    <title>Conditions générales et politiques | Studio Santé Active</title>
-    <meta name="description" content="Engagements des membres et politiques de résiliation, de suspension d'abonnement et d'annulation des rendez-vous et cours de groupe du Studio Santé Active.">
+    <title>Termes et conditions | Studio Santé Active</title>
+    <meta name="description" content="Termes et conditions du Studio Santé Active : paiement, résiliation, suspension, annulation des rendez-vous et des cours de groupe, et code de vie des membres.">
     <link rel="canonical" href="https://studiosanteactive.com/conditions">
 
     <!-- Social sharing -->
     <meta property="og:site_name" content="Studio Santé Active">
     <meta property="og:locale" content="fr_CA">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Conditions générales et politiques | Studio Santé Active">
-    <meta property="og:description" content="Engagements des membres et politiques de résiliation, de suspension d'abonnement et d'annulation des rendez-vous et cours de groupe du Studio Santé Active.">
+    <meta property="og:title" content="Termes et conditions | Studio Santé Active">
+    <meta property="og:description" content="Termes et conditions du Studio Santé Active : paiement, résiliation, suspension, annulation des rendez-vous et des cours de groupe, et code de vie des membres.">
     <meta property="og:url" content="https://studiosanteactive.com/conditions">
     <meta property="og:image" content="https://studiosanteactive.com/images/SSAOCT24100_IMG_2228.jpg">
     <meta property="og:image:width" content="985">
@@ -34,6 +34,20 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
+    <!-- Theme: apply the saved choice (or the default) before the page paints; the slider is in scripts/site.js.
+         In June the default is the rainbow theme, and choices made in June are saved separately so everyone sees it at least once. -->
+    <script>
+      (function () {
+        var june = new Date().getMonth() === 5;
+        var theme;
+        try { theme = localStorage.getItem(june ? 'ssa-theme-june' : 'ssa-theme'); } catch (e) {}
+        if (theme !== 'dark' && theme !== 'light' && theme !== 'pride') {
+          theme = june ? 'pride' : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.setAttribute('data-bs-theme', theme === 'dark' ? 'dark' : 'light');
+      })();
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,8 +98,8 @@
             "@type": "WebPage",
             "@id": "https://studiosanteactive.com/conditions#webpage",
             "url": "https://studiosanteactive.com/conditions",
-            "name": "Conditions générales et politiques | Studio Santé Active",
-            "description": "Engagements des membres et politiques de résiliation, de suspension d'abonnement et d'annulation des rendez-vous et cours de groupe du Studio Santé Active.",
+            "name": "Termes et conditions | Studio Santé Active",
+            "description": "Termes et conditions du Studio Santé Active : paiement, résiliation, suspension, annulation des rendez-vous et des cours de groupe, et code de vie des membres.",
             "inLanguage": "fr-CA",
             "isPartOf": {
               "@id": "https://studiosanteactive.com/#website"
@@ -111,7 +125,7 @@
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": "Conditions générales",
+                  "name": "Termes et conditions",
                   "item": "https://studiosanteactive.com/conditions"
                 }
               ]
@@ -125,17 +139,39 @@
   <body>
     <a class="visually-hidden-focusable skip-link" href="#contenu">Aller au contenu principal</a>
 
-    <!-- Floating contact call-to-action (large screens only; scripts/site.js shows it after the banner) -->
+    <!-- Floating "Réserver votre consultation" button (bottom bar on phones; scripts/site.js shows it after the banner) -->
     <div class="contact-popin">
-      <a href="/contact.html" class="small-btn">Vous voulez en savoir plus? Contactez-nous!</a>
+      <a href="/contact.html" class="small-btn">Réserver votre consultation</a>
     </div>
 
     <!-- Main navigation -->
     <header class="site-header">
-      <nav class="container navbar navbar-expand-lg navbar-light navbar-ssa" aria-label="Navigation principale">
+      <!-- "Ouvert maintenant / Fermé" status, filled in by scripts/site.js (the bar stays hidden without it) -->
+      <div class="status-bar">
+        <div class="container">
+          <p class="hours-status" data-hours-status hidden></p>
+        </div>
+      </div>
+      <nav class="container navbar navbar-expand-xl navbar-ssa" aria-label="Navigation principale">
         <a class="navbar-logo" href="/">
           <img src="/images/logo-small.png" alt="Studio Santé Active - Accueil" width="600" height="160">
         </a>
+
+        <!-- Theme slider: light / night (scripts/site.js shows it and can add extra themes) -->
+        <fieldset class="theme-toggle" data-theme-toggle hidden>
+          <legend class="visually-hidden">Thème d'affichage</legend>
+          <label class="theme-option" title="Mode clair">
+            <input type="radio" name="theme" value="light" class="visually-hidden">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Mode clair</span>
+          </label>
+          <label class="theme-option" title="Mode nuit">
+            <input type="radio" name="theme" value="dark" class="visually-hidden">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="visually-hidden">Mode nuit</span>
+          </label>
+          <span class="theme-toggle-thumb" aria-hidden="true"></span>
+        </fieldset>
 
         <button
           class="navbar-toggler"
@@ -155,23 +191,26 @@
               <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/apropos.html">À propos</a>
+              <a class="nav-link" href="/equipe.html">Équipe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services.html">Services</a>
+              <a class="nav-link" href="/entrainement-prive.html">Entraînement privé</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/therapeutes.html">Thérapeutes</a>
+              <a class="nav-link" href="/ceg.html">Cours en groupe</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ceg.html">Cours</a>
+              <a class="nav-link" href="/services-complementaires.html">Autres services</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-accent" href="/contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-accent" href="https://studiosanteactive.fliipapp.com/">Espace client</a>
-            </li>
+          </ul>
+          <!-- Calls to action, in priority order: consultation (main CTA), then the free group class trial -->
+          <ul class="nav-actions">
+            <li><a class="nav-cta" href="/contact.html">Réserver votre consultation</a></li>
+            <li><a class="nav-trial" href="https://studiosanteactive.fliipapp.com/user/register">Cours d'essai gratuit</a></li>
+          </ul>
+          <!-- Member portal: far right on desktop -->
+          <ul class="nav-client-list">
+            <li><a class="nav-client" href="https://studiosanteactive.fliipapp.com/">Espace client</a></li>
           </ul>
         </div>
       </nav>
@@ -184,60 +223,325 @@
 
     <main id="contenu">
       <div class="container prose">
-        <h1>Conditions Générales</h1>
+        <h1>Termes et Conditions</h1>
 
-        <h2>1. Engagement du Membre</h2>
-        <ol>
-          <li>Apporter une paire de chaussures de rechange en période hivernale.</li>
-          <li>Garder les installations propres, désinfecter et ranger son matériel après usage.</li>
-          <li>Réserver sa place sur l'application FLiiP avant chaque entraînement libre ou cours de groupe.</li>
-          <li>Annuler sa réservation lorsque vous saurez que vous ne pourrez pas vous présenter au studio.</li>
-          <li>S'assurer que les prélèvements indiqués à son contrat puissent être perçus selon les modalités prévues.</li>
-          <li>Avoir une hygiène corporelle responsable.</li>
-          <li>Avoir sa trousse de désinfection (fournie par nous) en tout temps et désinfecter le matériel après usage.</li>
-        </ol>
+        <!-- Source: Google Doc "Termes et conditions clients (vers. 2026)". Keep this page in sync with it. -->
+        <p class="prose-meta">Dernière mise à jour : 1<sup>er</sup> août 2026</p>
+        <p>Bienvenue au Studio Santé Active (« SSA »).</p>
+        <p>Les présents Termes et Conditions régissent l’utilisation des services offerts par le Studio Santé Active, incluant notamment les abonnements d’entraînement privé, semi-privé, les cours de groupe, l’accès aux installations, les événements, les essais gratuits ainsi que tout autre service offert par le Studio Santé Active (collectivement les « Services »).</p>
 
-        <h2>2. Politique de Résiliation</h2>
+        <nav class="toc" aria-labelledby="toc-titre">
+          <h2 class="toc-title" id="toc-titre">Sur cette page</h2>
+          <ol>
+            <li><a href="#capacite-juridique">Capacité juridique</a></li>
+            <li><a href="#acceptation">Acceptation des Termes et Conditions</a></li>
+            <li><a href="#transactions-en-ligne">Transactions effectuées en ligne</a></li>
+            <li><a href="#utilisation-sites">Utilisation des Sites Internet</a></li>
+            <li><a href="#modifications">Modifications aux Termes et Conditions</a></li>
+            <li><a href="#services-restrictions">Services offert et restrictions</a></li>
+            <li><a href="#services-transactionnels">Services transactionnels et sécurisé</a></li>
+            <li><a href="#prix-erreurs">Prix et erreurs</a></li>
+            <li><a href="#paiement">Paiement</a></li>
+            <li><a href="#resiliation">Résiliation et remboursement</a></li>
+            <li><a href="#propriete-intellectuelle">Propriété intellectuelle</a></li>
+            <li><a href="#avis">Avis</a></li>
+            <li><a href="#non-renonciation">Non-renonciation</a></li>
+            <li><a href="#cession">Cession</a></li>
+            <li><a href="#infolettre">Souscription à l’infolettre</a></li>
+            <li><a href="#utilisation-services">Politique d’utilisation des services</a></li>
+            <li><a href="#code-de-vie">Code de vie du membre</a></li>
+          </ol>
+          <div class="toc-actions" data-toc-actions hidden>
+            <button type="button" class="text-btn" data-expand-all>Tout ouvrir</button>
+            <button type="button" class="text-btn" data-collapse-all>Tout fermer</button>
+          </div>
+        </nav>
 
-        <h3>Procédure de Résiliation</h3>
-        <p>Pour annuler son contrat, le client doit remplir le formulaire joint au contrat d'origine ou rédiger une lettre de résiliation. Le contrat sera annulé dès la réception du formulaire dûment rempli ou de la lettre de résiliation par notre équipe.</p>
+        <details class="faq-item faq-section" id="capacite-juridique">
+          <summary class="faq-question"><h2>1. Capacité juridique</h2></summary>
+          <div class="faq-answer">
+            <p>Afin de bénéficier de nos Services, vous devez avoir la capacité légale de conclure une transaction et un contrat exécutoire selon les lois applicables à votre lieu de résidence.</p>
+            <p>Si vous êtes mineur(e) ou ne possédez pas la capacité juridique requise, l’inscription à nos Services doit être effectuée ou autorisée par votre parent, tuteur ou représentant légal.</p>
+          </div>
+        </details>
 
-        <h3>Délai d'Annulation : à court terme</h3>
-        <p>Vous pouvez annuler votre contrat à deux moments :</p>
-        <ul>
-          <li>Avant d'avoir accès aux biens et services prévus au contrat. Dans ce cas, Studio Santé Active ne vous facturera aucun frais.</li>
-          <li>Dans un délai inférieur ou égal à un dixième (1/10) de la durée du contrat, à partir du moment où vous avez eu accès aux biens et services prévus au contrat.</li>
-        </ul>
-        <p>Par exemple, si vous avez signé un contrat d'un an, vous pourriez l'annuler jusqu'à 36 jours après le début de la prestation des services. Dans ce cas, vous pourriez exiger un remboursement équivalent à un dixième (1/10) de la valeur totale du contrat. Studio Santé Active vous remettra cette somme dans les 10 jours suivant l'annulation.</p>
+        <details class="faq-item faq-section" id="acceptation">
+          <summary class="faq-question"><h2>2. Acceptation des Termes et Conditions</h2></summary>
+          <div class="faq-answer">
+            <p>En effectuant une transaction, en souscrivant à un abonnement, en participant à un cours, à une séance, à un événement ou à toute autre activité offerte par le Studio Santé Active, vous reconnaissez avoir pris connaissance des présents Termes et Conditions, incluant notre Politique de confidentialité et notre Politique de remboursement, et acceptez d’être lié(e) par ceux-ci.</p>
+            <p>Les présents Termes et Conditions constituent une entente entre vous et le Studio Santé Active et demeurent applicables pendant toute la durée de votre utilisation de nos Services.</p>
+          </div>
+        </details>
 
-        <h3>Délai d'Annulation : à plus long terme</h3>
-        <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire, tel que prévu au Code civil du Québec. Le studio vous réclamera alors une indemnité</p>
-        <p>Par exemple : Après 4 mois, vous souhaitez mettre fin à votre contrat d'une durée d'un (1) an, pour un total de 420 $. Le Studio Santé Active pourrait :</p>
-        <ul>
-          <li>Exiger un remboursement de 140 $ pour la période au cours de laquelle les services ont été rendus;</li>
-          <li>Vous réclamer une somme supplémentaire s'il est en mesure de démontrer qu'il a subi un préjudice causé par la résiliation de l'entente. Le cas échéant, le studio se réserve le droit de vous facturer l'équivalent de 10 % du coût total des séances restantes.</li>
-        </ul>
-        <p>Si vous souhaitez résilier votre contrat dans un délai supérieur au dixième (1/10) de la durée du contrat, vous pouvez également le faire. Le studio vous réclamera alors une indemnité.</p>
+        <details class="faq-item faq-section" id="transactions-en-ligne">
+          <summary class="faq-question"><h2>3. Transactions effectuées en ligne</h2></summary>
+          <div class="faq-answer">
+            <p>Certaines inscriptions, réservations, achats ou paiements peuvent être effectués par l’entremise de la plateforme Fliip ou de nos Sites Internet :</p>
+            <ul>
+              <li><a href="https://studiosanteactive.fliipapp.com/">https://studiosanteactive.fliipapp.com/</a></li>
+              <li><a href="https://studiosanteactive.com/">www.studiosanteactive.com</a></li>
+            </ul>
+            <p>En complétant une transaction sur l’une de ces plateformes, vous confirmez avoir accepté les présents Termes et Conditions ainsi que les politiques qui y sont associées.</p>
+            <p>Le simple fait de consulter ou de naviguer sur nos Sites Internet n'entraîne pas à lui seul l'acceptation des présents Termes et Conditions. Ceux-ci deviennent applicables lors de l'inscription, de l'achat ou de l'utilisation de l'un de nos Services.</p>
+          </div>
+        </details>
 
-        <h2>3. Politique de Suspension d'Abonnement</h2>
-        <p>Toute demande de suspension d'abonnement doit être faite auprès de la direction. Les détenteurs d'un abonnement de trois (3) mois peuvent le suspendre jusqu'à vingt et un (21) jours et les détenteurs d'un abonnement de douze (12) mois peuvent le suspendre jusqu'à quatre-vingt-dix (90) jours. Les paiements prévus au contrat seront perçus selon les modalités de l'entente. Les jours suspendus seront ajoutés au terme du contrat d'origine.</p>
+        <details class="faq-item faq-section" id="utilisation-sites">
+          <summary class="faq-question"><h2>4. Utilisation des Sites Internet</h2></summary>
+          <div class="faq-answer">
+            <p>Les Sites Internet sont destinés à fournir de l'information sur le Studio Santé Active et à permettre l'accès à certains Services.</p>
+            <p>Toute utilisation des Sites Internet à des fins illégales, frauduleuses ou susceptibles de nuire au Studio Santé Active, à ses employés, à ses membres ou à ses partenaires est strictement interdite.</p>
+            <p>Toute utilisation des Sites Internet à des fins commerciales non autorisées par le Studio Santé Active est également interdite.</p>
+          </div>
+        </details>
 
-        <h2>4. Politique d'Annulation d'un Rendez-vous</h2>
-        <p>Pour annuler un rendez-vous sans frais, vous devez nous contacter au moins 24 heures à l'avance. Dans le cas contraire, le rendez-vous vous sera facturé dans son entièreté. Vous pourrez toutefois le récupérer en déboursant 50 % du prix coûtant.</p>
-        <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit d'octroyer votre plage horaire à un autre client.</p>
+        <details class="faq-item faq-section" id="modifications">
+          <summary class="faq-question"><h2>5. Modifications aux Termes et Conditions</h2></summary>
+          <div class="faq-answer">
+            <p>Le Studio Santé Active se réserve le droit de modifier les présents Termes et Conditions à tout moment.</p>
+            <p>Lorsqu’une modification est susceptible d’avoir un impact sur les droits ou obligations des membres, celle-ci leur sera communiquée par un moyen jugé approprié, notamment par courriel, par affichage dans nos installations ou par l’intermédiaire de nos plateformes numériques.</p>
+            <p>Les modifications entreront en vigueur à la date indiquée dans la communication ou, à défaut, à la date de leur publication. La poursuite de l’utilisation des Services après l’entrée en vigueur d’une modification constitue une acceptation de celle-ci.</p>
+          </div>
+        </details>
 
-        <h2>5. Politique d'Annulation d'un Cours de Groupe</h2>
-        <p>Pour annuler votre présence à un cours sans frais supplémentaires, vous devez vous désinscrire sur l'appli FLiiP au moins 10 heures avant le début du cours. Dans le cas contraire, l'annulation sera considérée comme tardive et le coût du cours vous sera facturé.</p>
-        <p>Si vous devez annuler tardivement, veuillez vous désinscrire sur l'appli FLiiP pour libérer votre place.</p>
-        <p>Dans le cas d'un abus d'annulations tardives, le Studio Santé Active se réserve le droit de vous refuser l'accès aux cours de groupe.</p>
+        <details class="faq-item faq-section" id="services-restrictions">
+          <summary class="faq-question"><h2>6. Services offert et restrictions</h2></summary>
+          <div class="faq-answer">
+            <ol class="clauses">
+              <li>
+                <p>STUDIO SANTÉ ACTIVE (« SSA ») offre l’accès aux plateaux d’entraînement, des services de conditionnement physique en groupe, des services de traitements cliniques ainsi que des programmes d’entraînement personnalisés (collectivement, les « Services »).</p>
+                <p>Le présent contrat est un contrat de services conclu entre SSA et le client. L’engagement de SSA consiste à offrir un encadrement en entraînement privé assuré par un membre qualifié de son équipe, ainsi que l’accès aux cours de groupe. SSA ne garantit pas l’attribution permanente d’un entraîneur spécifique ; les services sont fournis par les entraîneurs disponibles.</p>
+              </li>
+              <li>
+                <p>Les services sont dispensés par des spécialistes de l’activité physique et visent l’encadrement de l’entraînement et de la condition physique. STUDIO SANTÉ ACTIVE ne fournit aucun conseil médical, psychologique ou thérapeutique. Certaines situations, notamment liées à la santé physique ou mentale, peuvent nécessiter une référence vers des professionnel·les approprié·es.</p>
+                <p>Vous reconnaissez demeurer responsable de fournir toutes les informations pertinentes à STUDIO SANTÉ ACTIVE afin de permettre une évaluation adéquate de votre condition physique dans un contexte d’entraînement.</p>
+              </li>
+              <li>
+                <p>Vous comprenez et acceptez que les Services peuvent comporter des risques et entraîner des blessures. Vous demeurez entièrement responsable, à la complète exonération de STUDIO SANTÉ ACTIVE, de ses actionnaires, administrateurs, dirigeants, agents, représentants ou employés, d’être honnête sur votre condition physique, de juger de votre condition physique et de vous assurer que les Services sont adéquats eu égard à votre condition physique, état de santé et âge. Nous vous invitons à consulter un médecin avant de commencer un programme d’entraînement physique ou d’utiliser les Services, y incluant si vous souffrez de malaises cardiaques, d’hypertension, d’étourdissements, de maladies respiratoires ou de troubles osseux ou articulaires. Vous devrez vous conformer à toutes les instructions et autres spécifications de STUDIO SANTÉ ACTIVE fournies avec les Services sur les Sites Internet, les Termes et Conditions, ainsi que dans toute autre communication ou documentation que STUDIO SANTÉ ACTIVE pourrait vous faire parvenir.</p>
+              </li>
+            </ol>
+            <p>Par conséquent, vous assumez entièrement, à la complète exonération de STUDIO SANTÉ ACTIVE, de ses actionnaires, administrateurs, dirigeants, agents, représentants ou employés, toute responsabilité liés à des possibilités de blessures, de mort, de dommages corporels ou matériels ou autres résultant des Services.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="services-transactionnels">
+          <summary class="faq-question"><h2>7. Services transactionnels et sécurisé</h2></summary>
+          <div class="faq-answer">
+            <p>Afin d’effectuer des transactions via les sites Internet, vous reconnaissez devoir remplir le formulaire d’inscription et fournir certaines informations personnelles, notamment vos coordonnées ainsi que des renseignements relatifs à votre état de santé. Vous vous engagez à cet effet à nous fournir, lors de votre inscription ou abonnement aux Services, des informations véridiques, complètes et à jour. Nos professionnels se basent sur les renseignements personnels que vous choisissez de leur divulguer pour rendre leurs services personnalisés. Ces informations constituent un élément essentiel à l’élaboration de conseils et de services adaptés à votre situation particulière.</p>
+            <p>En conséquence, SSA ne peut être tenue responsable de tout dommage subi par le client qui résulterait d’informations incomplètes, inexactes ou non divulguées par ce dernier.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="prix-erreurs">
+          <summary class="faq-question"><h2>8. Prix et erreurs</h2></summary>
+          <div class="faq-answer">
+            <ol class="clauses">
+              <li><p>Sauf indication expresse contraire, tous les prix qui figurent dans les Sites Internet sont établis en dollars canadiens. Les prix soumis par STUDIO SANTÉ ACTIVE n’incluent pas les taxes gouvernementales ou toute autre taxe, lesquelles sont en sus et à votre charge.</p></li>
+              <li><p>STUDIO SANTÉ ACTIVE se réserve le droit de procéder à la correction de toute erreur relative aux prix causée par des erreurs typographique, d’écriture ou technique, de même que de procéder à la correction de toute erreur causée par une mauvaise information ou une information incomplète provenant de vous.</p></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="paiement">
+          <summary class="faq-question"><h2>9. Paiement</h2></summary>
+          <div class="faq-answer">
+            <ol class="clauses">
+              <li>
+                <p>Le paiement des Services peut être effectué de l’une des façons suivantes, selon le produit ou le service acheté :</p>
+                <ul>
+                  <li>En un seul versement au moment de l’achat lorsque le montant total du service est inférieur à 100 $ avant taxes;</li>
+                  <li>En versements mensuels;</li>
+                  <li>En 26 versements périodiques répartis sur la durée de l’entente.</li>
+                </ul>
+                <p>Les modalités de paiement applicables à chaque abonnement ou service seront précisées au moment de l’achat ou de l’inscription et feront partie intégrante de l’entente conclue entre le membre et le Studio Santé Active.</p>
+                <p>Le membre autorise le Studio Santé Active à percevoir les paiements selon la fréquence et le mode de paiement convenus lors de l’inscription.</p>
+              </li>
+              <li><p>Toute personne membre doit s’assurer que les prélèvements indiqués dans son contrat puissent être perçus selon les modalités prévues et effectuer immédiatement les changements nécessaires sur l’application Fliip au besoin.</p></li>
+              <li><p>En cas d’erreur ou d’échec de paiement, le·la client·e dispose d’un délai de trois (3) semaines à partir de la date du paiement manqué, ou jusqu’au 15<sup>e</sup> jour du mois suivant (selon la première échéance atteinte), pour régulariser la situation. À défaut, l’accès aux services pourra être suspendu jusqu’au paiement. Les mises à jour de carte de crédit doivent être effectuées directement dans Fliip.</p></li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="resiliation">
+          <summary class="faq-question"><h2>10. Résiliation et remboursement</h2></summary>
+          <div class="faq-answer">
+            <ol class="clauses">
+              <li><p>Vous demeurez libre de mettre fin aux Services en tout temps en transmettant un avis écrit à STUDIO SANTÉ ACTIVE via courriel au <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a>. Le contrat est résilié de plein droit à compter de la réception par STUDIO SANTÉ ACTIVE de l'avis écrit.</p></li>
+              <li><p>Advenant la résiliation ou la fin anticipée d'un abonnement, le Studio Santé Active effectuera un calcul au prorata des sommes versées et des services utilisés. Tout montant dû au membre, le cas échéant, sera remboursé dans un délai maximal de dix (10) jours suivant la détermination du solde final. Toute somme due au Studio Santé Active demeure exigible conformément aux présentes conditions.</p></li>
+              <li>
+                <blockquote class="legal-quote">
+                  <p>« Mention exigée par la Loi sur la protection du consommateur.</p>
+                  <p>(Contrat conclu par un commerçant exploitant un studio de santé)</p>
+                  <p>Le consommateur peut résilier le présent contrat sans frais ni pénalité avant que le commerçant n’ait commencé à exécuter son obligation principale en envoyant la formule ci-annexée ou un autre avis écrit à cet effet au commerçant.</p>
+                  <p>Si le commerçant a commencé à exécuter son obligation principale, le consommateur peut résilier le présent contrat dans un délai égal à 1/10 de la durée prévue au présent contrat en envoyant la formule ci-annexée ou un autre avis écrit à cet effet au commerçant. Ce délai a comme point de départ le moment où le commerçant commence à exécuter son obligation principale. Dans ce cas, le commerçant ne peut exiger au plus, du consommateur, que le paiement d’un dixième du prix total prévu au contrat.</p>
+                  <p>Le contrat est résilié, sans autre formalité, dès l’envoi de la formule ou de l’avis.</p>
+                  <p>Dans les 10 jours qui suivent la résiliation du contrat, le commerçant doit restituer au consommateur l’argent qu’il lui doit.</p>
+                  <p>Le consommateur aura avantage à consulter les articles 197 à 205 de la Loi sur la protection du consommateur (chapitre P-40.1) et, au besoin, à communiquer avec l’<a href="https://www.opc.gouv.qc.ca/">Office de la protection du consommateur</a>. »</p>
+                </blockquote>
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="propriete-intellectuelle">
+          <summary class="faq-question"><h2>11. Propriété intellectuelle</h2></summary>
+          <div class="faq-answer">
+            <p>Sauf indications expresses contraires, tout le contenu des Sites Internet, incluant sans limiter la portée générale de ce qui précède, les textes, photos, images, logos, code, algorithme, scripts, fichiers audio ou vidéo, ainsi que tout autre élément graphique, textuel, audio ou vidéo, sont la propriété exclusive de STUDIO SANTÉ ACTIVE, de ses partenaires ou de ses fournisseurs de contenu, et ce contenu est protégé par les lois en matière de droit d’auteur et de marques de commerce, de même que de toute autre loi applicable en matière de propriété intellectuelle. Tous ces droits de propriété intellectuelle ne peuvent être copiés, téléchargés, distribués ou autrement utilisés sans le consentement express préalable de STUDIO SANTÉ ACTIVE, de ses partenaires ou de ses fournisseurs de contenu, le cas échéant.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="avis">
+          <summary class="faq-question"><h2>12. Avis</h2></summary>
+          <div class="faq-answer">
+            <p>En vous inscrivant aux Services, vous autorisez STUDIO SANTÉ ACTIVE à vous transmettre, par courriel, des communications liées aux Services, incluant celles requises par la loi (p. ex., une copie du contrat) ou à des fins commerciales. Vous êtes toutefois libre de vous désinscrire de notre liste d’envoi en cliquant sur le lien de désinscription situé au bas des courriels, ou en nous transmettant un avis à l’adresse suivante : <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a></p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="non-renonciation">
+          <summary class="faq-question"><h2>13. Non-renonciation</h2></summary>
+          <div class="faq-answer">
+            <p>Le fait que STUDIO SANTÉ ACTIVE choisisse de ne pas exercer un droit prévu aux Termes et Conditions dans une situation donnée ne signifie pas qu’il ou elle renonce à ce droit pour l’avenir, ni aux autres droits prévus aux présentes.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="cession">
+          <summary class="faq-question"><h2>14. Cession</h2></summary>
+          <div class="faq-answer">
+            <p>Vous reconnaissez que tout abonnement conclu par l’entremise des Sites Internet ou par tout autre moyen ne peut être cédé par vous à un tiers, sauf dans les cas où STUDIO SANTÉ ACTIVE l’autorise au préalable par écrit.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="infolettre">
+          <summary class="faq-question"><h2>15. Souscription à l’infolettre</h2></summary>
+          <div class="faq-answer">
+            <p>En acceptant les termes et conditions, vous acceptez de souscrire automatiquement à notre infolettre. En tout temps, vous serez autorisez de vous désinscrire à celle-ci en suivant le lien indiquer dans le bas de chacun de nos courriels. Nous nous engageons à offrir une infolettre présentant du contenu de qualité seulement.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="utilisation-services">
+          <summary class="faq-question"><h2>16. Politique d’utilisation des services</h2></summary>
+          <div class="faq-answer">
+            <h3>Canaux de communication</h3>
+            <p>Le client s'engage à respecter la vie privée et les limites professionnelles des membres de l'équipe du Studio Santé Active, incluant les entraîneur·es, kinésiologues et autres membres du personnel. Les communications doivent demeurer respectueuses et liées aux services offerts par le Studio.</p>
+            <p>Afin d'assurer un suivi adéquat et de protéger à la fois la clientèle et l'équipe, les communications concernant les rendez-vous, les annulations, les programmes d'entraînement, les suivis ou toute autre demande liée aux services doivent être effectuées par les canaux officiels du Studio Santé Active, notamment HEXFIT, le courriel ou tout autre outil désigné par le Studio.</p>
+            <p>Le Studio Santé Active se réserve le droit de rediriger vers ses canaux officiels toute communication effectuée par l'entremise de comptes personnels ou de plateformes non prévues à cet effet.</p>
+
+            <h3>Entraînement semi-privé</h3>
+            <ol class="clauses">
+              <li><p>Dans le cadre des séances semi-privées, une séance est considérée comme utilisée dès qu’une des personnes participantes se présente au rendez-vous, peu importe le nombre de participant·e·s présents.</p></li>
+              <li><p>Advenant la nécessité de suspendre les services, tous les participant·e·s doivent suspendre leur abonnement pour la même durée. Dans le cas contraire, les séances se poursuivent comme prévu, même en l’absence d’un·e des participant·e·s.</p></li>
+            </ol>
+
+            <h3>Annulation d'une réservation en cours de groupe</h3>
+            <p>Afin d'annuler une réservation à un cours de groupe sans pénalité, la personne participante doit se désinscrire au moins 4 heures avant le début du cours. Toute annulation effectuée à l'intérieur de ce délai ou toute absence au cours sera considérée comme une présence utilisée et ne pourra être ni reprise ni remboursée. Pour les abonnements offrant un accès illimité aux cours de groupe, le Studio Santé Active comprend que des imprévus peuvent survenir. Toutefois, lorsque les annulations tardives, absences ou réservations non honorées deviennent fréquentes et nuisent à l'accès des autres membres ou à la gestion des groupes, le Studio Santé Active se réserve le droit d'intervenir, de limiter temporairement certaines réservations ou d'imposer des mesures administratives raisonnables afin d'assurer une expérience équitable pour l'ensemble de la clientèle.</p>
+
+            <h3>Suspension des services</h3>
+            <ol class="clauses">
+              <li><p>Afin que la suspension des services soit effective, toute demande de suspension doit être envoyée par courriel à <a href="mailto:admin@studiosanteactive.com">admin@studiosanteactive.com</a>, approuvée par écrit par la direction, et doit <strong>inclure</strong> la date de début de la suspension ainsi que la date de réactivation désirée. Comme la réactivation est automatique, toute modification ultérieure devra être communiquée par courriel.</p></li>
+              <li>
+                <p>Pendant la suspension :</p>
+                <ul>
+                  <li>Les paiements ne seront pas perçus.</li>
+                  <li>Les dates du contrat seront automatiquement réajustées à la réactivation.</li>
+                </ul>
+              </li>
+              <li>
+                <p>Indépendamment du type de service, les suspensions sont accordées selon la durée du contrat sélectionné :</p>
+                <ul>
+                  <li>Abonnement de 3 mois : jusqu’à 21 jours de suspension.</li>
+                  <li>Abonnement de 12 mois : jusqu’à 90 jours de suspension.</li>
+                </ul>
+              </li>
+            </ol>
+            <p>Des conditions particulières s’appliquent pour les suivis en entraînement semi-privé.</p>
+
+            <h3>Utilisation des services et suivi des séances</h3>
+            <p>Le Studio Santé Active et le membre partagent la responsabilité d'assurer un suivi adéquat de l'utilisation des services et des séances incluses à l'abonnement.</p>
+            <p>Afin de maintenir un équilibre entre les paiements effectués et les services utilisés, il est recommandé de consommer les séances à un rythme similaire à celui des versements prévus au contrat. Cette approche permet généralement d'éviter qu'un solde soit dû par l'une ou l'autre des parties en cas de modification ou de résiliation de l'abonnement.</p>
+            <p>Toutefois, le membre demeure libre d'utiliser ses séances à un rythme plus rapide que celui prévu initialement, sous réserve des disponibilités.</p>
+            <p>Advenant une résiliation ou une fin anticipée de l'entente, le Studio Santé Active effectuera un calcul au prorata des montants payés et des services utilisés afin de déterminer, le cas échéant, le montant dû par le membre ou le remboursement applicable.</p>
+
+            <h3>Arrivée tardive aux rendez-vous</h3>
+            <p>En cas de retard du client à son rendez-vous, la séance sera maintenue pour la durée restante prévue au rendez-vous. Si le STUDIO SANTÉ ACTIVE considère que les retards deviennent fréquents, une discussion sera amorcée afin de trouver des solutions favorisant la ponctualité et le bon déroulement des séances. L’entraîneur·euse se réserve le droit de refuser certaines plages horaires afin de préserver le bon fonctionnement de son horaire et d’assurer un service optimal pour tou·te·s les membres.</p>
+
+            <h3>Annulation d'un rendez-vous</h3>
+            <p>Afin d’annuler un rendez-vous sans pénalité, il est important d’aviser votre entraîneur·euse ou le Studio Santé Active au moins 24 heures à l’avance. Ce délai nous permet de réorganiser l’horaire et d’offrir la plage horaire à un autre membre.</p>
+            <p>Selon le type d’abonnement détenu, un certain nombre d’absences sans frais peut être inclus. Une fois ces absences utilisées, tout rendez-vous annulé à moins de 24 heures d’avis ou tout rendez-vous manqué sera considéré comme utilisé, facturé et ne pourra être ni repris, ni remboursé.</p>
+            <p>Le Studio Santé Active reconnaît que des situations exceptionnelles peuvent survenir et se réserve le droit d'évaluer certains cas à sa discrétion.</p>
+            <p>Dans un souci d'équité envers l'ensemble des membres et afin d'assurer une gestion efficace des horaires, le Studio Santé Active se réserve également le droit de proposer un changement de plage horaire ou de formule de suivi lorsque les annulations tardives, absences ou modifications de rendez-vous deviennent fréquentes ou récurrentes.</p>
+
+            <h3>Présence de personnes mineures</h3>
+            <p>Afin d'assurer la sécurité de l'ensemble des membres, du personnel et des visiteurs, les règles suivantes encadrent la présence de personnes mineures dans les installations du Studio Santé Active.</p>
+            <h4>Enfants de 0 à 12 mois</h4>
+            <p>Les nourrissons et nourrissons âgé·es de 0 à 12 mois peuvent accompagner leur parent ou leur personne tutrice lors de leur présence au Studio. Ils et elles demeurent en tout temps sous la supervision directe et la responsabilité exclusive de leur parent ou de leur personne tutrice.</p>
+            <h4>Enfants de moins de 15 ans</h4>
+            <p>La présence d'une personne mineure de cet âge est tolérée uniquement de façon exceptionnelle et ponctuelle afin d'accommoder un parent ou une personne tutrice.</p>
+            <p>La personne mineure doit demeurer sous la supervision directe et constante de son parent ou de sa personne tutrice et ne peut :</p>
+            <ul>
+              <li>circuler librement dans les installations;</li>
+              <li>accéder aux zones d'entraînement;</li>
+              <li>utiliser les équipements ou les installations du Studio;</li>
+              <li>participer aux activités offertes, sauf autorisation préalable du Studio.</li>
+            </ul>
+            <p>Le parent ou la personne tutrice demeure responsable de la supervision de la personne mineure pendant toute la durée de sa présence au Studio. Le Studio Santé Active n'offre aucun service de garde, de surveillance ou de prise en charge des personnes mineures. Le parent ou la personne tutrice s'engage à demeurer en mesure d'intervenir rapidement auprès de la personne mineure en tout temps.</p>
+            <h4>Personnes âgées de 15 à 17 ans</h4>
+            <p>Les personnes âgées de 15 à 17 ans peuvent utiliser les services du Studio Santé Active sous réserve de l'obtention d'une autorisation écrite d'un parent ou d'une personne tutrice et du respect des conditions d'admission en vigueur.</p>
+            <p>Le Studio se réserve le droit d'exiger la présence d'un parent ou d'une personne tutrice lors de l'inscription, de demander des documents justificatifs ou d'imposer certaines conditions particulières selon le service utilisé.</p>
+            <h4>Disposition générale</h4>
+            <p>Le Studio Santé Active se réserve le droit de refuser, de limiter ou de retirer l'accès à toute personne mineure lorsque sa présence compromet la sécurité des lieux, le bon déroulement des activités ou le respect des présentes conditions.</p>
+          </div>
+        </details>
+
+        <details class="faq-item faq-section" id="code-de-vie">
+          <summary class="faq-question"><h2>17. Code de vie du membre</h2></summary>
+          <div class="faq-answer">
+            <p>Le Code de vie du Studio Santé Active énonce les principes, valeurs et comportements attendus afin de préserver un environnement respectueux, sécuritaire, inclusif et harmonieux pour l'ensemble de notre communauté. Les dispositions suivantes précisent les engagements à respecter lors de l'utilisation de nos Services.</p>
+            <p>Le Studio Santé Active privilégie toujours une approche basée sur la communication, le respect mutuel et la recherche de solutions. Toutefois, le non-respect répété ou grave de ces engagements peut entraîner des mesures administratives, incluant un avertissement, une suspension temporaire des Services ou la résiliation de l'abonnement, conformément aux politiques du Studio.</p>
+
+            <h3>Hygiène et tenue vestimentaire</h3>
+            <ol class="clauses">
+              <li><p>Toute personne membre s’engage à apporter une paire de chaussures de rechange lorsque la température ou les conditions extérieures le nécessitent.</p></li>
+              <li><p>Toute personne membre s’engage à maintenir une hygiène corporelle adéquate, à porter une tenue sportive propre et appropriée, et à éviter les odeurs marquées ou l’usage excessif de produits parfumés.</p></li>
+              <li><p>Il est interdit d’être pieds nus ou torse nu dans les installations. Le port de chaussettes et de camisole est permis.</p></li>
+            </ol>
+
+            <h3>Utilisation des installations</h3>
+            <ol class="clauses">
+              <li><p>Ranger et désinfecter le matériel après usage est obligatoire pour tous les membres; c’est une responsabilité partagée pour maintenir un environnement propre.</p></li>
+              <li><p>Le studio encourage le partage respectueux des appareils et équipements entre les membres, particulièrement durant les heures de pointe.</p></li>
+              <li><p>Pour des raisons de sécurité, les contenants en verre sont interdits dans les espaces d’entraînement et les aires communes du Studio. Nous vous invitons à utiliser une bouteille ou un contenant incassable et refermable.</p></li>
+            </ol>
+            <p>Cette mesure vise à prévenir les blessures et les risques liés aux bris de verre.</p>
+
+            <h3>Promotion, sollicitation et recrutement</h3>
+            <p>Il est interdit à tout membre ou visiteur d’utiliser les installations du studio pour faire de la promotion, du maraudage, de la sollicitation ou du recrutement, que ce soit de manière directe ou indirecte, au profit d’un tiers ou d’une entreprise concurrente, sans l’autorisation écrite préalable du studio.</p>
+            <p>Le non-respect de cette règle peut entraîner des mesures administratives pouvant aller jusqu’à la suspension ou la résiliation de l’abonnement conformément à l’article 12.1 des présentes.</p>
+
+            <h3>Savoir-être</h3>
+            <p>Toute personne membre s’engage à adopter en tout temps un comportement respectueux, courtois et bienveillant envers le personnel, les autres membres et l’environnement du studio. Les comportements suivants ne sont pas toléré :</p>
+            <ol>
+              <li>Nuire à l’exécution du service à plusieurs reprises,</li>
+              <li>Refuser de coopérer avec le fournisseur de services,</li>
+              <li>Changer les conditions du contrat sans l’accord du fournisseur de services,</li>
+              <li>Être vulgaire, désagréable ou manquer de respect.</li>
+              <li>Adopter un comportement agressif, intimidant ou menaçant</li>
+              <li>Tenir des propos discriminatoires, harcelants ou inappropriés</li>
+              <li>Ne pas respecter les consignes de sécurité ou les règles du studio</li>
+              <li>Perturber le déroulement des services ou l’expérience des autres clients</li>
+              <li>Utiliser les installations ou les services de manière inappropriée ou non sécuritaire</li>
+              <li>Se présenter sous l’influence de l’alcool ou de substances altérant les capacités</li>
+            </ol>
+          </div>
+        </details>
+
+        <p class="prose-note">Pour en savoir plus sur vos droits : <a href="https://www.opc.gouv.qc.ca/commercant/permis-certificat/studio-sante/droit-obligation/contrat/">Office de la protection du consommateur</a></p>
       </div>
     </main>
 
     <!-- Footer with contact info, hours, map, and quick links -->
     <footer class="site-footer">
       <div class="footer-main">
-        <div class="footer-info">
-          <section aria-labelledby="footer-contact">
+        <section class="footer-col" aria-labelledby="footer-contact">
             <h2 class="footer-heading" id="footer-contact">Coordonnées</h2>
             <address>
               <p>7422, rue Saint-Hubert # 101<br>Montréal (Qc) H2R 2N3</p>
@@ -250,14 +554,27 @@
             </ul>
           </section>
 
-          <section aria-labelledby="footer-hours">
+        <section class="footer-col" aria-labelledby="footer-hours">
             <h2 class="footer-heading" id="footer-hours">Horaire</h2>
-            <p class="hours-status" data-hours-status hidden></p>
             <p>Du lundi au vendredi : 6h à 21h</p>
             <p>Samedi : 8h à 18h</p>
             <p>Dimanche : 9h à 15h</p>
           </section>
-        </div>
+
+        <nav class="footer-col footer-links" aria-labelledby="footer-nav">
+          <h2 class="footer-heading" id="footer-nav">Liens</h2>
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/equipe.html">Équipe d'entraînement</a></li>
+            <li><a href="/entrainement-prive.html">Entraînement privé</a></li>
+            <li><a href="/ceg.html">Cours en groupe</a></li>
+            <li><a href="/services-complementaires.html">Services complémentaires</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/faq.html">Foire aux questions</a></li>
+            <li><a href="/conditions.html">Termes et conditions</a></li>
+            <li><a href="/carrieres.html">Carrière et stage</a></li>
+          </ul>
+        </nav>
 
         <div class="footer-map">
           <iframe
@@ -269,19 +586,6 @@
           ></iframe>
         </div>
       </div>
-
-      <nav class="footer-links" aria-label="Liens du pied de page">
-        <ul>
-          <li><a href="/conditions.html">Conditions</a></li>
-          <li><a href="/faq.html">FAQ</a></li>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/apropos.html">À propos</a></li>
-          <li><a href="/services.html">Services</a></li>
-          <li><a href="/therapeutes.html">Thérapeutes</a></li>
-          <li><a href="/ceg.html">Cours en groupe</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
 
       <p class="copyright">© Studio Santé Active <span data-current-year>2026</span></p>
     </footer>

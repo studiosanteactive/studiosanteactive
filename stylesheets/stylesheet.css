@@ -6,20 +6,88 @@
 
 /* ==========================================================================
    Tokens
+   Every colour on the site comes from these variables: change a value here to restyle the whole site.
+   The dark block below redefines the same names for night mode.
    ========================================================================== */
 
 :root {
+  /* Brand */
   --ssa-turquoise: #4fc3c7;        /* brand colour: borders, accents, backgrounds behind dark text */
-  --ssa-turquoise-light: #b9e3e5;  /* hover accents on dark backgrounds */
+  --ssa-turquoise-light: #b9e3e5;  /* soft accent: hovers, notice bar */
   --ssa-turquoise-text: #1f7f83;   /* turquoise dark enough for text on white (WCAG AA) */
-  --ssa-text: #212529;
+
+  /* Page */
+  --color-bg: #fff;                /* page background */
+  --color-surface: #f3f9f9;        /* cards, table stripes, alternate panels */
+  --color-surface-strong: #dcf1f2; /* table column headings */
+  --color-text: #212529;
+  --color-text-muted: #595959;
+  --color-heading: #000;
+  --color-border: #dee2e6;
+
+  /* Accent roles (point at the brand colours above) */
+  --color-accent: var(--ssa-turquoise);
+  --color-accent-soft: var(--ssa-turquoise-light);
+  --color-accent-text: var(--ssa-turquoise-text);
+  --color-on-accent: #000;         /* text on a turquoise background */
+
+  /* Header, notice bar, footer */
+  --color-header-bg: #fff;
+  --color-notice-bg: var(--ssa-turquoise-light);
+  --color-notice-text: #000;
+  --color-footer-bg: #000;
+  --color-footer-text: #fff;
+  --color-footer-accent: var(--ssa-turquoise);
+  --color-footer-hover: var(--ssa-turquoise-light);
+
+  /* Price tables and reviews */
+  --color-yes: #1a7f37;            /* included ✓ */
+  --color-no: #c62828;             /* not included ✕, crossed-out prices */
+  --color-favourite: #d6336c;      /* "coup de cœur" heart */
+  --color-stars: #e5a000;          /* review stars */
+
+  /* Text on photos (stays white in both themes) */
+  --color-overlay-text: #fff;
+
+  --shadow-color: rgba(0, 0, 0, 0.2);
 
   --font-heading: 'Barlow', system-ui, sans-serif;
   --font-body: 'Lato', system-ui, sans-serif;
 
   --radius: 16px;
-  --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  --shadow: 0 0 15px var(--shadow-color);
   --section-space: clamp(3rem, 9vh, 6rem);
+
+  color-scheme: light;
+}
+
+/* Night mode: set on <html data-theme="dark"> by the inline script in each page's <head> */
+:root[data-theme="dark"] {
+  --ssa-turquoise-text: #6fd3d6;   /* lighter turquoise reads well on dark backgrounds */
+
+  --color-bg: #121616;
+  --color-surface: #1b2223;
+  --color-surface-strong: #213436;
+  --color-text: #e4e9e9;
+  --color-text-muted: #a9b2b2;
+  --color-heading: #fff;
+  --color-border: #313b3c;
+
+  --color-accent-soft: #2b5658;
+
+  --color-header-bg: #121616;
+  --color-notice-bg: #1f4648;
+  --color-notice-text: #fff;
+  --color-footer-bg: #000;
+
+  --color-yes: #5cc97a;
+  --color-no: #ff7b7b;
+  --color-favourite: #ff6b9a;
+  --color-stars: #ffc53d;
+
+  --shadow-color: rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
 }
 
 /* ==========================================================================
@@ -27,17 +95,24 @@
    ========================================================================== */
 
 html {
-  scroll-padding-top: 6rem; /* keeps anchored content clear of the sticky header */
+  scroll-padding-top: 7.5rem; /* keeps anchored content clear of the sticky header (status strip + navbar) */
+}
+
+@media (min-width: 1200px) {
+  html {
+    scroll-padding-top: 9.5rem;
+  }
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--ssa-text);
-  background: #fff;
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  color: var(--color-heading);
 }
 
 p {
@@ -49,8 +124,13 @@ video {
   max-width: 100%;
 }
 
+hr {
+  border-color: var(--color-border);
+  opacity: 1;
+}
+
 :focus-visible {
-  outline: 3px solid var(--ssa-turquoise-text);
+  outline: 3px solid var(--color-accent-text);
   outline-offset: 3px;
 }
 
@@ -60,9 +140,9 @@ video {
   left: 0.5rem;
   z-index: 1100;
   padding: 0.5rem 1rem;
-  background: #fff;
-  color: #000;
-  border: 2px solid var(--ssa-turquoise-text);
+  background: var(--color-bg);
+  color: var(--color-heading);
+  border: 2px solid var(--color-accent-text);
   border-radius: 8px;
 }
 
@@ -73,95 +153,366 @@ video {
 
 /* ==========================================================================
    Header & navigation
+   Phones and tablets (< 1200px): logo, night mode switch and menu button; the menu opens below with the links,
+   then the three calls to action stacked full width.
+   Desktop (>= 1200px): logo on the left; on the right, the links on one row and the calls to action on a second row.
    ========================================================================== */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1020;
-  background: #fff;
+  background: var(--color-header-bg);
+  box-shadow: 0 1px 0 var(--color-border);
+}
+
+/* Top strip with the "Ouvert maintenant / Fermé" status (filled in by scripts/site.js; hidden until then) */
+.status-bar {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.status-bar:has(.hours-status[hidden]) {
+  display: none;
+}
+
+.status-bar .container {
+  padding: 0.2rem 1rem;
+}
+
+.hours-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.hours-status::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-no);
+}
+
+.hours-status.is-open {
+  color: var(--color-text);
+}
+
+.hours-status.is-open::before {
+  background: var(--color-yes);
 }
 
 /* Bootstrap's .navbar padding would otherwise cancel the .container side gutter */
 .navbar-ssa {
-  --bs-navbar-padding-x: 0.75rem;
+  --bs-navbar-padding-x: 1rem;
+  --bs-navbar-padding-y: 0.5rem;
 }
 
 .navbar-logo img {
   display: block;
   width: auto;
-  height: 48px;
+  height: 44px;
+}
+
+/* The logo has black lettering: turn it white at night (the turquoise stays turquoise) */
+[data-theme="dark"] .navbar-logo img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.navbar-ssa .navbar-toggler {
+  padding: 0.4rem 0.6rem;
+  border-color: var(--color-border);
+}
+
+/* Opened menu on phones: generous tap targets, centred */
+.navbar-ssa .navbar-collapse {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .navbar-ssa .navbar-nav {
+  padding: 0.75rem 0 0.5rem;
   text-align: center;
-  padding: 0.5rem 0 1rem;
 }
 
 .navbar-ssa .nav-link {
   display: inline-block;
+  padding: 0.6rem 0.25rem;
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
+  color: var(--color-text);
   border-bottom: 3px solid transparent;
   transition: border-color 0.3s ease;
 }
 
 .navbar-ssa .nav-link:hover {
-  border-bottom-color: var(--ssa-turquoise-light);
+  color: var(--color-heading);
+  border-bottom-color: var(--color-accent-soft);
 }
 
 .navbar-ssa .nav-link.active {
-  color: #000;
-  border-bottom-color: var(--ssa-turquoise);
+  color: var(--color-heading);
+  border-bottom-color: var(--color-accent);
 }
 
-.navbar-ssa .nav-link.nav-link-accent,
-.navbar-ssa .nav-link.nav-link-accent:hover,
-.navbar-ssa .nav-link.nav-link-accent:focus {
-  color: var(--ssa-turquoise-text);
+/* Calls to action, in priority order: consultation (filled), then the free trial; the member portal comes after.
+   Phones: everything stacked full width in the menu. */
+.nav-actions,
+.nav-client-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.5rem 0 0;
+  list-style: none;
 }
 
-@media (min-width: 992px) {
+.nav-client-list {
+  padding: 0.6rem 0 1.25rem;
+}
+
+.nav-actions a,
+.nav-client-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Main call to action: filled */
+.nav-actions .nav-cta {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 900;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.nav-actions .nav-cta:hover,
+.nav-actions .nav-cta:focus-visible {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+  color: var(--color-heading);
+}
+
+.nav-actions .nav-cta.active {
+  outline: 3px solid var(--color-accent-soft);
+  outline-offset: 2px;
+}
+
+.nav-actions .nav-trial {
+  color: var(--color-heading);
+}
+
+/* Member portal: same button shape, quieter colour */
+.nav-client-list .nav-client {
+  border-color: var(--color-border);
+  color: var(--color-accent-text);
+}
+
+.nav-actions .nav-trial:hover,
+.nav-actions .nav-trial:focus-visible,
+.nav-client-list .nav-client:hover,
+.nav-client-list .nav-client:focus-visible {
+  background: var(--color-surface);
+}
+
+/* Desktop: logo on the left; links (row 1) and the two buttons (row 2) centred;
+   "Espace client" and the theme slider on the far right */
+@media (min-width: 1200px) {
+  .navbar-logo {
+    flex-shrink: 0;
+    margin-right: 1rem;
+  }
+
   .navbar-logo img {
-    height: 72px;
+    height: 58px;
   }
 
   .navbar-ssa .navbar-collapse {
-    justify-content: flex-end;
+    display: grid !important; /* Bootstrap sets display:flex !important on the expanded menu */
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 1.5rem;
+    row-gap: 0.4rem;
+    max-height: none;
+    overflow: visible;
   }
 
   .navbar-ssa .navbar-nav {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    gap: 0.25rem;
     padding: 0;
   }
 
   .navbar-ssa .nav-link {
+    padding: 0.2rem 0.4rem;
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+
+  .nav-actions {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0;
+  }
+
+  .nav-client-list {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    padding: 0;
+  }
+
+  .nav-actions a,
+  .nav-client-list a {
+    min-height: 42px;
+    padding: 0.3rem 1rem;
     font-size: 1rem;
   }
+
+  /* Consultation and trial share one width */
+  .nav-actions .nav-cta,
+  .nav-actions .nav-trial {
+    width: 15.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .navbar-logo img {
+    height: 66px;
+  }
+
+  .navbar-ssa .nav-link {
+    padding: 0.2rem 0.6rem;
+    font-size: 1.12rem;
+  }
+}
+
+/* Theme slider (shown by scripts/site.js): one segment per theme, the thumb slides to the active one.
+   Beside the menu button on phones, at the end of the row on desktop. */
+.theme-toggle {
+  --theme-index: 0;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0; /* the sliding thumb assumes every segment keeps its full width */
+  min-width: 0;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 0.75rem;
+  padding: 2px;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  background: var(--color-surface);
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex: 0 0 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  color: var(--color-accent-text);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.theme-option svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.theme-option:has(input:checked) {
+  color: var(--color-on-accent);
+}
+
+.theme-option:has(input:focus-visible) {
+  outline: 3px solid var(--color-accent-text);
+  outline-offset: 2px;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: translateX(calc(var(--theme-index) * 100%));
+  transition: transform 0.25s ease;
 }
 
 @media (min-width: 1200px) {
-  .navbar-ssa .nav-link {
-    font-size: 1.15rem;
+  .theme-toggle {
+    order: 1; /* after the menu */
+    margin-left: 1rem;
+    margin-right: 0;
   }
 }
 
-/* Floating "contact us" button: only where there is room beside the content */
+/* Floating "Réserver votre consultation" button: a full-width bottom bar on phones, a corner button on desktop.
+   Only used with JavaScript, which shows it between the first banner and the footer. */
 .contact-popin {
   display: none;
 }
 
-@media (min-width: 992px) {
-  .contact-popin {
-    display: block;
-    position: fixed;
+.js-contact-popin .contact-popin {
+  display: block;
+  position: fixed;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  z-index: 1010;
+}
+
+.contact-popin .small-btn {
+  width: 100%;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 900;
+  box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+@media (min-width: 768px) {
+  .js-contact-popin .contact-popin {
     right: 20px;
     bottom: 20px;
-    z-index: 1010;
+    left: auto;
   }
 
   .contact-popin .small-btn {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    width: auto;
   }
 }
 
@@ -183,8 +534,8 @@ video {
 /* Upcoming holiday closure, filled in by scripts/site.js */
 .holiday-notice {
   padding: 0.6rem 1rem;
-  background: var(--ssa-turquoise-light);
-  color: #000;
+  background: var(--color-notice-bg);
+  color: var(--color-notice-text);
   text-align: center;
 }
 
@@ -194,7 +545,7 @@ video {
 }
 
 .holiday-notice a {
-  color: #000;
+  color: var(--color-notice-text);
 }
 
 /* ==========================================================================
@@ -203,7 +554,9 @@ video {
 
 .button-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1rem;
 }
 
 .small-btn {
@@ -212,10 +565,10 @@ video {
   justify-content: center;
   min-height: 44px;
   padding: 8px 24px;
-  border: 2px solid var(--ssa-turquoise);
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--color-bg);
+  color: var(--color-heading);
   font-family: var(--font-body);
   font-size: 1.125rem;
   font-weight: 700;
@@ -226,9 +579,9 @@ video {
 
 .small-btn:hover,
 .small-btn:focus-visible {
-  background-color: var(--ssa-turquoise);
-  color: #000; /* black on turquoise passes contrast; white did not */
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent); /* black on turquoise passes contrast; white did not */
+  box-shadow: var(--shadow-color) 0 4px 12px;
 }
 
 .section-cta {
@@ -242,14 +595,14 @@ video {
 
 .banner {
   position: relative;
-  height: clamp(320px, 60vh, 640px);
+  height: clamp(220px, 40vh, 640px);
   margin-bottom: 1.5rem;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
+  color: var(--color-overlay-text);
 }
 
 .banner-media {
@@ -275,7 +628,8 @@ video {
 
 .banner-title {
   margin: 0;
-  font-size: clamp(2.75rem, 11vw, 8rem);
+  color: var(--color-overlay-text);
+  font-size: clamp(2.25rem, 10vw, 8rem);
   font-weight: 300;
   line-height: 1.05;
   text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
@@ -289,9 +643,9 @@ video {
 }
 
 .banner-subtitle {
-  margin: 1.5rem 0 0;
+  margin: 1rem 0 0;
   font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-size: clamp(1.25rem, 5vw, 4rem);
   font-weight: 400;
   line-height: 1.2;
   text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.85);
@@ -299,12 +653,16 @@ video {
 
 /* Homepage video hero. The poster photo is also the background, which shows when motion is reduced. */
 .banner-hero {
-  height: clamp(420px, 80vh, 860px);
+  height: clamp(380px, 70vh, 860px);
   background: #000 url('/images/SSAOCT24100_IMG_2228.jpg') center / cover;
 }
 
 .banner-hero .banner-title {
-  font-size: clamp(3rem, 13vw, 10rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.banner-hero .banner-subtitle {
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
 }
 
 /* Pause / play button over the hero video */
@@ -350,6 +708,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .banner {
+    height: clamp(320px, 60vh, 640px);
+  }
+
   .banner-title {
     font-weight: 100;
   }
@@ -402,6 +764,31 @@ video {
   text-align: center;
 }
 
+/* Smaller section heading for homepage blocks and sub-sections */
+.section-heading {
+  margin: 0 0 2rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 300;
+  text-align: center;
+}
+
+.section-lead {
+  max-width: 70ch;
+  margin: -1rem auto 2.5rem;
+  text-align: center;
+}
+
+.page-section {
+  margin-top: var(--section-space);
+  margin-bottom: var(--section-space);
+}
+
+.intro a,
+.section-lead a,
+.offer-text a {
+  color: var(--color-accent-text);
+}
+
 /* Long-form pages (FAQ, conditions) */
 .prose {
   max-width: 900px;
@@ -418,7 +805,7 @@ video {
 .prose h2 {
   margin-top: 2.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--ssa-turquoise);
+  border-bottom: 2px solid var(--color-accent);
   font-weight: 400;
 }
 
@@ -433,18 +820,107 @@ video {
   font-size: 1.05rem;
 }
 
-.prose a,
-.intro a {
-  color: var(--ssa-turquoise-text);
+.prose a {
+  color: var(--color-accent-text);
 }
 
 .prose-note {
   margin-top: 2.5rem;
 }
 
-/* FAQ: each question is a native <details> that opens on click or Enter/Space */
+.prose-meta {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.prose h4 {
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Numbered clauses inside a terms section (6.1, 6.2...) */
+.clauses {
+  padding-left: 1.5rem;
+}
+
+.clauses > li {
+  margin-bottom: 0.75rem;
+}
+
+.clauses > li > p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-quote {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+/* Table of contents at the top of the FAQ and conditions */
+.toc {
+  margin: 0 0 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--color-surface);
+}
+
+.prose .toc-title {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.toc ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.toc ol ol {
+  margin: 0.25rem 0 0.5rem;
+  list-style: disc;
+}
+
+.toc li {
+  margin: 0.2rem 0;
+}
+
+.toc > ol > li > a {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+/* "Tout ouvrir / Tout fermer" (shown by scripts/site.js) */
+.toc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.toc-actions[hidden] {
+  display: none;
+}
+
+.text-btn {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-accent-text);
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Expandable items: FAQ questions and conditions sections are native <details> that open on click or Enter/Space */
 .faq-item {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .faq-question {
@@ -454,6 +930,7 @@ video {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 500;
+  color: var(--color-heading);
   cursor: pointer;
   list-style: none;
 }
@@ -472,7 +949,7 @@ video {
   font-size: 1.75rem;
   font-weight: 300;
   line-height: 1;
-  color: var(--ssa-turquoise-text);
+  color: var(--color-accent-text);
 }
 
 .faq-item[open] > .faq-question::after {
@@ -481,96 +958,684 @@ video {
 }
 
 .faq-question:hover {
-  color: var(--ssa-turquoise-text);
+  color: var(--color-accent-text);
 }
 
 .faq-answer {
   padding-bottom: 1rem;
 }
 
-/* ==========================================================================
-   Photo cards (homepage sections, services, group classes)
-   ========================================================================== */
-
-.cards {
-  display: grid;
-  gap: clamp(1.5rem, 5vw, 4rem);
+/* Conditions: a whole section is a <details> whose clickable line holds the section's <h2> */
+.faq-section {
+  border-bottom: 2px solid var(--color-accent);
 }
 
-.card-category,
-.large-card-category {
-  min-height: 335px;
-  padding: 2rem 5%;
+.faq-section > .faq-question {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.prose .faq-question h2 {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+/* ==========================================================================
+   Homepage: about, events, photo carousel, reviews
+   ========================================================================== */
+
+.about h2 {
+  margin-top: 0;
+}
+
+.about h3 strong {
+  color: var(--color-accent-text);
+}
+
+.events {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .events {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+.event {
+  padding: 1.5rem;
+  border-top: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.event-date {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-accent-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.event-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.event p:last-child {
+  margin-bottom: 0;
+}
+
+/* Shown only when the list has no events left (scripts/site.js removes past ones) */
+.events-empty {
+  display: none;
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.events-empty a {
+  color: var(--color-accent-text);
+}
+
+.events:not(:has(.event)) .events-empty {
+  display: block;
+  grid-column: 1 / -1;
+}
+
+/* Photo carousel (Bootstrap carousel, no autoplay) */
+.gallery {
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-top: 4px solid var(--color-accent);
+  border-bottom: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: #000;
+}
+
+.gallery .carousel-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.gallery .carousel-control-prev,
+.gallery .carousel-control-next {
+  width: 12%;
+  min-width: 44px;
+  opacity: 0.9;
+}
+
+.gallery .carousel-control-prev-icon,
+.gallery .carousel-control-next-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.55);
+  background-size: 50%;
+}
+
+.gallery .carousel-indicators [data-bs-target] {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+}
+
+/* Google reviews */
+.google-rating {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin: 0 auto 2rem;
   text-align: center;
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), var(--bg) center / cover;
-  border-top: 4px solid var(--ssa-turquoise);
-  border-bottom: 4px solid var(--ssa-turquoise);
+}
+
+.google-rating p {
+  max-width: 60ch;
+  margin: 0;
+}
+
+.google-rating-score {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-heading);
+}
+
+.google-rating-score .review-stars {
+  margin-left: 0.4rem;
+  color: var(--color-stars);
+  letter-spacing: 0.1em;
+}
+
+/* Reviews carousel: a scroll-snap row (1 card on phones, 2 on tablets, 3 on desktop).
+   scripts/site.js adds the arrows and dots; without it the row still swipes. */
+.reviews-carousel {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+}
+
+.reviews {
+  display: flex;
+  align-items: flex-start; /* phones: each card as tall as its text */
+  gap: 1rem;
+  margin: 0;
+  padding: 0.75rem 0.25rem 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.reviews::-webkit-scrollbar {
+  display: none;
+}
+
+.reviews > li {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
+
+.reviews-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.reviews-carousel.is-ready .reviews-controls {
+  display: flex;
+}
+
+.reviews-arrow {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-heading);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reviews-arrow:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.reviews-play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviews-play svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.reviews-play .icon-play,
+.reviews-play.is-paused .icon-pause {
+  display: none;
+}
+
+.reviews-play.is-paused .icon-play {
+  display: block;
+}
+
+.reviews-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.reviews-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+/* 24px tap area around a 10px dot */
+.reviews-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.reviews-dot::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.reviews-dot[aria-current="true"]::before {
+  background: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .reviews > li {
+    flex-basis: calc((100% - 1.5rem) / 2);
+  }
+
+  .reviews {
+    align-items: stretch; /* side-by-side cards share a height */
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .reviews > li {
+    flex-basis: calc((100% - 3rem) / 3);
+  }
+}
+
+.review {
+  height: 100%;
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.review-stars {
+  margin: 0 0 0.5rem;
+  color: var(--color-stars);
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+}
+
+.review blockquote {
+  margin: 0 0 1rem;
+}
+
+.review blockquote p {
+  font-size: 1rem;
+}
+
+.review figcaption {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Offers: photo + description on one side, price tables on the other, alternating
+   ========================================================================== */
+
+.offer {
+  display: grid;
+  gap: 2rem;
+  margin-top: var(--section-space);
+  margin-bottom: var(--section-space);
+}
+
+.offer + .offer {
+  padding-top: var(--section-space);
+  border-top: 1px solid var(--color-border);
+}
+
+.offer-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-top: 4px solid var(--color-accent);
+  border-bottom: 4px solid var(--color-accent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
-.card-category h2,
-.card-category h3 {
-  margin: 0;
-  font-size: clamp(2rem, 6vw, 3rem);
+.offer-text h2 {
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+}
+
+.offer-text h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 1.35rem;
   font-weight: 500;
 }
 
-.card-category p,
-.large-card-category p {
-  margin: 0;
+.offer-text ul {
+  padding-left: 1.25rem;
 }
 
-@media (min-width: 768px) {
-  .cards {
-    grid-template-columns: repeat(4, 1fr);
+.offer-text li {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.offer-prices {
+  min-width: 0; /* lets a wide table scroll inside its grid column instead of stretching it */
+}
+
+@media (min-width: 992px) {
+  .offer {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    align-items: start;
+    gap: 3rem;
   }
 
-  .card-category {
-    grid-column: span 2;
+  /* Every other offer flips: prices on the left, photo and text on the right */
+  .offer-reverse {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
   }
 
-  /* Centre a lone card on the last row */
-  .card-category:nth-last-child(1):nth-child(odd) {
-    grid-column: 2 / span 2;
+  .offer-reverse .offer-info {
+    order: 2;
   }
-}
 
-.large-cards {
-  display: grid;
-  gap: clamp(1.5rem, 5vw, 4rem);
-}
-
-.large-card-category {
-  padding: 2.5rem 6%;
-}
-
-.large-card-category h2 {
-  margin: 0;
-  font-size: clamp(1.6rem, 4vw, 2.25rem);
-  font-weight: 500;
-}
-
-.large-card-category p {
-  font-size: 1rem;
-  max-width: 70ch;
+  /* The photo and text stay in view while the visitor reads long price tables */
+  .offer-info {
+    position: sticky;
+    top: 8rem;
+  }
 }
 
 /* ==========================================================================
-   Trainer / therapist cards
+   Price tables
+   ========================================================================== */
+
+.price-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.price-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-table caption {
+  caption-side: top;
+  padding: 0.75rem 1rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.price-table th,
+.price-table td {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.price-table thead th {
+  background: var(--color-surface-strong);
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.price-table thead th:first-child,
+.price-table tbody th {
+  text-align: left;
+}
+
+.price-table tbody th {
+  min-width: 7rem;
+  font-weight: 400;
+}
+
+/* First column stays put while the plan columns scroll sideways on narrow screens */
+.price-table thead th:first-child,
+.price-table tbody th[scope="row"] {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--color-bg);
+  box-shadow: 1px 0 0 var(--color-border);
+}
+
+.price-table thead th:first-child {
+  background: var(--color-surface-strong);
+}
+
+/* Shown by scripts/site.js under a table that is wider than the screen */
+.price-scroll-hint {
+  margin: -1rem 0 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.price-table thead th:first-child {
+  white-space: normal;
+}
+
+.price-table td {
+  white-space: nowrap; /* keep "1019.99 $" on one line */
+}
+
+.price-table td[colspan] {
+  white-space: normal;
+}
+
+.price-table tbody tr:nth-child(even) > * {
+  background: var(--color-surface);
+}
+
+/* Group heading rows ("Vos avantages", "Vos versements") */
+.price-table tbody tr.price-group > th {
+  padding-top: 1rem;
+  background: var(--color-bg);
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.price-table .price-main td {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.price-table td.price-free {
+  font-weight: 700;
+  color: var(--color-accent-text);
+}
+
+.price-was {
+  display: inline-block;
+  margin-right: 0.35em;
+  color: var(--color-no);
+  text-decoration: line-through;
+}
+
+.price-yes,
+.price-no {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.price-yes {
+  color: var(--color-yes);
+}
+
+.price-no {
+  color: var(--color-no);
+}
+
+.price-fav {
+  color: var(--color-favourite);
+}
+
+.price-notes {
+  margin: 0 0 1.5rem;
+  padding-left: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.price-notes li {
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .price-table {
+    font-size: 0.95rem;
+  }
+
+  .price-table th,
+  .price-table td {
+    padding: 0.6rem 0.65rem;
+  }
+
+  .price-table tbody th {
+    min-width: 9rem;
+  }
+}
+
+/* ==========================================================================
+   Group classes list
+   ========================================================================== */
+
+.class-list {
+  display: grid;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .class-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .class-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.class-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-bottom: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.class-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.class-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.class-body h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.class-body p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Emoji tags under each class description (the emoji is decorative) */
+.class-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.class-body .class-tags {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.class-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.tag-emoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Team (trainers) and collaborators (therapists)
    ========================================================================== */
 
 .trainers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 340px));
   justify-content: center;
+  align-items: start;
   gap: 3rem 2rem;
 }
 
@@ -590,10 +1655,10 @@ video {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  color: #fff;
+  color: var(--color-overlay-text);
   background: #333;
-  border-top: 4px solid var(--ssa-turquoise);
-  border-bottom: 4px solid var(--ssa-turquoise);
+  border-top: 4px solid var(--color-accent);
+  border-bottom: 4px solid var(--color-accent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   transition: box-shadow 0.3s ease;
@@ -620,25 +1685,190 @@ video {
   z-index: 1;
   margin: 0;
   padding: 1rem;
+  color: var(--color-overlay-text);
   font-size: clamp(1.4rem, 1.2rem + 0.5vw, 1.8rem);
   font-weight: 400;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .trainer-role {
-  margin: 1.25rem 0 0.5rem;
+  margin: 1.25rem 0 0.75rem;
   font-family: var(--font-heading);
-  font-size: 1.6rem;
-  color: #000;
+  font-size: 1.5rem;
+  color: var(--color-heading);
 }
 
 .trainer-role sup {
   font-size: 0.5em;
 }
 
-.trainer-card p:not(.trainer-role) {
+/* Bio behind a "Lire la bio" toggle (native <details>, opens on click or Enter/Space) */
+.trainer-bio {
+  width: 100%;
+}
+
+.trainer-bio > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.25rem 1.1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.3s ease;
+}
+
+.trainer-bio > summary::-webkit-details-marker {
+  display: none;
+}
+
+.trainer-bio > summary::after {
+  content: "+";
+  content: "+" / "";
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-accent-text);
+}
+
+.trainer-bio[open] > summary::after {
+  content: "−";
+  content: "−" / "";
+}
+
+.trainer-bio > summary:hover {
+  background: var(--color-surface);
+}
+
+.trainer-bio-body {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  text-align: left;
+}
+
+.trainer-bio-body p {
   font-size: 1rem;
-  padding: 0 0.5rem;
+}
+
+.trainer-bio-body h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* Full-width bio panel (scripts/site.js), inserted after the last card of the open card's row */
+.js-bio-panels .trainer-bio-body {
+  display: none;
+}
+
+.trainer-card.is-open .trainer-photo {
+  box-shadow: 0 0 0 4px var(--color-accent), var(--shadow);
+}
+
+.trainer-bio-panel {
+  position: relative;
+  grid-column: 1 / -1;
+  margin-top: -1.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border-top: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.trainer-bio-panel:focus-visible {
+  outline: 3px solid var(--color-accent-text);
+}
+
+.trainer-bio-panel-title {
+  margin: 0 3rem 1rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+}
+
+.trainer-bio-panel-title strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.trainer-bio-panel-title span {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.trainer-bio-panel-body {
+  display: grid;
+  gap: 1rem 2.5rem;
+}
+
+.trainer-bio-panel-body p {
+  font-size: 1rem;
+}
+
+.trainer-bio-panel-body h4 {
+  margin: 0 0 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.trainer-bio-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--color-heading);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.trainer-bio-close:hover {
+  background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .trainer-bio-panel {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  .trainer-bio-panel-body {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+/* Collaborators link out to their own sites */
+.collaborators .trainer-photo {
+  max-width: 240px;
+  aspect-ratio: 1;
 }
 
 .trainer-link {
@@ -650,36 +1880,100 @@ video {
   text-decoration: none;
 }
 
-.trainer-link:hover .trainer-photo {
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.35);
+.trainer-link:hover .trainer-photo,
+.trainer-link:focus-visible .trainer-photo {
+  box-shadow: 0 0 24px var(--shadow-color);
+}
+
+.trainer-link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-accent-text);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.trainer-link-cta svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ==========================================================================
-   Schedule and price-list images
+   Group class schedule (Fliip iframe on ceg.html)
    ========================================================================== */
 
-.media-figure {
-  margin-bottom: var(--section-space);
-  text-align: center;
+/* Explains how the embedded schedule works: hover on desktop, tap-to-register on touch screens */
+.schedule-hint {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--color-surface);
 }
 
-.media-figure img {
+.schedule-hint svg {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.15rem;
+  fill: none;
+  stroke: var(--color-accent-text);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.schedule-hint p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.schedule-hint a {
+  color: var(--color-accent-text);
+}
+
+/* Touch screens by default; devices with a real mouse get the hover explanation */
+.schedule-hint-hover {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .schedule-hint-hover {
+    display: block;
+  }
+
+  .schedule-hint-touch {
+    display: none;
+  }
+}
+
+.schedule-frame {
   display: block;
   width: 100%;
-  height: auto;
+  height: 1700px; /* Fliip's week view (desktop) and day view (phones) both fit */
+  border: 0;
+  border-radius: var(--radius);
+  background: #fff; /* Fliip's schedule is always light */
+  box-shadow: var(--shadow);
 }
 
-.schedule {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 0.75rem;
+.schedule-fallback {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-.media-figure figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #595959;
+.schedule-fallback a {
+  color: var(--color-accent-text);
 }
 
 /* ==========================================================================
@@ -693,17 +1987,22 @@ video {
   height: 1300px;
   margin: 2rem auto 0;
   border: 0;
+  border-radius: var(--radius);
+  background: #fff; /* the Mailchimp form is always light */
 }
 
 /* ==========================================================================
    Footer
+   Phones: one column (contact, hours, links in two columns, then the map).
+   Tablet: contact + hours side by side, links below, map full width.
+   Desktop: four columns, the map last.
    ========================================================================== */
 
 .site-footer {
   margin-top: 4rem;
-  padding: 2.5rem 1rem 1rem;
-  background-color: #000;
-  color: #fff;
+  padding: 2.5rem 0 5.5rem; /* bottom room so the phone bottom bar never hides the copyright */
+  background-color: var(--color-footer-bg);
+  color: var(--color-footer-text);
 }
 
 .footer-main {
@@ -711,18 +2010,13 @@ video {
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.footer-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  padding: 0 1rem;
 }
 
 .footer-heading {
-  margin: 0 0 0.5rem;
-  font-size: 1.5rem;
-  color: var(--ssa-turquoise);
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+  color: var(--color-footer-accent);
 }
 
 .site-footer p,
@@ -730,6 +2024,7 @@ video {
   margin: 0;
   font-size: 1rem;
   font-style: normal;
+  line-height: 1.6;
 }
 
 .site-footer address p + p {
@@ -737,31 +2032,16 @@ video {
 }
 
 .site-footer a {
-  color: #fff;
+  color: var(--color-footer-text);
   text-decoration: underline;
 }
 
 .site-footer a:hover {
-  color: var(--ssa-turquoise-light);
+  color: var(--color-footer-hover);
 }
 
 .site-footer :focus-visible {
-  outline-color: var(--ssa-turquoise);
-}
-
-/* "Ouvert maintenant / Fermé" line, filled in by scripts/site.js */
-.site-footer .hours-status {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-  padding: 0.1rem 0.6rem;
-  border: 1px solid #fff;
-  border-radius: 999px;
-  font-size: 0.95rem;
-}
-
-.site-footer .hours-status.is-open {
-  border-color: var(--ssa-turquoise);
-  color: var(--ssa-turquoise);
+  outline-color: var(--color-footer-accent);
 }
 
 .social-links {
@@ -777,7 +2057,7 @@ video {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0;
+  min-height: 44px;
 }
 
 .icon {
@@ -786,50 +2066,86 @@ video {
   fill: currentColor;
 }
 
-.footer-map iframe {
-  display: block;
-  width: 100%;
-  height: clamp(250px, 40vh, 400px);
-  border: 0;
-}
-
-@media (min-width: 768px) {
-  .footer-main {
-    grid-template-columns: minmax(240px, auto) 1fr;
-    align-items: center;
-  }
-
-  .footer-info {
-    grid-template-columns: 1fr;
-  }
-}
-
 .footer-links ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 2rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .footer-links a {
-  display: inline-block;
-  padding: 0.25rem 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
   font-family: var(--font-heading);
+  font-size: 1.05rem;
 }
 
-.footer-links li + li::before {
-  content: "|";
-  content: "|" / ""; /* hidden from screen readers where supported */
-  margin: 0 0.6rem;
-  opacity: 0.7;
+.footer-map iframe {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border: 0;
+  border-radius: var(--radius);
 }
 
 .site-footer .copyright {
-  margin-top: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 1rem 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
   font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .site-footer {
+    padding-bottom: 1.5rem;
+  }
+
+  .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 3rem;
+  }
+
+  .footer-links ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-links,
+  .footer-map {
+    grid-column: 1 / -1;
+  }
+
+  .footer-map iframe {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr 1fr 1.4fr;
+    align-items: start;
+  }
+
+  .footer-links,
+  .footer-map {
+    grid-column: auto;
+  }
+
+  .footer-links ul {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links a {
+    min-height: 32px;
+  }
+
+  .footer-map iframe {
+    height: 300px;
+  }
 }
 
 /* ==========================================================================
@@ -852,4 +2168,102 @@ video {
   .banner-hero video {
     display: none;
   }
+}
+
+/* ==========================================================================
+   PRIDE THEME (rainbow), the third option in the theme slider and the default theme in June.
+   To remove it: delete this whole block and set PRIDE_THEME = false in scripts/site.js.
+   ========================================================================== */
+
+:root[data-theme="pride"] {
+  --pride-rainbow: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982);
+  --pride-pastel: linear-gradient(90deg, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #bdb2ff);
+  --pride-text: linear-gradient(90deg, #c1121f, #c45000, #8a6d00, #00753a, #1f4fa3, #6a1b9a);
+  --pride-conic: conic-gradient(#e40303, #ff8c00, #ffed00, #008026, #24408e, #732982, #e40303);
+
+  --color-accent: #9b5de5;
+  --color-accent-soft: #e2d4fb;
+  --color-accent-text: #6a1b9a;
+  --color-surface: #fbf7ff;
+  --color-surface-strong: #efe5ff;
+  --color-notice-bg: #e2d4fb;
+  --color-footer-accent: #ffd6a5;
+  --color-footer-hover: #caffbf;
+}
+
+/* Rainbow stripes on the header and footer */
+[data-theme="pride"] .site-header::before {
+  content: "";
+  display: block;
+  height: 6px;
+  background: var(--pride-rainbow);
+}
+
+[data-theme="pride"] .site-footer {
+  border-top: 6px solid transparent;
+  border-image: var(--pride-rainbow) 1;
+}
+
+[data-theme="pride"] .status-bar {
+  background: var(--pride-pastel);
+}
+
+[data-theme="pride"] .hours-status {
+  color: #000;
+}
+
+/* Rainbow slider thumb and main buttons */
+[data-theme="pride"] .theme-toggle-thumb {
+  background: var(--pride-conic);
+}
+
+[data-theme="pride"] .theme-option:has(input:checked) {
+  color: #000;
+}
+
+[data-theme="pride"] .nav-actions .nav-cta,
+[data-theme="pride"] .contact-popin .small-btn,
+[data-theme="pride"] .price-table caption {
+  border-color: transparent;
+  background: var(--pride-pastel);
+  color: #000;
+}
+
+[data-theme="pride"] .small-btn:hover,
+[data-theme="pride"] .small-btn:focus-visible {
+  background: var(--pride-pastel);
+}
+
+/* A rainbow wash over the banner photos */
+[data-theme="pride"] .banner-overlay {
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)),
+    linear-gradient(135deg, rgba(228, 3, 3, 0.4), rgba(255, 140, 0, 0.35), rgba(255, 237, 0, 0.3),
+      rgba(0, 128, 38, 0.35), rgba(36, 64, 142, 0.4), rgba(115, 41, 130, 0.45));
+}
+
+/* Rainbow headings (darker rainbow so the text keeps its contrast on white) */
+[data-theme="pride"] .section-title,
+[data-theme="pride"] .section-heading,
+[data-theme="pride"] .prose h1,
+[data-theme="pride"] .offer-text h2 {
+  background: var(--pride-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tags cycle through the flag colours */
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 1) { border-color: #e40303; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 2) { border-color: #ff8c00; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 3) { border-color: #e6c800; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 4) { border-color: #008026; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 5) { border-color: #24408e; }
+[data-theme="pride"] :is(.class-tags, .tags) li:nth-child(6n + 6) { border-color: #732982; }
+
+[data-theme="pride"] .review-stars {
+  background: var(--pride-rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
