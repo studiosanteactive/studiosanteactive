@@ -350,10 +350,12 @@
   // 7. Theme slider: light / night, plus the optional rainbow theme
   // ---------------------------------------------------------------------------
 
-  var THEME_KEY = 'ssa-theme';
+  // In June the rainbow theme is the default, and choices made in June are kept under their own key
+  // (same rule as the inline script in each <head>), so a light/night choice from May doesn't hide it.
+  var JUNE = new Date().getMonth() === 5;
+  var THEME_KEY = JUNE ? 'ssa-theme-june' : 'ssa-theme';
 
-  // Rainbow ("pride") theme. To remove it: set this to false, or also delete the
-  // "PRIDE THEME" block at the end of stylesheets/stylesheet.css.
+  // Rainbow ("pride") theme, the default in June. Setting this to false hides the option (June then falls back to light).
   var PRIDE_THEME = true;
 
   function themeToggle() {
@@ -396,11 +398,11 @@
       });
     });
 
-    // Until the visitor picks a theme, follow the device setting as it changes
+    // Until the visitor picks a theme, follow the device setting as it changes (not in June: rainbow is the default)
     var media = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
     if (media && media.addEventListener) {
       media.addEventListener('change', function (e) {
-        if (!saved()) apply(e.matches ? 'dark' : 'light');
+        if (!saved() && !JUNE) apply(e.matches ? 'dark' : 'light');
       });
     }
   }

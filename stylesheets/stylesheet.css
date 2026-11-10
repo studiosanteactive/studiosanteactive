@@ -2171,9 +2171,8 @@ hr {
 }
 
 /* ==========================================================================
-   PRIDE THEME (rainbow), the third option in the theme slider. Not meant for publication.
-   To remove it: delete this whole block and set PRIDE_THEME = false in scripts/site.js
-   (setting the flag alone also hides it; a visitor who had picked it falls back to light).
+   PRIDE THEME (rainbow), the third option in the theme slider and the default theme in June.
+   To remove it: delete this whole block and set PRIDE_THEME = false in scripts/site.js.
    ========================================================================== */
 
 :root[data-theme="pride"] {

@@ -34,13 +34,15 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="apple-touch-icon" href="/images/favicon.png">
     <meta name="theme-color" content="#4fc3c7">
-    <!-- Theme: apply the saved choice (or the device setting) before the page paints; the slider is in scripts/site.js -->
+    <!-- Theme: apply the saved choice (or the default) before the page paints; the slider is in scripts/site.js.
+         In June the default is the rainbow theme, and choices made in June are saved separately so everyone sees it at least once. -->
     <script>
       (function () {
+        var june = new Date().getMonth() === 5;
         var theme;
-        try { theme = localStorage.getItem('ssa-theme'); } catch (e) {}
+        try { theme = localStorage.getItem(june ? 'ssa-theme-june' : 'ssa-theme'); } catch (e) {}
         if (theme !== 'dark' && theme !== 'light' && theme !== 'pride') {
-          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          theme = june ? 'pride' : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         document.documentElement.setAttribute('data-theme', theme);
         document.documentElement.setAttribute('data-bs-theme', theme === 'dark' ? 'dark' : 'light');
