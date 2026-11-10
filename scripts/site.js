@@ -13,7 +13,8 @@
  *   8. Hiding homepage events once they are over
  *   9. A "swipe" hint under price tables that are wider than the screen
  *  10. Trainer bios open in a full-width panel under their row of cards
- *  11. Reviews carousel: previous / next buttons and position dots
+ *  11. Reviews carousel: auto-advances (pause button, stops on hover, focus or any manual move),
+ *      previous / next buttons and position dots
  */
 (function () {
   'use strict';
@@ -455,7 +456,7 @@
         d.type = 'button';
         d.className = 'reviews-dot';
         d.setAttribute('aria-label', 'Avis ' + (i + 1));
-        d.addEventListener('click', goTo.bind(null, i));
+        d.addEventListener('click', function (n) { stopAuto(); goTo(n); }.bind(null, i));
         dotsBox.appendChild(d);
         dots.push(d);
       }
@@ -469,8 +470,45 @@
       dots.forEach(function (d, n) { d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
     }
 
-    prev.addEventListener('click', function () { goTo(current() - 1); });
-    next.addEventListener('click', function () { goTo(current() + 1); });
+    // Auto-advance every AUTOPLAY_MS, looping back to the start. Off for visitors who ask for less motion;
+    // paused while hovered, focused, off screen or in a background tab; stops for good once the visitor
+    // moves the carousel themselves.
+    var AUTOPLAY_MS = 6000;
+    var play = box.querySelector('[data-reviews-play]');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var playing = !reduced;
+    var hovered = false;
+    var focused = false;
+    var onScreen = true;
+
+    function setPlaying(on) {
+      playing = on;
+      play.classList.toggle('is-paused', !on);
+      play.setAttribute('aria-label', on ? 'Mettre le défilement en pause' : 'Faire défiler les avis');
+    }
+
+    function stopAuto() { if (playing) setPlaying(false); }
+
+    setPlaying(playing);
+    play.addEventListener('click', function () { setPlaying(!playing); });
+    box.addEventListener('mouseenter', function () { hovered = true; });
+    box.addEventListener('mouseleave', function () { hovered = false; });
+    box.addEventListener('focusin', function (e) { focused = e.target !== play; });
+    box.addEventListener('focusout', function () { focused = false; });
+    track.addEventListener('touchstart', stopAuto, { passive: true });
+    track.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) stopAuto(); }, { passive: true });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { onScreen = entries[0].isIntersecting; }).observe(box);
+    }
+
+    setInterval(function () {
+      if (!playing || hovered || focused || !onScreen || document.hidden) return;
+      var i = current();
+      goTo(i >= pages() - 1 ? 0 : i + 1);
+    }, AUTOPLAY_MS);
+
+    prev.addEventListener('click', function () { stopAuto(); goTo(current() - 1); });
+    next.addEventListener('click', function () { stopAuto(); goTo(current() + 1); });
     track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
     window.addEventListener('resize', buildDots);
     box.classList.add('is-ready');
