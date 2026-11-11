@@ -57,6 +57,16 @@
     { date: '2028-01-02', name: 'Lendemain du jour de l\'An' }
   ];
 
+  // Other messages for the notice bar (promotions, events), shown from `from` to `to` included.
+  // `href`/`link` are optional. Remove an entry once it is over (it stops showing by itself anyway).
+  var ANNOUNCEMENTS = [
+    {
+      from: '2026-11-11', to: '2026-11-27', label: 'Vendredi fou',
+      text: 'nous sommes ouverts le vendredi 27 novembre, de 6h à 21h. 1 mois gratuit à l\'achat de 3 mois en entraînement privé ou semi-privé, du 20 au 27 novembre.',
+      href: '/#evenements', link: 'Voir l\'offre'
+    }
+  ];
+
   // How many days ahead the notice bar starts announcing a closure, and how many dates it lists at most
   // (the rest are one click away on the FAQ).
   var NOTICE_DAYS_AHEAD = 10;
@@ -219,9 +229,31 @@
       var when = key(x.date) === today ? 'aujourd\'hui' : 'le ' + formatDate(x.date);
       return capitalize(describe(x)) + ' ' + when + (x.name ? ' (' + x.name + ')' : '');
     });
-    if (!items.length) return;
-    el.querySelector('[data-holiday-notice-text]').textContent = items.join(' · ') + '.';
-    el.hidden = false;
+    var holidayLine = el.querySelector('p');
+    if (items.length) {
+      el.querySelector('[data-holiday-notice-text]').textContent = items.join(' · ') + '.';
+    } else {
+      holidayLine.hidden = true;
+    }
+
+    var news = ANNOUNCEMENTS.filter(function (a) { return a.from <= today && today <= a.to; });
+    news.forEach(function (a) {
+      var p = document.createElement('p');
+      var label = document.createElement('strong');
+      label.textContent = a.label + ' :';
+      p.appendChild(label);
+      p.appendChild(document.createTextNode(' ' + a.text));
+      if (a.href) {
+        var link = document.createElement('a');
+        link.href = a.href;
+        link.textContent = a.link || 'En savoir plus';
+        p.appendChild(document.createTextNode(' '));
+        p.appendChild(link);
+      }
+      el.appendChild(p);
+    });
+
+    if (items.length || news.length) el.hidden = false;
   }
 
   // Replaces the static FAQ list (written for a fixed pair of years) with the next 12 months.
