@@ -62,7 +62,7 @@
   var ANNOUNCEMENTS = [
     {
       from: '2026-11-11', to: '2026-11-27', label: 'Vendredi fou',
-      text: 'nous sommes ouverts le vendredi 27 novembre, de 6h à 21h. 1 mois gratuit à l\'achat de 3 mois en entraînement privé ou semi-privé, du 20 au 27 novembre.',
+      text: '1 mois gratuit à l\'achat de 3 mois en entraînement privé ou semi-privé, du 20 au 27 novembre.',
       href: '/#evenements', link: 'Voir l\'offre'
     }
   ];

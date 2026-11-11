@@ -1375,6 +1375,11 @@ hr {
   font-size: 1.05rem;
 }
 
+/* Small print under an offer's description, same size as the notes under the price tables */
+.offer-text .offer-note {
+  font-size: 0.9rem;
+}
+
 .offer-prices {
   min-width: 0; /* lets a wide table scroll inside its grid column instead of stretching it */
 }
