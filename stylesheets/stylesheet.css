@@ -544,6 +544,10 @@ hr {
   font-size: 1rem;
 }
 
+.holiday-notice p:not([hidden]) ~ p {
+  margin-top: 0.35rem;
+}
+
 .holiday-notice a {
   color: var(--color-notice-text);
 }
@@ -743,6 +747,21 @@ hr {
   font-size: 2rem;
   font-weight: 300;
   margin: 2rem 0 1rem;
+}
+
+/* Highlighted rule in an intro (entrainement-prive: gym access needs a training plan) */
+.intro .access-note {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  text-align: left;
+}
+
+.intro .access-note strong {
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 .text-columns {
@@ -993,6 +1012,22 @@ hr {
   margin-top: 0;
 }
 
+/* Mission, vision, values and the ABC: centred titles, airy spacing between blocks on phones */
+.about {
+  row-gap: 2rem;
+}
+
+.about h3,
+.about h4 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.about h3:first-child,
+.about h4:first-child {
+  margin-top: 0;
+}
+
 .about h3 strong {
   color: var(--color-accent-text);
 }
@@ -1036,6 +1071,11 @@ hr {
 
 .event p:last-child {
   margin-bottom: 0;
+}
+
+.event a {
+  color: var(--color-accent-text);
+  font-weight: 700;
 }
 
 /* Shown only when the list has no events left (scripts/site.js removes past ones) */
