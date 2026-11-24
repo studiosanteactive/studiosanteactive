@@ -628,19 +628,12 @@
       title.firstChild.textContent = name;
       title.lastChild.textContent = role;
 
-      var cols = document.createElement('div');
-      cols.className = 'trainer-bio-panel-body';
-      var text = document.createElement('div');
-      var specs = document.createElement('div');
-      Array.prototype.forEach.call(body.children, function (el) {
-        (el.tagName === 'P' ? text : specs).appendChild(el.cloneNode(true));
-      });
-      cols.appendChild(text);
-      cols.appendChild(specs);
+      var text = body.cloneNode(true);
+      text.className = 'trainer-bio-panel-body';
 
       panel.appendChild(close);
       panel.appendChild(title);
-      panel.appendChild(cols);
+      panel.appendChild(text);
     }
 
     bios.forEach(function (details) {

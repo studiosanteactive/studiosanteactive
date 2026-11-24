@@ -1742,6 +1742,27 @@ hr {
   font-size: 0.5em;
 }
 
+/* Specialisations, always visible under the photo so clients can pick a trainer by what they do */
+.trainer-specs {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 1rem;
+}
+
+.trainer-specs-label {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trainer-specs .tags {
+  justify-content: center;
+}
+
 /* Bio behind a "Lire la bio" toggle (native <details>, opens on click or Enter/Space) */
 .trainer-bio {
   width: 100%;
@@ -1797,10 +1818,8 @@ hr {
   font-size: 1rem;
 }
 
-.trainer-bio-body h4 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+.trainer-bio-body p:last-child {
+  margin-bottom: 0;
 }
 
 .tags {
@@ -1862,18 +1881,15 @@ hr {
 }
 
 .trainer-bio-panel-body {
-  display: grid;
-  gap: 1rem 2.5rem;
+  max-width: 70ch;
 }
 
 .trainer-bio-panel-body p {
   font-size: 1rem;
 }
 
-.trainer-bio-panel-body h4 {
-  margin: 0 0 0.6rem;
-  font-size: 1.1rem;
-  font-weight: 600;
+.trainer-bio-panel-body p:last-child {
+  margin-bottom: 0;
 }
 
 .trainer-bio-close {
@@ -1898,10 +1914,6 @@ hr {
 @media (min-width: 768px) {
   .trainer-bio-panel {
     padding: 1.75rem 2rem 2rem;
-  }
-
-  .trainer-bio-panel-body {
-    grid-template-columns: 3fr 2fr;
   }
 }
 
