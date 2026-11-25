@@ -1742,6 +1742,12 @@ hr {
   font-size: 0.5em;
 }
 
+/* Optional line under the role, e.g. "Pronoms : iel/il" */
+.trainer-pronouns {
+  margin: -0.5rem 0 0.75rem;
+  color: var(--color-text-muted);
+}
+
 /* Bio behind a "Lire la bio" toggle (native <details>, opens on click or Enter/Space) */
 .trainer-bio {
   width: 100%;
