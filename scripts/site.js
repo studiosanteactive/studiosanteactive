@@ -608,6 +608,7 @@
       var card = details.closest('.trainer-card');
       var name = card.querySelector('.trainer-name').textContent;
       var role = card.querySelector('.trainer-role').textContent;
+      var pronouns = card.querySelector('.trainer-pronouns span');
       var body = details.querySelector('.trainer-bio-body');
       panel.innerHTML = '';
       panel.setAttribute('aria-label', 'Bio de ' + name);
@@ -624,15 +625,19 @@
 
       var title = document.createElement('p');
       title.className = 'trainer-bio-panel-title';
-      title.innerHTML = '<strong></strong> <span></span>';
-      title.firstChild.textContent = name;
-      title.lastChild.textContent = role;
+      title.innerHTML = '<strong></strong><small></small> <span></span>';
+      title.querySelector('strong').textContent = name;
+      // Pronouns after the name, e.g. "Yan Thach - (il)"
+      if (pronouns) title.querySelector('small').textContent = '\u00a0-\u00a0(' + pronouns.textContent + ')';
+      title.querySelector('span').textContent = role;
 
       var cols = document.createElement('div');
       cols.className = 'trainer-bio-panel-body';
       var text = document.createElement('div');
       var specs = document.createElement('div');
       Array.prototype.forEach.call(body.children, function (el) {
+        // The role and pronouns are already in the panel title.
+        if (el.matches('.trainer-role, .trainer-pronouns')) return;
         (el.tagName === 'P' ? text : specs).appendChild(el.cloneNode(true));
       });
       cols.appendChild(text);

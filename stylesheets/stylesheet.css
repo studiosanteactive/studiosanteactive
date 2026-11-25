@@ -1742,9 +1742,21 @@ hr {
   font-size: 0.5em;
 }
 
+/* Trainers: the role and "Pronoms : …" open the bio instead of sitting under the card */
+.trainer-bio-body .trainer-role {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.trainer-bio-body .trainer-pronouns {
+  margin: 0 0 0.75rem;
+  color: var(--color-text-muted);
+}
+
 /* Bio behind a "Lire la bio" toggle (native <details>, opens on click or Enter/Space) */
 .trainer-bio {
   width: 100%;
+  margin-top: 1rem;
 }
 
 .trainer-bio > summary {
@@ -1859,6 +1871,11 @@ hr {
   display: block;
   color: var(--color-text-muted);
   font-size: 1.05rem;
+}
+
+.trainer-bio-panel-title small {
+  color: var(--color-text-muted);
+  font-size: 0.8em;
 }
 
 .trainer-bio-panel-body {
