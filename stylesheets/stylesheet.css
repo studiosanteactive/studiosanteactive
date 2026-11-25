@@ -1873,9 +1873,9 @@ hr {
   font-size: 1.05rem;
 }
 
-.trainer-bio-panel-title .trainer-bio-panel-pronouns {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+.trainer-bio-panel-title small {
+  color: var(--color-text-muted);
+  font-size: 0.8em;
 }
 
 .trainer-bio-panel-body {
